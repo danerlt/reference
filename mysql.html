@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: MySQL
+date: 2020-12-16 18:28:43
+icon: icon-mysql
+background: bg-[#2a6387]
+tags:
+    - RDBMS
+    - DB
+categories:
+    - Database
+intro: The SQL cheat sheet provides you with the most commonly used SQL statements for your reference. 
+plugins:
+    - tooltip
+---
+
+
+Getting started {.cols-2}
+---------------
+
+
+### Connect MySQL
+```
+mysql -u &#x3C;user> -p
+
+mysql [db_name]
+
+mysql -h &#x3C;host> -P &#x3C;port> -u &#x3C;user> -p [db_name]
+
+mysql -h &#x3C;host> -u &#x3C;user> -p [db_name]
+```
+
+
+
+### Commons {.row-span-2} 
+
+#### Database
+
+| -                        | -               |
+|--------------------------|-----------------|
+| `CREATE DATABASE` db `;` | Create database |
+| `SHOW DATABASES;`        | List databases  |
+| `USE` db`;`              | Switch to db    |
+| `CONNECT` db `;`         | Switch to db    |
+| `DROP DATABASE` db`;`    | Delete db       |
+
+#### Table
+
+| -                        | -                          |
+|--------------------------|----------------------------|
+| `SHOW TABLES;`           | List tables for current db |
+| `SHOW FIELDS FROM` t`;`  | List fields for a table    |
+| `DESC` t`;`              | Show table structure       |
+| `SHOW CREATE TABLE `t`;` | Show create table sql      |
+| `TRUNCATE TABLE `t`;`    | Remove all data in a table |
+| `DROP TABLE `t`;`        | Delete table               |
+
+#### Proccess
+
+| -                   | -              |
+|---------------------|----------------|
+| `show processlist;` | List processes |
+| `kill` pid`;`       | kill process   |
+#### Other
+
+| -              | -                  |
+|----------------|--------------------|
+| `exit` or `\q` | Exit MySQL session |
+
+### Backups
+
+Create a backup
+```sql
+mysqldump -u user -p db_name > db.sql
+```
+
+Export db without schema	
+``` {.wrap}
+mysqldump -u user -p db_name --no-data &#x26;  mysql cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,mysql">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/mysql.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>
+  title: MySQL
+  date: 2020-12-16 18:28:43
+  icon: icon-mysql
+  background: bg-[#2a6387]
+  tags:
+  - RDBMS
+  - DB
+  categories:
+  - Database
+  intro: The SQL cheat sheet provides you with the most commonly used SQL statements for your reference.
+  plugins:
+  - tooltip
+</h2><div class="wrap-body">
+</div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Getting started {.cols-2}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Connect MySQL</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">mysql -u &#x3C;user> -p
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3">mysql [db_name]
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5">mysql -h &#x3C;host> -P &#x3C;port> -u &#x3C;user> -p [db_name]
+</span><span class="code-line line-number" line="6">
+</span><span class="code-line line-number" line="7">mysql -h &#x3C;host> -u &#x3C;user> -p [db_name]
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Commons {.row-span-2}</h3><div class="wrap-body">
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Database</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>CREATE DATABASE</code> db <code>;</code></td>
+      <td>Create database</td>
+    </tr>
+    <tr>
+      <td><code>SHOW DATABASES;</code></td>
+      <td>List databases</td>
+    </tr>
+    <tr>
+      <td><code>USE</code> db<code>;</code></td>
+      <td>Switch to db</td>
+    </tr>
+    <tr>
+      <td><code>CONNECT</code> db <code>;</code></td>
+      <td>Switch to db</td>
+    </tr>
+    <tr>
+      <td><code>DROP DATABASE</code> db<code>;</code></td>
+      <td>Delete db</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Table</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>SHOW TABLES;</code></td>
+      <td>List tables for current db</td>
+    </tr>
+    <tr>
+      <td><code>SHOW FIELDS FROM</code> t<code>;</code></td>
+      <td>List fields for a table</td>
+    </tr>
+    <tr>
+      <td><code>DESC</code> t<code>;</code></td>
+      <td>Show table structure</td>
+    </tr>
+    <tr>
+      <td><code>SHOW CREATE TABLE </code>t<code>;</code></td>
+      <td>Show create table sql</td>
+    </tr>
+    <tr>
+      <td><code>TRUNCATE TABLE </code>t<code>;</code></td>
+      <td>Remove all data in a table</td>
+    </tr>
+    <tr>
+      <td><code>DROP TABLE </code>t<code>;</code></td>
+      <td>Delete table</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Proccess</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>show processlist;</code></td>
+      <td>List processes</td>
+    </tr>
+    <tr>
+      <td><code>kill</code> pid<code>;</code></td>
+      <td>kill process</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Other</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>exit</code> or <code>\q</code></td>
+      <td>Exit MySQL session</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Backups</h3><div class="wrap-body">
+<p>Create a backup</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1">mysqldump <span class="token operator">-</span>u <span class="token keyword">user</span> <span class="token operator">-</span>p db_name <span class="token operator">></span> db<span class="token punctuation">.</span><span class="token keyword">sql</span>
+</span></code></pre>
+<p>Export db without schema</p>
+<pre><code class="language-{.wrap} code-highlight"><span class="code-line line-number" line="1">mysqldump -u user -p db_name --no-data=true --add-drop-table=false > db.sql
+</span></code></pre>
+<p>Restore a backup</p>
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">mysql -u user -p db_name &#x3C; db.sql
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>MySQL Examples {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Managing tables</h3><div class="wrap-body">
+<p>Create a new table with three columns</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> t <span class="token punctuation">(</span>
+</span><span class="code-line line-number" line="2">     id    <span class="token keyword">INT</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">     name  <span class="token keyword">VARCHAR</span> <span class="token keyword">DEFAULT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">     price <span class="token keyword">INT</span> <span class="token keyword">DEFAULT</span> <span class="token number">0</span>
+</span><span class="code-line line-number" line="5">     <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Delete the table from the database</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> t <span class="token punctuation">;</span>
+</span></code></pre>
+<p>Add a new column to the table</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> t <span class="token keyword">ADD</span> <span class="token keyword">column</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Drop column c from the table</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> t <span class="token keyword">DROP</span> <span class="token keyword">COLUMN</span> c <span class="token punctuation">;</span>
+</span></code></pre>
+<p>Add a constraint</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> t <span class="token keyword">ADD</span> <span class="token keyword">constraint</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Drop a constraint</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> t <span class="token keyword">DROP</span> <span class="token keyword">constraint</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Rename a table from t1 to t2</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> t1 <span class="token keyword">RENAME</span> <span class="token keyword">TO</span> t2<span class="token punctuation">;</span>
+</span></code></pre>
+<p>Rename column c1 to c2</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> t1 <span class="token keyword">RENAME</span> c1 <span class="token keyword">TO</span> c2 <span class="token punctuation">;</span>
+</span></code></pre>
+<p>Remove all data in a table</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">TRUNCATE</span> <span class="token keyword">TABLE</span> t<span class="token punctuation">;</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Querying data from a table</h3><div class="wrap-body">
+<p>Query data in columns c1, c2 from a table</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t
+</span></code></pre>
+<p>Query all rows and columns from a table</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t
+</span></code></pre>
+<p>Query data and filter rows with a condition</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t
+</span><span class="code-line line-number" line="2"><span class="token keyword">WHERE</span> condition
+</span></code></pre>
+<p>Query distinct rows from a table</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> c1 <span class="token keyword">FROM</span> t
+</span><span class="code-line line-number" line="2"><span class="token keyword">WHERE</span> condition
+</span></code></pre>
+<p>Sort the result set in ascending or descending order</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t
+</span><span class="code-line line-number" line="2"><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> c1 <span class="token keyword">ASC</span> <span class="token punctuation">[</span><span class="token keyword">DESC</span><span class="token punctuation">]</span>
+</span></code></pre>
+<p>Skip offset of rows and return the next n rows</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t
+</span><span class="code-line line-number" line="2"><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> c1 
+</span><span class="code-line line-number" line="3"><span class="token keyword">LIMIT</span> n <span class="token keyword">OFFSET</span> <span class="token keyword">offset</span>
+</span></code></pre>
+<p>Group rows using an aggregate function</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> aggregate<span class="token punctuation">(</span>c2<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">FROM</span> t
+</span><span class="code-line line-number" line="3"><span class="token keyword">GROUP</span> <span class="token keyword">BY</span> c1
+</span></code></pre>
+<p>Filter groups using HAVING clause</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> aggregate<span class="token punctuation">(</span>c2<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">FROM</span> t
+</span><span class="code-line line-number" line="3"><span class="token keyword">GROUP</span> <span class="token keyword">BY</span> c1
+</span><span class="code-line line-number" line="4"><span class="token keyword">HAVING</span> condition
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Querying from multiple tables {.row-span-2}</h3><div class="wrap-body">
+<p>Inner join t1 and t2</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 
+</span><span class="code-line line-number" line="2"><span class="token keyword">FROM</span> t1
+</span><span class="code-line line-number" line="3"><span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> t2 <span class="token keyword">ON</span> condition
+</span></code></pre>
+<p>Left join t1 and t1</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 
+</span><span class="code-line line-number" line="2"><span class="token keyword">FROM</span> t1
+</span><span class="code-line line-number" line="3"><span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> t2 <span class="token keyword">ON</span> condition
+</span></code></pre>
+<p>Right join t1 and t2</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 
+</span><span class="code-line line-number" line="2"><span class="token keyword">FROM</span> t1
+</span><span class="code-line line-number" line="3"><span class="token keyword">RIGHT</span> <span class="token keyword">JOIN</span> t2 <span class="token keyword">ON</span> condition
+</span></code></pre>
+<p>Perform full outer join</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 
+</span><span class="code-line line-number" line="2"><span class="token keyword">FROM</span> t1
+</span><span class="code-line line-number" line="3"><span class="token keyword">FULL</span> <span class="token keyword">OUTER</span> <span class="token keyword">JOIN</span> t2 <span class="token keyword">ON</span> condition
+</span></code></pre>
+<p>Produce a Cartesian product of rows in tables</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 
+</span><span class="code-line line-number" line="2"><span class="token keyword">FROM</span> t1
+</span><span class="code-line line-number" line="3"><span class="token keyword">CROSS</span> <span class="token keyword">JOIN</span> t2
+</span></code></pre>
+<p>Another way to perform cross join</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 
+</span><span class="code-line line-number" line="2"><span class="token keyword">FROM</span> t1<span class="token punctuation">,</span> t2
+</span></code></pre>
+<p>Join t1 to itself using INNER JOIN clause</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2
+</span><span class="code-line line-number" line="2"><span class="token keyword">FROM</span> t1 A
+</span><span class="code-line line-number" line="3"><span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> t1 B <span class="token keyword">ON</span> condition
+</span></code></pre>
+<p>
+  Using SQL Operators
+  Combine rows from two queries
+</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t1
+</span><span class="code-line line-number" line="2"><span class="token keyword">UNION</span> <span class="token punctuation">[</span><span class="token keyword">ALL</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="3"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t2
+</span></code></pre>
+<p>Return the intersection of two queries</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t1
+</span><span class="code-line line-number" line="2"><span class="token keyword">INTERSECT</span>
+</span><span class="code-line line-number" line="3"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t2
+</span></code></pre>
+<p>Subtract a result set from another result set</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t1
+</span><span class="code-line line-number" line="2">MINUS
+</span><span class="code-line line-number" line="3"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t2
+</span></code></pre>
+<p>Query rows using pattern matching %, _</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t1
+</span><span class="code-line line-number" line="2"><span class="token keyword">WHERE</span> c1 <span class="token punctuation">[</span><span class="token operator">NOT</span><span class="token punctuation">]</span> <span class="token operator">LIKE</span> pattern
+</span></code></pre>
+<p>Query rows in a list</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t
+</span><span class="code-line line-number" line="2"><span class="token keyword">WHERE</span> c1 <span class="token punctuation">[</span><span class="token operator">NOT</span><span class="token punctuation">]</span> <span class="token operator">IN</span> value_list
+</span></code></pre>
+<p>Query rows between two values</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t
+</span><span class="code-line line-number" line="2"><span class="token keyword">WHERE</span>  c1 <span class="token operator">BETWEEN</span> low <span class="token operator">AND</span> high
+</span></code></pre>
+<p>Check if values in a table is NULL or not</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2 <span class="token keyword">FROM</span> t
+</span><span class="code-line line-number" line="2"><span class="token keyword">WHERE</span>  c1 <span class="token operator">IS</span> <span class="token punctuation">[</span><span class="token operator">NOT</span><span class="token punctuation">]</span> <span class="token boolean">NULL</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Using SQL constraints</h3><div class="wrap-body">
+<p>Set c1 and c2 as a primary key</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> t<span class="token punctuation">(</span>
+</span><span class="code-line line-number" line="2">    c1 <span class="token keyword">INT</span><span class="token punctuation">,</span> c2 <span class="token keyword">INT</span><span class="token punctuation">,</span> c3 <span class="token keyword">VARCHAR</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>c1<span class="token punctuation">,</span>c2<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Set c2 column as a foreign key</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> t1<span class="token punctuation">(</span>
+</span><span class="code-line line-number" line="2">    c1 <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">,</span>  
+</span><span class="code-line line-number" line="3">    c2 <span class="token keyword">INT</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>c2<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> t2<span class="token punctuation">(</span>c2<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Make the values in c1 and c2 unique</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> t<span class="token punctuation">(</span>
+</span><span class="code-line line-number" line="2">    c1 <span class="token keyword">INT</span><span class="token punctuation">,</span> c1 <span class="token keyword">INT</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">    <span class="token keyword">UNIQUE</span><span class="token punctuation">(</span>c2<span class="token punctuation">,</span>c3<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Ensure c1 > 0 and values in c1 >= c2</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> t<span class="token punctuation">(</span>
+</span><span class="code-line line-number" line="2">  c1 <span class="token keyword">INT</span><span class="token punctuation">,</span> c2 <span class="token keyword">INT</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token keyword">CHECK</span><span class="token punctuation">(</span>c1<span class="token operator">></span> <span class="token number">0</span> <span class="token operator">AND</span> c1 <span class="token operator">>=</span> c2<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Set values in c2 column not NULL</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> t<span class="token punctuation">(</span>
+</span><span class="code-line line-number" line="2">     c1 <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">     c2 <span class="token keyword">VARCHAR</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Modifying Data</h3><div class="wrap-body">
+<p>Insert one row into a table</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> t<span class="token punctuation">(</span>column_list<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">VALUES</span><span class="token punctuation">(</span>value_list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Insert multiple rows into a table</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> t<span class="token punctuation">(</span>column_list<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">VALUES</span> <span class="token punctuation">(</span>value_list<span class="token punctuation">)</span><span class="token punctuation">,</span> 
+</span><span class="code-line line-number" line="3">       <span class="token punctuation">(</span>value_list<span class="token punctuation">)</span><span class="token punctuation">,</span> …<span class="token punctuation">;</span>
+</span></code></pre>
+<p>Insert rows from t2 into t1</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> t1<span class="token punctuation">(</span>column_list<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">SELECT</span> column_list
+</span><span class="code-line line-number" line="3"><span class="token keyword">FROM</span> t2<span class="token punctuation">;</span>
+</span></code></pre>
+<p>Update new value in the column c1 for all rows</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">UPDATE</span> t
+</span><span class="code-line line-number" line="2"><span class="token keyword">SET</span> c1 <span class="token operator">=</span> new_value<span class="token punctuation">;</span>
+</span></code></pre>
+<p>Update values in the column c1, c2 that match the condition</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">UPDATE</span> t
+</span><span class="code-line line-number" line="2"><span class="token keyword">SET</span> c1 <span class="token operator">=</span> new_value<span class="token punctuation">,</span> 
+</span><span class="code-line line-number" line="3">        c2 <span class="token operator">=</span> new_value
+</span><span class="code-line line-number" line="4"><span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span>
+</span></code></pre>
+<p>Delete all data in a table</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> t<span class="token punctuation">;</span>
+</span></code></pre>
+<p>Delete subset of rows in a table</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> t
+</span><span class="code-line line-number" line="2"><span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Managing Views</h3><div class="wrap-body">
+<p>Create a new view that consists of c1 and c2</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> v<span class="token punctuation">(</span>c1<span class="token punctuation">,</span>c2<span class="token punctuation">)</span> 
+</span><span class="code-line line-number" line="2"><span class="token keyword">AS</span>
+</span><span class="code-line line-number" line="3"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2
+</span><span class="code-line line-number" line="4"><span class="token keyword">FROM</span> t<span class="token punctuation">;</span>
+</span></code></pre>
+<p>Create a new view with check option</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> v<span class="token punctuation">(</span>c1<span class="token punctuation">,</span>c2<span class="token punctuation">)</span> 
+</span><span class="code-line line-number" line="2"><span class="token keyword">AS</span>
+</span><span class="code-line line-number" line="3"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2
+</span><span class="code-line line-number" line="4"><span class="token keyword">FROM</span> t<span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="5"><span class="token keyword">WITH</span> <span class="token punctuation">[</span><span class="token keyword">CASCADED</span> <span class="token operator">|</span> <span class="token keyword">LOCAL</span><span class="token punctuation">]</span> <span class="token keyword">CHECK</span> <span class="token keyword">OPTION</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Create a recursive view</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">CREATE</span> RECURSIVE <span class="token keyword">VIEW</span> v 
+</span><span class="code-line line-number" line="2"><span class="token keyword">AS</span>
+</span><span class="code-line line-number" line="3"><span class="token keyword">select</span><span class="token operator">-</span>statement <span class="token comment">-- anchor part</span>
+</span><span class="code-line line-number" line="4"><span class="token keyword">UNION</span> <span class="token punctuation">[</span><span class="token keyword">ALL</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="5"><span class="token keyword">select</span><span class="token operator">-</span>statement<span class="token punctuation">;</span> <span class="token comment">-- recursive part</span>
+</span></code></pre>
+<p>Create a temporary view</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">CREATE</span> <span class="token keyword">TEMPORARY</span> <span class="token keyword">VIEW</span> v 
+</span><span class="code-line line-number" line="2"><span class="token keyword">AS</span>
+</span><span class="code-line line-number" line="3"><span class="token keyword">SELECT</span> c1<span class="token punctuation">,</span> c2
+</span><span class="code-line line-number" line="4"><span class="token keyword">FROM</span> t<span class="token punctuation">;</span>
+</span></code></pre>
+<p>Delete a view</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">DROP</span> <span class="token keyword">VIEW</span> view_name<span class="token punctuation">;</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Managing triggers</h3><div class="wrap-body">
+<p>Create or modify a trigger</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">CREATE</span> <span class="token operator">OR</span> <span class="token keyword">MODIFY</span> <span class="token keyword">TRIGGER</span> trigger_name
+</span><span class="code-line line-number" line="2"><span class="token keyword">WHEN</span> EVENT
+</span><span class="code-line line-number" line="3"><span class="token keyword">ON</span> table_name TRIGGER_TYPE
+</span><span class="code-line line-number" line="4"><span class="token keyword">EXECUTE</span> stored_procedure<span class="token punctuation">;</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>WHEN</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>BEFORE</code></td>
+      <td>invoke before the event occurs</td>
+    </tr>
+    <tr>
+      <td><code>AFTER</code></td>
+      <td>invoke after the event occurs</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>EVENT</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>INSERT</code></td>
+      <td>invoke for INSERT</td>
+    </tr>
+    <tr>
+      <td><code>UPDATE</code></td>
+      <td>invoke for UPDATE</td>
+    </tr>
+    <tr>
+      <td><code>DELETE</code></td>
+      <td>invoke for DELETE</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>TRIGGER_TYPE</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>FOR EACH ROW</code></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>FOR EACH STATEMENT</code></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Managing indexes</h3><div class="wrap-body">
+<p>Create an index on c1 and c2 of the t table</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">CREATE</span> <span class="token keyword">INDEX</span> idx_name 
+</span><span class="code-line line-number" line="2"><span class="token keyword">ON</span> t<span class="token punctuation">(</span>c1<span class="token punctuation">,</span>c2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Create a unique index on c3, c4 of the t table</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> idx_name
+</span><span class="code-line line-number" line="2"><span class="token keyword">ON</span> t<span class="token punctuation">(</span>c3<span class="token punctuation">,</span>c4<span class="token punctuation">)</span>
+</span></code></pre>
+<p>Drop an index</p>
+<pre class="language-sql"><code class="language-sql code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">DROP</span> <span class="token keyword">INDEX</span> idx_name<span class="token punctuation">;</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>MySQL Data Types {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Strings</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>CHAR</code></td>
+      <td>String (0 - 255)</td>
+    </tr>
+    <tr>
+      <td><code>VARCHAR</code></td>
+      <td>String (0 - 255)</td>
+    </tr>
+    <tr>
+      <td><code>TINYTEXT</code></td>
+      <td>String (0 - 255)</td>
+    </tr>
+    <tr>
+      <td><code>TEXT</code></td>
+      <td>String (0 - 65535)</td>
+    </tr>
+    <tr>
+      <td><code>BLOB</code></td>
+      <td>String (0 - 65535)</td>
+    </tr>
+    <tr>
+      <td><code>MEDIUMTEXT</code></td>
+      <td>String (0 - 16777215)</td>
+    </tr>
+    <tr>
+      <td><code>MEDIUMBLOB</code></td>
+      <td>String (0 - 16777215)</td>
+    </tr>
+    <tr>
+      <td><code>LONGTEXT</code></td>
+      <td>String (0 - 429496­7295)</td>
+    </tr>
+    <tr>
+      <td><code>LONGBLOB</code></td>
+      <td>String (0 - 429496­7295)</td>
+    </tr>
+    <tr>
+      <td><code>ENUM</code></td>
+      <td>One of preset options</td>
+    </tr>
+    <tr>
+      <td><code>SET</code></td>
+      <td>Selection of preset options</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Date &#x26; time</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Data Type</th>
+      <th>Format</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>DATE</code></td>
+      <td>yyyy-MM-dd</td>
+    </tr>
+    <tr>
+      <td><code>TIME</code></td>
+      <td>hh:mm:ss</td>
+    </tr>
+    <tr>
+      <td><code>DATETIME</code></td>
+      <td>yyyy-MM-dd hh:mm:ss</td>
+    </tr>
+    <tr>
+      <td><code>TIMESTAMP</code></td>
+      <td>yyyy-MM-dd hh:mm:ss</td>
+    </tr>
+    <tr>
+      <td><code>YEAR</code></td>
+      <td>yyyy</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Numeric</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>TINYINT x</code></td>
+      <td>Integer (-128 to 127)</td>
+    </tr>
+    <tr>
+      <td><code>SMALLINT x</code></td>
+      <td>Integer (-32768 to 32767)</td>
+    </tr>
+    <tr>
+      <td><code>MEDIUMINT x</code></td>
+      <td>Integer (-8388608 to 8388607)</td>
+    </tr>
+    <tr>
+      <td><code>INT x</code></td>
+      <td>Integer (-2147­483648 to 214748­3647)</td>
+    </tr>
+    <tr>
+      <td><code>BIGINT x</code></td>
+      <td>Integer (-9223­372­036­854­775808 to 922337­203­685­477­5807)</td>
+    </tr>
+    <tr>
+      <td><code>FLOAT</code></td>
+      <td>Decimal (precise to 23 digits)</td>
+    </tr>
+    <tr>
+      <td><code>DOUBLE</code></td>
+      <td>Decimal (24 to 53 digits)</td>
+    </tr>
+    <tr>
+      <td><code>DECIMAL</code></td>
+      <td>"­DOU­BLE­" stored as string</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>MySQL Functions &#x26; Operators {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Strings {.row-span-2}</h3><div class="wrap-body">
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_ascii">ASCII()</a>{data-tooltip="Return numeric value of left-most character"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_bin">BIN()</a>{data-tooltip="Return a string containing binary representation of a number"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_bit-length">BIT_LENGTH()</a>{data-tooltip="Return length of argument in bits"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_char">CHAR()</a>{data-tooltip="Return the character for each integer passed"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_character-length">CHARACTER_LENGTH()</a>{data-tooltip="Synonym for CHAR_LENGTH()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_char-length">CHAR_LENGTH()</a>{data-tooltip="Return number of characters in argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_concat">CONCAT()</a>{data-tooltip="Return concatenated string"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_concat-ws">CONCAT_WS()</a>{data-tooltip="Return concatenate with separator"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_elt">ELT()</a>{data-tooltip="Return string at index number"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_export-set">EXPORT_SET()</a>{data-tooltip="Return a string such that for every bit set in the value bits, you get an on string and for every unset bit, you get an off string"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_field">FIELD()</a>{data-tooltip="Index (position) of first argument in subsequent arguments"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_find-in-set">FIND_IN_SET()</a>{data-tooltip="Index (position) of first argument within second argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_format">FORMAT()</a>{data-tooltip="Return a number formatted to specified number of decimal places"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_from-base64">FROM_BASE64()</a>{data-tooltip="Decode base64 encoded string and return result"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_hex">HEX()</a>{data-tooltip="Hexadecimal representation of decimal or string value"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_insert">INSERT()</a>{data-tooltip="Insert substring at specified position up to specified number of characters"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_instr">INSTR()</a>{data-tooltip="Return the index of the first occurrence of substring"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_lcase">LCASE()</a>{data-tooltip="Synonym for LOWER()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_left">LEFT()</a>{data-tooltip="Return the leftmost number of characters as specified"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_length">LENGTH()</a>{data-tooltip="Return the length of a string in bytes"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html#operator_like">LIKE</a>{data-tooltip="Simple pattern matching"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_load-file">LOAD_FILE()</a>{data-tooltip="Load the named file"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_locate">LOCATE()</a>{data-tooltip="Return the position of the first occurrence of substring"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_lower">LOWER()</a>{data-tooltip="Return the argument in lowercase"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_lpad">LPAD()</a>{data-tooltip="Return the string argument, left-padded with the specified string"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_ltrim">LTRIM()</a>{data-tooltip="Remove leading spaces"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_make-set">MAKE_SET()</a>{data-tooltip="Return a set of comma-separated strings that have the corresponding bit in bits set"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/fulltext-search.html#function_match">MATCH</a>{data-tooltip="Perform full-text search"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_mid">MID()</a>{data-tooltip="Return a substring starting from the specified position"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html#operator_not-like">NOT LIKE</a>{data-tooltip="Negation of simple pattern matching"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/regexp.html#operator_not-regexp">NOT REGEXP</a>{data-tooltip="Negation of REGEXP"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_oct">OCT()</a>{data-tooltip="Return a string containing octal representation of a number"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_octet-length">OCTET_LENGTH()</a>{data-tooltip="Synonym for LENGTH()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_ord">ORD()</a>{data-tooltip="Return character code for leftmost character of the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_position">POSITION()</a>{data-tooltip="Synonym for LOCATE()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_quote">QUOTE()</a>{data-tooltip="Escape the argument for use in an SQL statement"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/regexp.html#operator_regexp">REGEXP</a>{data-tooltip="Whether string matches regular expression"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/regexp.html#function_regexp-instr">REGEXP_INSTR()</a>{data-tooltip="Starting index of substring matching regular expression"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/regexp.html#function_regexp-like">REGEXP_LIKE()</a>{data-tooltip="Whether string matches regular expression"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/regexp.html#function_regexp-replace">REGEXP_REPLACE()</a>{data-tooltip="Replace substrings matching regular expression"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/regexp.html#function_regexp-substr">REGEXP_SUBSTR()</a>{data-tooltip="Return substring matching regular expression"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_repeat">REPEAT()</a>{data-tooltip="Repeat a string the specified number of times"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_replace">REPLACE()</a>{data-tooltip="Replace occurrences of a specified string"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_reverse">REVERSE()</a>{data-tooltip="Reverse the characters in a string"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_right">RIGHT()</a>{data-tooltip="Return the specified rightmost number of characters"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/regexp.html#operator_regexp">RLIKE</a>{data-tooltip="Whether string matches regular expression"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_rpad">RPAD()</a>{data-tooltip="Append string the specified number of times"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_rtrim">RTRIM()</a>{data-tooltip="Remove trailing spaces"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_soundex">SOUNDEX()</a>{data-tooltip="Return a soundex string"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#operator_sounds-like">SOUNDS LIKE</a>{data-tooltip="Compare sounds"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_space">SPACE()</a>{data-tooltip="Return a string of the specified number of spaces"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html#function_strcmp">STRCMP()</a>{data-tooltip="Compare two strings"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_substr">SUBSTR()</a>{data-tooltip="Return the substring as specified"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_substring">SUBSTRING()</a>{data-tooltip="Return the substring as specified"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_substring-index">SUBSTRING_INDEX()</a>{data-tooltip="Return a substring from a string before the specified number of occurrences of the delimiter"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_to-base64">TO_BASE64()</a>{data-tooltip="Return the argument converted to a base-64 string"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_trim">TRIM()</a>{data-tooltip="Remove leading and trailing spaces"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_ucase">UCASE()</a>{data-tooltip="Synonym for UPPER()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_unhex">UNHEX()</a>{data-tooltip="Return a string containing hex representation of a number"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_upper">UPPER()</a>{data-tooltip="Convert to uppercase"}</li>
+  <li>
+    <a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_weight-string">WEIGHT_STRING()</a>{data-tooltip="Return the weight string for a string"}
+    {.cols-2}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Date and Time {.row-span-2}</h3><div class="wrap-body">
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_adddate">ADDDATE()</a>{data-tooltip="Add time values (intervals) to a date value"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_addtime">ADDTIME()</a>{data-tooltip="Add time"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_convert-tz">CONVERT_TZ()</a>{data-tooltip="Convert from one time zone to another"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_curdate">CURDATE()</a>{data-tooltip="Return the current date"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_current-date">CURRENT_DATE()</a>{data-tooltip="Synonyms for CURDATE()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_current-time">CURRENT_TIME()</a>{data-tooltip="Synonyms for CURTIME()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_current-timestamp">CURRENT_TIMESTAMP()</a>{data-tooltip="Synonyms for NOW()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_curtime">CURTIME()</a>{data-tooltip="Return the current time"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_date">DATE()</a>{data-tooltip="Extract the date part of a date or datetime expression"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_date-add">DATE_ADD()</a>{data-tooltip="Add time values (intervals) to a date value"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_date-format">DATE_FORMAT()</a>{data-tooltip="Format date as specified"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_date-sub">DATE_SUB()</a>{data-tooltip="Subtract a time value (interval) from a date"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_datediff">DATEDIFF()</a>{data-tooltip="Subtract two dates"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_day">DAY()</a>{data-tooltip="Synonym for DAYOFMONTH()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_dayname">DAYNAME()</a>{data-tooltip="Return the name of the weekday"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_dayofmonth">DAYOFMONTH()</a>{data-tooltip="Return the day of the month (0-31)"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_dayofweek">DAYOFWEEK()</a>{data-tooltip="Return the weekday index of the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_dayofyear">DAYOFYEAR()</a>{data-tooltip="Return the day of the year (1-366)"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_extract">EXTRACT()</a>{data-tooltip="Extract part of a date"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_from-days">FROM_DAYS()</a>{data-tooltip="Convert a day number to a date"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_from-unixtime">FROM_UNIXTIME()</a>{data-tooltip="Format Unix timestamp as a date"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_get-format">GET_FORMAT()</a>{data-tooltip="Return a date format string"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_hour">HOUR()</a>{data-tooltip="Extract the hour"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_last-day">LAST_DAY</a>{data-tooltip="Return the last day of the month for the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_localtime">LOCALTIME()</a>{data-tooltip="Synonym for NOW()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_localtimestamp">LOCALTIMESTAMP()</a>{data-tooltip="Synonym for NOW()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_makedate">MAKEDATE()</a>{data-tooltip="Create a date from the year and day of year"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_maketime">MAKETIME()</a>{data-tooltip="Create time from hour, minute, second"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_microsecond">MICROSECOND()</a>{data-tooltip="Return the microseconds from argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_minute">MINUTE()</a>{data-tooltip="Return the minute from the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_month">MONTH()</a>{data-tooltip="Return the month from the date passed"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_monthname">MONTHNAME()</a>{data-tooltip="Return the name of the month"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_now">NOW()</a>{data-tooltip="Return the current date and time"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_period-add">PERIOD_ADD()</a>{data-tooltip="Add a period to a year-month"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_period-diff">PERIOD_DIFF()</a>{data-tooltip="Return the number of months between periods"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_quarter">QUARTER()</a>{data-tooltip="Return the quarter from a date argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_sec-to-time">SEC_TO_TIME()</a>{data-tooltip="Converts seconds to 'hh:mm:ss' format"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_second">SECOND()</a>{data-tooltip="Return the second (0-59)"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_str-to-date">STR_TO_DATE()</a>{data-tooltip="Convert a string to a date"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_subdate">SUBDATE()</a>{data-tooltip="Synonym for DATE_SUB() when invoked with three arguments"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_subtime">SUBTIME()</a>{data-tooltip="Subtract times"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_sysdate">SYSDATE()</a>{data-tooltip="Return the time at which the function executes"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_time">TIME()</a>{data-tooltip="Extract the time portion of the expression passed"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_time-format">TIME_FORMAT()</a>{data-tooltip="Format as time"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_time-to-sec">TIME_TO_SEC()</a>{data-tooltip="Return the argument converted to seconds"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_timediff">TIMEDIFF()</a>{data-tooltip="Subtract time"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_timestamp">TIMESTAMP()</a>{data-tooltip="With a single argument, this function returns the date or datetime expression; with two arguments, the sum of the arguments"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_timestampadd">TIMESTAMPADD()</a>{data-tooltip="Add an interval to a datetime expression"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_timestampdiff">TIMESTAMPDIFF()</a>{data-tooltip="Subtract an interval from a datetime expression"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_to-days">TO_DAYS()</a>{data-tooltip="Return the date argument converted to days"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_to-seconds">TO_SECONDS()</a>{data-tooltip="Return the date or datetime argument converted to seconds since Year 0"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_unix-timestamp">UNIX_TIMESTAMP()</a>{data-tooltip="Return a Unix timestamp"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_utc-date">UTC_DATE()</a>{data-tooltip="Return the current UTC date"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_utc-time">UTC_TIME()</a>{data-tooltip="Return the current UTC time"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_utc-timestamp">UTC_TIMESTAMP()</a>{data-tooltip="Return the current UTC date and time"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_week">WEEK()</a>{data-tooltip="Return the week number"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_weekday">WEEKDAY()</a>{data-tooltip="Return the weekday index"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_weekofyear">WEEKOFYEAR()</a>{data-tooltip="Return the calendar week of the date (1-53)"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_year">YEAR()</a>{data-tooltip="Return the year"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_yearweek">YEARWEEK()</a>{data-tooltip="Return the year and week"}</li>
+  <li>
+    <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_get-format">GET_FORMAT()</a>{data-tooltip="'%m.%d.%Y'"}
+    {.cols-2}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Numeric</h3><div class="wrap-body">
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/arithmetic-functions.html#operator_mod">%, MOD</a>{data-tooltip="Modulo operator"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/arithmetic-functions.html#operator_times">*</a>{data-tooltip="Multiplication operator"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/arithmetic-functions.html#operator_plus">+</a>{data-tooltip="Addition operator"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/arithmetic-functions.html#operator_minus">-</a>{data-tooltip="Minus operator"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/arithmetic-functions.html#operator_unary-minus">-</a>{data-tooltip="Change the sign of the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/arithmetic-functions.html#operator_divide">/</a>{data-tooltip="Division operator"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_abs">ABS()</a>{data-tooltip="Return the absolute value"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_acos">ACOS()</a>{data-tooltip="Return the arc cosine"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_asin">ASIN()</a>{data-tooltip="Return the arc sine"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_atan">ATAN()</a>{data-tooltip="Return the arc tangent"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_atan2">ATAN2(), ATAN()</a>{data-tooltip="Return the arc tangent of the two arguments"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_ceil">CEIL()</a>{data-tooltip="Return the smallest integer value not less than the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_ceiling">CEILING()</a>{data-tooltip="Return the smallest integer value not less than the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_conv">CONV()</a>{data-tooltip="Convert numbers between different number bases"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_cos">COS()</a>{data-tooltip="Return the cosine"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_cot">COT()</a>{data-tooltip="Return the cotangent"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_crc32">CRC32()</a>{data-tooltip="Compute a cyclic redundancy check value"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_degrees">DEGREES()</a>{data-tooltip="Convert radians to degrees"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/arithmetic-functions.html#operator_div">DIV</a>{data-tooltip="Integer division"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_exp">EXP()</a>{data-tooltip="Raise to the power of"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_floor">FLOOR()</a>{data-tooltip="Return the largest integer value not greater than the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_ln">LN()</a>{data-tooltip="Return the natural logarithm of the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_log">LOG()</a>{data-tooltip="Return the natural logarithm of the first argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_log10">LOG10()</a>{data-tooltip="Return the base-10 logarithm of the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_log2">LOG2()</a>{data-tooltip="Return the base-2 logarithm of the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_mod">MOD()</a>{data-tooltip="Return the remainder"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_pi">PI()</a>{data-tooltip="Return the value of pi"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_pow">POW()</a>{data-tooltip="Return the argument raised to the specified power"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_power">POWER()</a>{data-tooltip="Return the argument raised to the specified power"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_radians">RADIANS()</a>{data-tooltip="Return argument converted to radians"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_rand">RAND()</a>{data-tooltip="Return a random floating-point value"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_round">ROUND()</a>{data-tooltip="Round the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_sign">SIGN()</a>{data-tooltip="Return the sign of the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_sin">SIN()</a>{data-tooltip="Return the sine of the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_sqrt">SQRT()</a>{data-tooltip="Return the square root of the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_tan">TAN()</a>{data-tooltip="Return the tangent of the argument"}</li>
+  <li>
+    <a href="https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_truncate">TRUNCATE()</a>{data-tooltip="Truncate to specified number of decimal places"}
+    {.cols-2}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Aggregate</h3><div class="wrap-body">
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_avg">AVG()</a>{data-tooltip="Return the average value of the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_bit-and">BIT_AND()</a>{data-tooltip="Return bitwise AND"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_bit-or">BIT_OR()</a>{data-tooltip="Return bitwise OR"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_bit-xor">BIT_XOR()</a>{data-tooltip="Return bitwise XOR"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_count">COUNT()</a>{data-tooltip="Return a count of the number of rows returned"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_count-distinct">COUNT(DISTINCT)</a>{data-tooltip="Return the count of a number of different values"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_group-concat">GROUP_CONCAT()</a>{data-tooltip="Return a concatenated string"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_json-arrayagg">JSON_ARRAYAGG()</a>{data-tooltip="Return result set as a single JSON array"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_json-objectagg">JSON_OBJECTAGG()</a>{data-tooltip="Return result set as a single JSON object"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_max">MAX()</a>{data-tooltip="Return the maximum value"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_min">MIN()</a>{data-tooltip="Return the minimum value"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_std">STD()</a>{data-tooltip="Return the population standard deviation"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_stddev">STDDEV()</a>{data-tooltip="Return the population standard deviation"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_stddev-pop">STDDEV_POP()</a>{data-tooltip="Return the population standard deviation"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_stddev-samp">STDDEV_SAMP()</a>{data-tooltip="Return the sample standard deviation"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_sum">SUM()</a>{data-tooltip="Return the sum"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_var-pop">VAR_POP()</a>{data-tooltip="Return the population standard variance"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_var-samp">VAR_SAMP()</a>{data-tooltip="Return the sample variance"}</li>
+  <li>
+    <a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_variance">VARIANCE()</a>{data-tooltip="Return the population standard variance"}
+    {.cols-2}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>JSON {.row-span-4}</h3><div class="wrap-body">
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#operator_json-column-path">-></a>{data-tooltip="Return value from JSON column after evaluating path; equivalent to JSON_EXTRACT()."}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#operator_json-inline-path">->></a>{data-tooltip="Return value from JSON column after evaluating path and unquoting the result; equivalent to JSON_UNQUOTE(JSON_EXTRACT())."}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-creation-functions.html#function_json-array">JSON_ARRAY()</a>{data-tooltip="Create JSON array"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-array-append">JSON_ARRAY_APPEND()</a>{data-tooltip="Append data to JSON document"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-array-insert">JSON_ARRAY_INSERT()</a>{data-tooltip="Insert into JSON array"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-contains">JSON_CONTAINS()</a>{data-tooltip="Whether JSON document contains specific object at path"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-contains-path">JSON_CONTAINS_PATH()</a>{data-tooltip="Whether JSON document contains any data at path"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-attribute-functions.html#function_json-depth">JSON_DEPTH()</a>{data-tooltip="Maximum depth of JSON document"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-extract">JSON_EXTRACT()</a>{data-tooltip="Return data from JSON document"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-insert">JSON_INSERT()</a>{data-tooltip="Insert data into JSON document"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-keys">JSON_KEYS()</a>{data-tooltip="Array of keys from JSON document"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-attribute-functions.html#function_json-length">JSON_LENGTH()</a>{data-tooltip="Number of elements in JSON document"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-merge">JSON_MERGE() (deprecated)</a>{data-tooltip="Merge JSON documents, preserving duplicate keys. Deprecated synonym for JSON_MERGE_PRESERVE()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-merge-patch">JSON_MERGE_PATCH()</a>{data-tooltip="Merge JSON documents, replacing values of duplicate keys"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-merge-preserve">JSON_MERGE_PRESERVE()</a>{data-tooltip="Merge JSON documents, preserving duplicate keys"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-creation-functions.html#function_json-object">JSON_OBJECT()</a>{data-tooltip="Create JSON object"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-overlaps">JSON_OVERLAPS() (introduced 8.0.17)</a>{data-tooltip="Compares two JSON documents, returns TRUE (1) if these have any key-value pairs or array elements in common, otherwise FALSE (0)"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-utility-functions.html#function_json-pretty">JSON_PRETTY()</a>{data-tooltip="Print a JSON document in human-readable format"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-creation-functions.html#function_json-quote">JSON_QUOTE()</a>{data-tooltip="Quote JSON document"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-remove">JSON_REMOVE()</a>{data-tooltip="Remove data from JSON document"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-replace">JSON_REPLACE()</a>{data-tooltip="Replace values in JSON document"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-validation-functions.html#function_json-schema-valid">JSON_SCHEMA_VALID() (introduced 8.0.17)</a>{data-tooltip="Validate JSON document against JSON schema; returns TRUE/1 if document validates against schema, or FALSE/0 if it does not"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-validation-functions.html#function_json-schema-validation-report">JSON_SCHEMA_VALIDATION_REPORT() (introduced 8.0.17)</a>{data-tooltip="Validate JSON document against JSON schema; returns report in JSON format on outcome on validation including success or failure and reasons for failure"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-search">JSON_SEARCH()</a>{data-tooltip="Path to value within JSON document"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-set">JSON_SET()</a>{data-tooltip="Insert data into JSON document"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-utility-functions.html#function_json-storage-free">JSON_STORAGE_FREE()</a>{data-tooltip="Freed space within binary representation of JSON column value following partial update"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-utility-functions.html#function_json-storage-size">JSON_STORAGE_SIZE()</a>{data-tooltip="Space used for storage of binary representation of a JSON document"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-table-functions.html#function_json-table">JSON_TABLE()</a>{data-tooltip="Return data from a JSON expression as a relational table"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-attribute-functions.html#function_json-type">JSON_TYPE()</a>{data-tooltip="Type of JSON value"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-unquote">JSON_UNQUOTE()</a>{data-tooltip="Unquote JSON value"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-attribute-functions.html#function_json-valid">JSON_VALID()</a>{data-tooltip="Whether JSON value is valid"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-value">JSON_VALUE() (introduced 8.0.21)</a>{data-tooltip="Extract value from JSON document at location pointed to by path provided; return this value as VARCHAR(512) or specified type"}</li>
+  <li>
+    <a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#operator_member-of">MEMBER OF() (introduced 8.0.17)</a>{data-tooltip="Returns true (1) if first operand matches any element of JSON array passed as second operand, otherwise returns false (0)"}
+    {.cols-1}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Cast</h3><div class="wrap-body">
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/cast-functions.html#operator_binary">BINARY</a>{data-tooltip="Cast a string to a binary string"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/cast-functions.html#function_cast">CAST()</a>{data-tooltip="Cast a value as a certain type"}</li>
+  <li>
+    <a href="https://dev.mysql.com/doc/refman/8.0/en/cast-functions.html#function_convert">CONVERT()</a>{data-tooltip="Cast a value as a certain type"}
+    {.cols-2}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Flow Control</h3><div class="wrap-body">
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/flow-control-functions.html#operator_case">CASE</a>{data-tooltip="Case operator"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/flow-control-functions.html#function_if">IF()</a>{data-tooltip="If/else construct"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/flow-control-functions.html#function_ifnull">IFNULL()</a>{data-tooltip="Null if/else construct"}</li>
+  <li>
+    <a href="https://dev.mysql.com/doc/refman/8.0/en/flow-control-functions.html#function_nullif">NULLIF()</a>{data-tooltip="Return NULL if expr1 = expr2"}
+    {.cols-2}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Information</h3><div class="wrap-body">
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_benchmark">BENCHMARK()</a>{data-tooltip="Repeatedly execute an expression"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_charset">CHARSET()</a>{data-tooltip="Return the character set of the argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_coercibility">COERCIBILITY()</a>{data-tooltip="Return the collation coercibility value of the string argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_collation">COLLATION()</a>{data-tooltip="Return the collation of the string argument"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_connection-id">CONNECTION_ID()</a>{data-tooltip="Return the connection ID (thread ID) for the connection"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_current-role">CURRENT_ROLE()</a>{data-tooltip="Return the current active roles"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_current-user">CURRENT_USER()</a>{data-tooltip="The authenticated user name and host name"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_database">DATABASE()</a>{data-tooltip="Return the default (current) database name"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_found-rows">FOUND_ROWS()</a>{data-tooltip="For a SELECT with a LIMIT clause, the number of rows that would be returned were there no LIMIT clause"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_icu-version">ICU_VERSION()</a>{data-tooltip="ICU library version"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_last-insert-id">LAST_INSERT_ID()</a>{data-tooltip="Value of the AUTOINCREMENT column for the last INSERT"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_roles-graphml">ROLES_GRAPHML()</a>{data-tooltip="Return a GraphML document representing memory role subgraphs"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_row-count">ROW_COUNT()</a>{data-tooltip="The number of rows updated"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_schema">SCHEMA()</a>{data-tooltip="Synonym for DATABASE()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_session-user">SESSION_USER()</a>{data-tooltip="Synonym for USER()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_system-user">SYSTEM_USER()</a>{data-tooltip="Synonym for USER()"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_user">USER()</a>{data-tooltip="The user name and host name provided by the client"}</li>
+  <li>
+    <a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_version">VERSION()</a>{data-tooltip="Return a string that indicates the MySQL server version"}
+    {.cols-2}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Encryption and Compression</h3><div class="wrap-body">
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/encryption-functions.html#function_aes-decrypt">AES_DECRYPT()</a>{data-tooltip="Decrypt using AES"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/encryption-functions.html#function_aes-encrypt">AES_ENCRYPT()</a>{data-tooltip="Encrypt using AES"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/encryption-functions.html#function_compress">COMPRESS()</a>{data-tooltip="Return result as a binary string"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/encryption-functions.html#function_md5">MD5()</a>{data-tooltip="Calculate MD5 checksum"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/encryption-functions.html#function_random-bytes">RANDOM_BYTES()</a>{data-tooltip="Return a random byte vector"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/encryption-functions.html#function_sha1">SHA1(), SHA()</a>{data-tooltip="Calculate an SHA-1 160-bit checksum"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/encryption-functions.html#function_sha2">SHA2()</a>{data-tooltip="Calculate an SHA-2 checksum"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/encryption-functions.html#function_statement-digest">STATEMENT_DIGEST()</a>{data-tooltip="Compute statement digest hash value"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/encryption-functions.html#function_statement-digest-text">STATEMENT_DIGEST_TEXT()</a>{data-tooltip="Compute normalized statement digest"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/encryption-functions.html#function_uncompress">UNCOMPRESS()</a>{data-tooltip="Uncompress a string compressed"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/encryption-functions.html#function_uncompressed-length">UNCOMPRESSED_LENGTH()</a>{data-tooltip="Return the length of a string before compression"}</li>
+  <li>
+    <a href="https://dev.mysql.com/doc/refman/8.0/en/encryption-functions.html#function_validate-password-strength">VALIDATE_PASSWORD_STRENGTH()</a>{data-tooltip="Determine strength of password"}
+    {.cols-1}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Locking</h3><div class="wrap-body">
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/locking-functions.html#function_get-lock">GET_LOCK()</a>{data-tooltip="Get a named lock"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/locking-functions.html#function_is-free-lock">IS_FREE_LOCK()</a>{data-tooltip="Whether the named lock is free"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/locking-functions.html#function_is-used-lock">IS_USED_LOCK()</a>{data-tooltip="Whether the named lock is in use; return connection identifier if true"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/locking-functions.html#function_release-all-locks">RELEASE_ALL_LOCKS()</a>{data-tooltip="Release all current named locks"}</li>
+  <li>
+    <a href="https://dev.mysql.com/doc/refman/8.0/en/locking-functions.html#function_release-lock">RELEASE_LOCK()</a>{data-tooltip="Release the named lock"}
+    {.cols-1}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Bit</h3><div class="wrap-body">
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/bit-functions.html#operator_bitwise-and">&#x26;</a>{data-tooltip="Bitwise AND"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/bit-functions.html#operator_right-shift">>></a>{data-tooltip="Right shift"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/bit-functions.html#operator_left-shift">&#x3C;&#x3C;</a>{data-tooltip="Left shift"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/bit-functions.html#operator_bitwise-xor">^</a>{data-tooltip="Bitwise XOR"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/bit-functions.html#function_bit-count">BIT_COUNT()</a>{data-tooltip="Return the number of bits that are set"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/bit-functions.html#operator_bitwise-or">|</a>{data-tooltip="Bitwise OR"}</li>
+  <li>
+    <a href="https://dev.mysql.com/doc/refman/8.0/en/bit-functions.html#operator_bitwise-invert">~</a>{data-tooltip="Bitwise inversion"}
+    {.cols-2}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Miscellaneous</h3><div class="wrap-body">
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_any-value">ANY_VALUE()</a>{data-tooltip="Suppress ONLY_FULL_GROUP_BY value rejection"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_bin-to-uuid">BIN_TO_UUID()</a>{data-tooltip="Convert binary UUID to string"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_default">DEFAULT()</a>{data-tooltip="Return the default value for a table column"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_grouping">GROUPING()</a>{data-tooltip="Distinguish super-aggregate ROLLUP rows from regular rows"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_inet-aton">INET_ATON()</a>{data-tooltip="Return the numeric value of an IP address"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_inet-ntoa">INET_NTOA()</a>{data-tooltip="Return the IP address from a numeric value"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_inet6-aton">INET6_ATON()</a>{data-tooltip="Return the numeric value of an IPv6 address"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_inet6-ntoa">INET6_NTOA()</a>{data-tooltip="Return the IPv6 address from a numeric value"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_is-ipv4">IS_IPV4()</a>{data-tooltip="Whether argument is an IPv4 address"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_is-ipv4-compat">IS_IPV4_COMPAT()</a>{data-tooltip="Whether argument is an IPv4-compatible address"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_is-ipv4-mapped">IS_IPV4_MAPPED()</a>{data-tooltip="Whether argument is an IPv4-mapped address"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_is-ipv6">IS_IPV6()</a>{data-tooltip="Whether argument is an IPv6 address"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_is-uuid">IS_UUID()</a>{data-tooltip="Whether argument is a valid UUID"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_master-pos-wait">MASTER_POS_WAIT()</a>{data-tooltip="Block until the replica has read and applied all updates up to the specified position"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_name-const">NAME_CONST()</a>{data-tooltip="Cause the column to have the given name"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_sleep">SLEEP()</a>{data-tooltip="Sleep for a number of seconds"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_uuid">UUID()</a>{data-tooltip="Return a Universal Unique Identifier (UUID)"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_uuid-short">UUID_SHORT()</a>{data-tooltip="Return an integer-valued universal identifier"}</li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_uuid-to-bin">UUID_TO_BIN()</a>{data-tooltip="Convert string UUID to binary"}</li>
+  <li>
+    <a href="https://dev.mysql.com/doc/refman/8.0/en/miscellaneous-functions.html#function_values">VALUES()</a>{data-tooltip="Define the values to be used during an INSERT"}
+    {.cols-2}
+  </li>
+</ul>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Also see {.cols-1}</h2><div class="wrap-body">
+<ul>
+  <li><a href="/regex#regex-in-mysql">Regex in MySQL</a> <em>(quickref.me)</em></li>
+</ul>
+
+</div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

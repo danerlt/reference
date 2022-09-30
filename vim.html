@@ -1,0 +1,2347 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: Vim
+date: 2020-11-25 18:28:43
+icon: icon-vim
+background: bg-[#46933f]
+tags: 
+    - vi
+    - text
+    - editor
+    - terminal
+    - shortcut
+categories:
+    - Toolkit
+intro: |
+  A useful collection of [Vim](http://www.vim.org/) 8.2 quick reference cheat sheets to help you learn vim editor faster.
+---
+
+Getting started {.cols-3}
+---------------
+
+### Motion Diagrams {.row-span-2}
+
+```bash
+▼/▶ Cursor   ▽/▷ Target
+```
+#### Left-right motions
+```bash
+┌───────────── |      
+├───────────── 0      $ ──────────────┐ 
+│  ┌────────── ^      fe ────────┐    │
+│  │  ┌─────── Fo     te ───────┐│    │
+│  │  │┌────── To     30| ───┐  ││    │
+│  │  ││ ┌──── ge     w ───┐ │  ││    │
+│  │  ││ │ ┌── b      e ─┐ │ │  ││    │
+│  │  ││ │ │  ┌h      l┐ │ │ │  ││    │
+▽  ▽  ▽▽ ▽ ▽  ▽▼      ▼▽ ▽ ▽ ▽  ▽▽    ▽
+   echo "A cheatsheet from quickref.me"
+```
+#### Up-down motions
+```bash
+                 - SCREEN 1 START
+   ┌─┬─────────▷ #!/usr/bin/python
+   │ │     ┌───▷     
+   │ │     │     print("Hello")
+   │ │     { } ▶ print("Vim")
+   │ │       │   print("!")
+   │ │       └─▷    
+   │ │ ┌───┬───▷ print("Welcome")
+G gg H M L k j ▶ print("to")
+│        │   └─▷ print("quickref.me")
+│        │       print("/vim")
+│        │     
+│        └─────▷ 
+│                - SCREEN 1 END
+└──────────────▷ print("SCREEN 2")
+``` 
+
+### Motions {.row-span-2}
+
+| Shortcut                       | Description       |
+|--------------------------------|-------------------|
+| `h` _\|_ `j` _\|_ `k` _\|_ `l` | Arrow keys        |
+| `&#x3C;C-u>` _/_ `&#x3C;C-d>`            | Half-page up/down |
+| `&#x3C;C-b>` _/_ `&#x3C;C-f>`            | Page up/down      |
+{.shortcuts}
+
+#### Words{.left-text}
+| Shortcut     | Description               |
+|--------------|---------------------------|
+| `b` _/_ `w`  | Previous/Next word        |
+| `ge` _/_ `e` | Previous/Next end of word |
+{.shortcuts}
+
+#### Line
+
+| Shortcut             | Description                 |
+|----------------------|-----------------------------|
+| `0` _(zero)_ _/_ `$` | Start/End of line           |
+| `^`                  | Start of line _(non-blank)_ |
+{.shortcuts}
+
+#### Character
+
+| Shortcut      | Description                         |
+|---------------|-------------------------------------|
+| `Fe` _/_ `fe` | Move to previous/next `e`           |
+| `To` _/_ `to` | Move before/after previous/next `o` |
+| `|` _/_ `n|`  | Go to first/`n`th column            |
+{.shortcuts}
+
+#### Document
+
+| Shortcut       | Description              |
+|----------------|--------------------------|
+| `gg` _/_ `G`   | First/Last line          |
+| `:n` _\|_ `nG` | Go to line `n`           |
+| `}` _/_ `{`    | Next/Previous empty line |
+{.shortcuts}
+
+#### Window
+
+| Shortcut                | Description                 |
+|-------------------------|-----------------------------|
+| `H` _/_ `M` _/_ `L`     | Top/Middle/Bottom screen    |
+| `zt` _/_ `zz` _/_  `zb` | Top/Center/Bottom this line |
+{.shortcuts}
+
+
+### Insert Mode
+| Shortcut               | Description                   |
+|------------------------|-------------------------------|
+| `i` _/_ `a`            | Insert before/after cursor    |
+| `I` _/_ `A`            | Insert start/end of line      |
+| `o` _/_ `O` _(letter)_ | Insert new line below/above   |
+| `s` _/_ `S`            | Delete char/line and insert   |
+| `C` _/_ `cc`           | Change to end of/current line |
+| `gi`                   | Insert at last insert point   |
+| `Esc` _\|_ `&#x3C;C-[>`     | Exit insert mode              |
+{.shortcuts}
+
+
+
+### Saving and Exiting
+| Shortcut                  | Description             |
+|---------------------------|-------------------------|
+| `:w`                      | Save                    |
+| `:q`                      | Close file              |
+| `:wq` _\|_ `:x` _\|_ `ZZ` | Save and quit           |
+| `:wqa`                    | Save and quit all files |
+| `:q!` _\|_ `ZQ`           | Force quit              |
+| `:qa`                     | Close all files         |
+| `:qa!`                    | Force quit all files    |
+| `:w` new.txt              | Write to `new.txt`      |
+| `:sav` new.txt            | Save and edit `new.txt` |
+| `:w` !sudo tee %          | Write to readonly file  |
+{.shortcuts}
+
+
+
+### Normal Mode
+| Shortcut              | Description                  |
+|-----------------------|------------------------------|
+| `r`                   | Replace one character        |
+| `R`                   | Enter Replace mode           |
+| `u` _/_ `3u`          | Undo changes `1` / `3` times |
+| `U`                   | Undo changes on one line     |
+| `J`                   | Join with next line          |
+| `&#x3C;C-r>` _/_ 5 `&#x3C;C-r>` | Redo changes `1` / `5` times |
+{.shortcuts}
+
+
+### Cut and paste {.row-span-2}
+| Shortcut         | Description                   |
+|------------------|-------------------------------|
+| `x`              | Delete character _(Cut)_      |
+| `p` _/_ `P`      | Paste after/before            |
+| `xp`             | Swap two characters           |
+| `D`              | Delete to end of line _(Cut)_ |
+| `dw`             | Delete word _(Cut)_           |
+| `dd`             | Delete line _(Cut)_           |
+| `ddp`            | Swap two lines                |
+| `yy`             | Yank line _(Copy)_            |
+| `"*p` _\|_ `"+p` | Paste from system clipboard   |
+| `"*y` _\|_ `"+y` | Paste to system clipboard     |
+{.shortcuts}
+
+
+#### In visual mode
+| Shortcut     | Description               |
+|--------------|---------------------------|
+| `d` _\|_ `x` | Delete selection  _(Cut)_ |
+| `s`          | Replace selection         |
+| `y`          | Yank selection _(Copy)_   |
+{.shortcuts}
+
+
+
+### Repeating
+| Shortcut | Description                                 |
+|----------|---------------------------------------------|
+| `.`      | Repeat last command                         |
+| `;`      | Repeat latest `f`, `t`, `F` or `T`          |
+| `,`      | Repeat latest `f`, `t`, `F` or `T` reversed |
+| `&#x26;`      | Repeat last `:s`                            |
+| `@:`     | Repeat a command-line command               |
+{.shortcuts}
+
+
+
+### Visual mode
+| Shortcut    | Description             |
+|-------------|-------------------------|
+| `v`         | Enter visual mode       |
+| `V`         | Enter visual line mode  |
+| `&#x3C;C-v>`     | Enter visual block mode |
+| `ggVG`      | Select all text         |
+| `>` _/_ `&#x3C;` | Shift text right/left   |
+
+{.shortcuts}
+
+
+
+### Macros
+| -     | -                     |
+|-------|-----------------------|
+| `qi`  | Record macro `i`      |
+| `q`   | Stop recording macro  |
+| `@i`  | Run macro `i`         |
+| `7@i` | Run macro `i` 7 times |
+| `@@`  | Repeat last macro     |
+{.shortcuts}
+
+You can save macro for any letters not just `i`
+
+
+Vim Operators {.cols-3}
+---------
+
+### Usage {.secondary}
+
+| Shortcut | Description  |
+|----------|--------------|
+| `d`      | &#x3C;yel>w&#x3C;/yel> |
+| Operator | Motion       |
+
+Combine [operators](#available-operators) with [motions](#motions) to use them
+
+
+
+
+### Available Operators {.row-span-2}
+| Shortcut | Description                     |
+|----------|---------------------------------|
+| `d`      | Delete                          |
+| `y`      | Yank _(copy)_                   |
+| `c`      | Change _(delete then insert)_   |
+| `p`      | Paste                           |
+| ` &#x26;  vim cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,vim">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/vim.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>
+  title: Vim
+  date: 2020-11-25 18:28:43
+  icon: icon-vim
+  background: bg-[#46933f]
+  tags:
+  - vi
+  - text
+  - editor
+  - terminal
+  - shortcut
+  categories:
+  - Toolkit
+  intro: |
+  A useful collection of <a href="http://www.vim.org/">Vim</a> 8.2 quick reference cheat sheets to help you learn vim editor faster.
+</h2><div class="wrap-body">
+</div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Getting started {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Motion Diagrams {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">▼/▶ Cursor   ▽/▷ Target
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Left-right motions</h4><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">┌───────────── <span class="token operator">|</span>      
+</span><span class="code-line line-number" line="2">├───────────── <span class="token number">0</span>      $ ──────────────┐ 
+</span><span class="code-line line-number" line="3">│  ┌────────── ^      fe ────────┐    │
+</span><span class="code-line line-number" line="4">│  │  ┌─────── Fo     te ───────┐│    │
+</span><span class="code-line line-number" line="5">│  │  │┌────── To     <span class="token number">30</span><span class="token operator">|</span> ───┐  ││    │
+</span><span class="code-line line-number" line="6">│  │  ││ ┌──── ge     w ───┐ │  ││    │
+</span><span class="code-line line-number" line="7">│  │  ││ │ ┌── b      e ─┐ │ │  ││    │
+</span><span class="code-line line-number" line="8">│  │  ││ │ │  ┌h      l┐ │ │ │  ││    │
+</span><span class="code-line line-number" line="9">▽  ▽  ▽▽ ▽ ▽  ▽▼      ▼▽ ▽ ▽ ▽  ▽▽    ▽
+</span><span class="code-line line-number" line="10">   <span class="token builtin class-name">echo</span> <span class="token string">"A cheatsheet from quickref.me"</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Up-down motions</h4><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">                 - SCREEN <span class="token number">1</span> START
+</span><span class="code-line line-number" line="2">   ┌─┬─────────▷ <span class="token comment">#!/usr/bin/python</span>
+</span><span class="code-line line-number" line="3">   │ │     ┌───▷     
+</span><span class="code-line line-number" line="4">   │ │     │     print<span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="5">   │ │     <span class="token punctuation">{</span> <span class="token punctuation">}</span> ▶ print<span class="token punctuation">(</span><span class="token string">"Vim"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="6">   │ │       │   print<span class="token punctuation">(</span><span class="token string">"!"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="7">   │ │       └─▷    
+</span><span class="code-line line-number" line="8">   │ │ ┌───┬───▷ print<span class="token punctuation">(</span><span class="token string">"Welcome"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="9">G gg H M L k j ▶ print<span class="token punctuation">(</span><span class="token string">"to"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="10">│        │   └─▷ print<span class="token punctuation">(</span><span class="token string">"quickref.me"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="11">│        │       print<span class="token punctuation">(</span><span class="token string">"/vim"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="12">│        │     
+</span><span class="code-line line-number" line="13">│        └─────▷ 
+</span><span class="code-line line-number" line="14">│                - SCREEN <span class="token number">1</span> END
+</span><span class="code-line line-number" line="15">└──────────────▷ print<span class="token punctuation">(</span><span class="token string">"SCREEN 2"</span><span class="token punctuation">)</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Motions {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>h</code> <em>|</em> <code>j</code> <em>|</em> <code>k</code> <em>|</em> <code>l</code></td>
+      <td>Arrow keys</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-u></code> <em>/</em> <code>&#x3C;C-d></code></td>
+      <td>Half-page up/down</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-b></code> <em>/</em> <code>&#x3C;C-f></code></td>
+      <td>Page up/down</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Words{.left-text}</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>b</code> <em>/</em> <code>w</code></td>
+      <td>Previous/Next word</td>
+    </tr>
+    <tr>
+      <td><code>ge</code> <em>/</em> <code>e</code></td>
+      <td>Previous/Next end of word</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Line</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>0</code> <em>(zero)</em> <em>/</em> <code>$</code></td>
+      <td>Start/End of line</td>
+    </tr>
+    <tr>
+      <td><code>^</code></td>
+      <td>Start of line <em>(non-blank)</em></td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Character</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Fe</code> <em>/</em> <code>fe</code></td>
+      <td>Move to previous/next <code>e</code></td>
+    </tr>
+    <tr>
+      <td><code>To</code> <em>/</em> <code>to</code></td>
+      <td>Move before/after previous/next <code>o</code></td>
+    </tr>
+    <tr>
+      <td>`</td>
+      <td><code>_/_</code>n</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Document</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>gg</code> <em>/</em> <code>G</code></td>
+      <td>First/Last line</td>
+    </tr>
+    <tr>
+      <td><code>:n</code> <em>|</em> <code>nG</code></td>
+      <td>Go to line <code>n</code></td>
+    </tr>
+    <tr>
+      <td><code>}</code> <em>/</em> <code>{</code></td>
+      <td>Next/Previous empty line</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Window</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>H</code> <em>/</em> <code>M</code> <em>/</em> <code>L</code></td>
+      <td>Top/Middle/Bottom screen</td>
+    </tr>
+    <tr>
+      <td><code>zt</code> <em>/</em> <code>zz</code> <em>/</em> <code>zb</code></td>
+      <td>Top/Center/Bottom this line</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Insert Mode</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>i</code> <em>/</em> <code>a</code></td>
+      <td>Insert before/after cursor</td>
+    </tr>
+    <tr>
+      <td><code>I</code> <em>/</em> <code>A</code></td>
+      <td>Insert start/end of line</td>
+    </tr>
+    <tr>
+      <td><code>o</code> <em>/</em> <code>O</code> <em>(letter)</em></td>
+      <td>Insert new line below/above</td>
+    </tr>
+    <tr>
+      <td><code>s</code> <em>/</em> <code>S</code></td>
+      <td>Delete char/line and insert</td>
+    </tr>
+    <tr>
+      <td><code>C</code> <em>/</em> <code>cc</code></td>
+      <td>Change to end of/current line</td>
+    </tr>
+    <tr>
+      <td><code>gi</code></td>
+      <td>Insert at last insert point</td>
+    </tr>
+    <tr>
+      <td><code>Esc</code> <em>|</em> <code>&#x3C;C-[></code></td>
+      <td>Exit insert mode</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Saving and Exiting</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:w</code></td>
+      <td>Save</td>
+    </tr>
+    <tr>
+      <td><code>:q</code></td>
+      <td>Close file</td>
+    </tr>
+    <tr>
+      <td><code>:wq</code> <em>|</em> <code>:x</code> <em>|</em> <code>ZZ</code></td>
+      <td>Save and quit</td>
+    </tr>
+    <tr>
+      <td><code>:wqa</code></td>
+      <td>Save and quit all files</td>
+    </tr>
+    <tr>
+      <td><code>:q!</code> <em>|</em> <code>ZQ</code></td>
+      <td>Force quit</td>
+    </tr>
+    <tr>
+      <td><code>:qa</code></td>
+      <td>Close all files</td>
+    </tr>
+    <tr>
+      <td><code>:qa!</code></td>
+      <td>Force quit all files</td>
+    </tr>
+    <tr>
+      <td><code>:w</code> new.txt</td>
+      <td>Write to <code>new.txt</code></td>
+    </tr>
+    <tr>
+      <td><code>:sav</code> new.txt</td>
+      <td>Save and edit <code>new.txt</code></td>
+    </tr>
+    <tr>
+      <td><code>:w</code> !sudo tee %</td>
+      <td>Write to readonly file</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Normal Mode</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>r</code></td>
+      <td>Replace one character</td>
+    </tr>
+    <tr>
+      <td><code>R</code></td>
+      <td>Enter Replace mode</td>
+    </tr>
+    <tr>
+      <td><code>u</code> <em>/</em> <code>3u</code></td>
+      <td>Undo changes <code>1</code> / <code>3</code> times</td>
+    </tr>
+    <tr>
+      <td><code>U</code></td>
+      <td>Undo changes on one line</td>
+    </tr>
+    <tr>
+      <td><code>J</code></td>
+      <td>Join with next line</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-r></code> <em>/</em> 5 <code>&#x3C;C-r></code></td>
+      <td>Redo changes <code>1</code> / <code>5</code> times</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Cut and paste {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>x</code></td>
+      <td>Delete character <em>(Cut)</em></td>
+    </tr>
+    <tr>
+      <td><code>p</code> <em>/</em> <code>P</code></td>
+      <td>Paste after/before</td>
+    </tr>
+    <tr>
+      <td><code>xp</code></td>
+      <td>Swap two characters</td>
+    </tr>
+    <tr>
+      <td><code>D</code></td>
+      <td>Delete to end of line <em>(Cut)</em></td>
+    </tr>
+    <tr>
+      <td><code>dw</code></td>
+      <td>Delete word <em>(Cut)</em></td>
+    </tr>
+    <tr>
+      <td><code>dd</code></td>
+      <td>Delete line <em>(Cut)</em></td>
+    </tr>
+    <tr>
+      <td><code>ddp</code></td>
+      <td>Swap two lines</td>
+    </tr>
+    <tr>
+      <td><code>yy</code></td>
+      <td>Yank line <em>(Copy)</em></td>
+    </tr>
+    <tr>
+      <td><code>"*p</code> <em>|</em> <code>"+p</code></td>
+      <td>Paste from system clipboard</td>
+    </tr>
+    <tr>
+      <td><code>"*y</code> <em>|</em> <code>"+y</code></td>
+      <td>Paste to system clipboard</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>In visual mode</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>d</code> <em>|</em> <code>x</code></td>
+      <td>Delete selection <em>(Cut)</em></td>
+    </tr>
+    <tr>
+      <td><code>s</code></td>
+      <td>Replace selection</td>
+    </tr>
+    <tr>
+      <td><code>y</code></td>
+      <td>Yank selection <em>(Copy)</em></td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Repeating</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.</code></td>
+      <td>Repeat last command</td>
+    </tr>
+    <tr>
+      <td><code>;</code></td>
+      <td>Repeat latest <code>f</code>, <code>t</code>, <code>F</code> or <code>T</code></td>
+    </tr>
+    <tr>
+      <td><code>,</code></td>
+      <td>Repeat latest <code>f</code>, <code>t</code>, <code>F</code> or <code>T</code> reversed</td>
+    </tr>
+    <tr>
+      <td><code>&#x26;</code></td>
+      <td>Repeat last <code>:s</code></td>
+    </tr>
+    <tr>
+      <td><code>@:</code></td>
+      <td>Repeat a command-line command</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Visual mode</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>v</code></td>
+      <td>Enter visual mode</td>
+    </tr>
+    <tr>
+      <td><code>V</code></td>
+      <td>Enter visual line mode</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-v></code></td>
+      <td>Enter visual block mode</td>
+    </tr>
+    <tr>
+      <td><code>ggVG</code></td>
+      <td>Select all text</td>
+    </tr>
+    <tr>
+      <td><code>></code> <em>/</em> <code>&#x3C;</code></td>
+      <td>Shift text right/left</td>
+    </tr>
+  </tbody>
+</table>
+<p>{.shortcuts}</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Macros</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>qi</code></td>
+      <td>Record macro <code>i</code></td>
+    </tr>
+    <tr>
+      <td><code>q</code></td>
+      <td>Stop recording macro</td>
+    </tr>
+    <tr>
+      <td><code>@i</code></td>
+      <td>Run macro <code>i</code></td>
+    </tr>
+    <tr>
+      <td><code>7@i</code></td>
+      <td>Run macro <code>i</code> 7 times</td>
+    </tr>
+    <tr>
+      <td><code>@@</code></td>
+      <td>Repeat last macro</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>You can save macro for any letters not just <code>i</code></p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Vim Operators {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Usage {.secondary}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>d</code></td>
+      <td>
+        <yel>w</yel>
+      </td>
+    </tr>
+    <tr>
+      <td>Operator</td>
+      <td>Motion</td>
+    </tr>
+  </tbody>
+</table>
+<p>Combine <a href="#available-operators">operators</a> with <a href="#motions">motions</a> to use them</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Available Operators {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>d</code></td>
+      <td>Delete</td>
+    </tr>
+    <tr>
+      <td><code>y</code></td>
+      <td>Yank <em>(copy)</em></td>
+    </tr>
+    <tr>
+      <td><code>c</code></td>
+      <td>Change <em>(delete then insert)</em></td>
+    </tr>
+    <tr>
+      <td><code>p</code></td>
+      <td>Paste</td>
+    </tr>
+    <tr>
+      <td><code>=</code></td>
+      <td>Formats code</td>
+    </tr>
+    <tr>
+      <td><code>g~</code></td>
+      <td>Toggle case</td>
+    </tr>
+    <tr>
+      <td><code>gU</code></td>
+      <td>Uppercase</td>
+    </tr>
+    <tr>
+      <td><code>gu</code></td>
+      <td>Lowercase</td>
+    </tr>
+    <tr>
+      <td><code>></code></td>
+      <td>Indent right</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;</code></td>
+      <td>Indent left</td>
+    </tr>
+    <tr>
+      <td><code>!</code></td>
+      <td>Filter through external program</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Examples {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Combination</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>d</code>
+        <yel>d</yel>
+      </td>
+      <td>Delete current line</td>
+    </tr>
+    <tr>
+      <td><code>d</code>
+        <yel>j</yel>
+      </td>
+      <td>Delete two lines</td>
+    </tr>
+    <tr>
+      <td><code>d</code>
+        <yel>w</yel>
+      </td>
+      <td>Delete to next word</td>
+    </tr>
+    <tr>
+      <td><code>d</code>
+        <yel>b</yel>
+      </td>
+      <td>Delete to beginning of word</td>
+    </tr>
+    <tr>
+      <td><code>d</code>
+        <yel>fa</yel>
+      </td>
+      <td>Delete until <code>a</code> char</td>
+    </tr>
+    <tr>
+      <td><code>d</code>
+        <yel>/hello</yel>
+      </td>
+      <td>Delete until <code>hello</code></td>
+    </tr>
+    <tr>
+      <td><code>c</code>
+        <yel>c</yel>
+      </td>
+      <td>Change current line, synonym with <code>S</code></td>
+    </tr>
+    <tr>
+      <td><code>y</code>
+        <yel>y</yel>
+      </td>
+      <td>Copy current line</td>
+    </tr>
+    <tr>
+      <td><code>></code>
+        <yel>j</yel>
+      </td>
+      <td>Indent 2 lines</td>
+    </tr>
+    <tr>
+      <td>gg<code>d</code>
+        <yel>G</yel>
+      </td>
+      <td>Delete a complete document</td>
+    </tr>
+    <tr>
+      <td>gg<code>=</code>
+        <yel>G</yel>
+      </td>
+      <td>Indent a complete document</td>
+    </tr>
+    <tr>
+      <td>gg<code>y</code>
+        <yel>G</yel>
+      </td>
+      <td>Copy a whole document</td>
+    </tr>
+    <tr>
+      <td>{.show-header}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Counts</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">[count] &#x3C;operator> &#x3C;motion>
+</span><span class="code-line line-number" line="2">&#x3C;operator> [count] &#x3C;motion>
+</span></code></pre>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th>Combination</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2<code>d</code>
+        <yel>d</yel>
+      </td>
+      <td>Delete <code>2</code> lines</td>
+    </tr>
+    <tr>
+      <td>6<code>y</code>
+        <yel>y</yel>
+      </td>
+      <td>Copy <code>6</code> lines</td>
+    </tr>
+    <tr>
+      <td><code>d</code>3
+        <yel>w</yel>
+      </td>
+      <td>Delete <code>3</code> words</td>
+    </tr>
+    <tr>
+      <td><code>d</code>5
+        <yel>j</yel>
+      </td>
+      <td>Delete <code>5</code> lines downwards</td>
+    </tr>
+    <tr>
+      <td><code>></code>4
+        <yel>k</yel>
+      </td>
+      <td>Indent <code>4</code> lines upwards</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Vim Text objects {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Usage {.secondary}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>v</code></td>
+      <td>        
+        <pur>i</pur> <em>/</em>
+        <pur>a</pur>
+      </td>
+      <td>
+        <yel>p</yel>
+      </td>
+    </tr>
+    <tr>
+      <td>Operator</td>
+      <td>
+        <pur>i</pur>nner <em>/</em>
+        <pur>a</pur>round
+      </td>
+      <td>Text object</td>
+    </tr>
+  </tbody>
+</table>
+<p>Operate with an <a href="#available-operators">operator</a> inner or around text blocks</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Text objects {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <yel>p</yel>
+      </td>
+      <td>Paragraph</td>
+    </tr>
+    <tr>
+      <td>
+        <yel>w</yel>
+      </td>
+      <td>Word</td>
+    </tr>
+    <tr>
+      <td>
+        <yel>W</yel>
+      </td>
+      <td>WORD<br><em>(surrounded by whitespace)</em></td>
+    </tr>
+    <tr>
+      <td>
+        <yel>s</yel>
+      </td>
+      <td>Sentence</td>
+    </tr>
+    <tr>
+      <td>
+        <yel>[</yel>
+        <yel>(</yel>
+        <yel>{</yel>
+        <yel>&#x3C;</yel>
+      </td>
+      <td>A [], (), or {} block</td>
+    </tr>
+    <tr>
+      <td>
+        <yel>]</yel>
+        <yel>)</yel>
+        <yel>}</yel>
+        <yel>></yel>
+      </td>
+      <td>A [], (), or {} block</td>
+    </tr>
+    <tr>
+      <td>
+        <yel>'</yel>
+        <yel>"</yel>
+        <yel>`</yel>
+      </td>
+      <td>A quoted string</td>
+    </tr>
+    <tr>
+      <td>
+        <yel>b</yel>
+      </td>
+      <td>A block [(</td>
+    </tr>
+    <tr>
+      <td>
+        <yel>B</yel>
+      </td>
+      <td>A block in [{</td>
+    </tr>
+    <tr>
+      <td>
+        <yel>t</yel>
+      </td>
+      <td>A HTML tag block</td>
+    </tr>
+  </tbody>
+</table>
+<p>See <code>:help text-objects</code></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Delete</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>d</code>
+        <pur>i</pur>
+        <yel>w</yel>
+      </td>
+      <td>Delete inner word</td>
+    </tr>
+    <tr>
+      <td><code>d</code>
+        <pur>i</pur>
+        <yel>s</yel>
+      </td>
+      <td>Delete inner sentence</td>
+    </tr>
+    <tr>
+      <td><code>d</code>
+        <pur>i</pur>
+        <yel>"</yel>
+      </td>
+      <td>Delete in quotes</td>
+    </tr>
+    <tr>
+      <td><code>d</code>
+        <pur>a</pur>
+        <yel>"</yel>
+      </td>
+      <td>Delete in quotes <em>(including quotes)</em></td>
+    </tr>
+    <tr>
+      <td><code>d</code>
+        <pur>i</pur>
+        <yel>p</yel>
+      </td>
+      <td>Delete a paragraph</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Selections</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>v</code>
+        <pur>i</pur>
+        <yel>"</yel>
+      </td>
+      <td>Select inner quotes "<code>...</code>{.underline}"</td>
+    </tr>
+    <tr>
+      <td><code>v</code>
+        <pur>a</pur>
+        <yel>"</yel>
+      </td>
+      <td>Select quotes <code>"..."</code>{.underline}</td>
+    </tr>
+    <tr>
+      <td><code>v</code>
+        <pur>i</pur>
+        <yel>[</yel>
+      </td>
+      <td>Select inner brackets [<code>...</code>{.underline}]</td>
+    </tr>
+    <tr>
+      <td><code>v</code>
+        <pur>a</pur>
+        <yel>[</yel>
+      </td>
+      <td>Select brackets <code>[...]</code>{.underline}</td>
+    </tr>
+    <tr>
+      <td><code>v</code>
+        <pur>i</pur>
+        <yel>w</yel>
+      </td>
+      <td>Select inner word</td>
+    </tr>
+    <tr>
+      <td><code>v</code>
+        <pur>i</pur>
+        <yel>p</yel>
+      </td>
+      <td>Select inner paragraph</td>
+    </tr>
+    <tr>
+      <td><code>v</code>
+        <pur>i</pur>
+        <yel>p</yel>
+        <pur>i</pur>
+        <yel>p</yel>
+      </td>
+      <td>Select more paragraph</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Misc</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>c</code>
+        <pur>i</pur>
+        <yel>w</yel>
+      </td>
+      <td>Change inner word</td>
+    </tr>
+    <tr>
+      <td><code>c</code>
+        <pur>i</pur>
+        <yel>"</yel>
+      </td>
+      <td>Change inner quotes</td>
+    </tr>
+    <tr>
+      <td><code>c</code>
+        <pur>i</pur>
+        <yel>t</yel>
+      </td>
+      <td>Change inner tags (HTML)</td>
+    </tr>
+    <tr>
+      <td><code>c</code>
+        <pur>i</pur>
+        <yel>p</yel>
+      </td>
+      <td>Change inner paragraph</td>
+    </tr>
+    <tr>
+      <td><code>y</code>
+        <pur>i</pur>
+        <yel>p</yel>
+      </td>
+      <td>Yank inner paragraph</td>
+    </tr>
+    <tr>
+      <td><code>y</code>
+        <pur>a</pur>
+        <yel>p</yel>
+      </td>
+      <td>Yank paragraph <em>(including newline)</em></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Vim Multiple files {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Buffers</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:e file</code></td>
+      <td>Edit a file in a new buffer</td>
+    </tr>
+    <tr>
+      <td><code>:bn</code></td>
+      <td>Go to the next buffer</td>
+    </tr>
+    <tr>
+      <td><code>:bp</code></td>
+      <td>Go to the previous buffer</td>
+    </tr>
+    <tr>
+      <td><code>:bd</code></td>
+      <td>Remove file from buffer list</td>
+    </tr>
+    <tr>
+      <td><code>:b 5</code></td>
+      <td>Open buffer #5</td>
+    </tr>
+    <tr>
+      <td><code>:b file</code></td>
+      <td>Go to a buffer by file</td>
+    </tr>
+    <tr>
+      <td><code>:ls</code></td>
+      <td>List all open buffers</td>
+    </tr>
+    <tr>
+      <td><code>:sp file</code></td>
+      <td>Open and split window</td>
+    </tr>
+    <tr>
+      <td><code>:vs file</code></td>
+      <td>Open and vertically split window</td>
+    </tr>
+    <tr>
+      <td><code>:hid</code></td>
+      <td>Hide this buffer</td>
+    </tr>
+    <tr>
+      <td><code>:wn</code></td>
+      <td>Write file and move to next</td>
+    </tr>
+    <tr>
+      <td><code>:tab ba</code></td>
+      <td>Edit all buffers as tabs</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Windows</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&#x3C;C-w></code> <code>s</code></td>
+      <td>Split window</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-w></code> <code>v</code></td>
+      <td>Split window vertically</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-w></code> <code>w</code></td>
+      <td>Switch windows</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-w></code> <code>q</code></td>
+      <td>Quit a window</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-w></code> <code>T</code></td>
+      <td>Break out into a new tab</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-w></code> <code>x</code></td>
+      <td>Swap current with next</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-w></code> <code>-</code> <em>/</em> <code>+</code></td>
+      <td>Decrease/Increase height</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-w></code> <code>&#x3C;</code> <em>/</em> <code>></code></td>
+      <td>Decrease/Increase width</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-w></code> `</td>
+      <td>`</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-w></code> <code>=</code></td>
+      <td>Equally high and wide</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-w></code> <code>h</code> <em>/</em> <code>l</code></td>
+      <td>Go to the left/right window</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-w></code> <code>j</code> <em>/</em> <code>k</code></td>
+      <td>Go to the up/down window</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Tabs</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:tabe [file]</code></td>
+      <td>
+        <yel>E</yel>dit file in a new tab
+      </td>
+    </tr>
+    <tr>
+      <td><code>:tabf [file]</code></td>
+      <td>Open if exists in new tab</td>
+    </tr>
+    <tr>
+      <td><code>:tabc</code></td>
+      <td>
+        <yel>C</yel>lose current tab
+      </td>
+    </tr>
+    <tr>
+      <td><code>:tabo</code></td>
+      <td>Close 
+        <yel>o</yel>ther tabs
+      </td>
+    </tr>
+    <tr>
+      <td><code>:tabs</code></td>
+      <td>List all 
+        <yel>tabs</yel>
+      </td>
+    </tr>
+    <tr>
+      <td><code>:tabr</code></td>
+      <td>Go to fi
+        <yel>r</yel>st tab
+      </td>
+    </tr>
+    <tr>
+      <td><code>:tabl</code></td>
+      <td>Go to 
+        <yel>l</yel>ast tab
+      </td>
+    </tr>
+    <tr>
+      <td><code>:tabm 0</code></td>
+      <td>
+        <yel>M</yel>ove to position <code>0</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>:tabn</code></td>
+      <td>Go to 
+        <yel>n</yel>ext tab
+      </td>
+    </tr>
+    <tr>
+      <td><code>:tabp</code></td>
+      <td>Go to 
+        <yel>p</yel>revious tab
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Normal mode</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>gt</code></td>
+      <td>Go to 
+        <yel>n</yel>ext tab
+      </td>
+    </tr>
+    <tr>
+      <td><code>gT</code></td>
+      <td>Go to 
+        <yel>p</yel>revious tab
+      </td>
+    </tr>
+    <tr>
+      <td><code>2gt</code></td>
+      <td>Go to tab number <code>2</code></td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Vim Search and Replace {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Search</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>/foo</code></td>
+      <td>Search forward</td>
+    </tr>
+    <tr>
+      <td><code>/foo\c</code></td>
+      <td>Search forward <em>(case insensitive)</em></td>
+    </tr>
+    <tr>
+      <td><code>?foo</code></td>
+      <td>Search backward</td>
+    </tr>
+    <tr>
+      <td><code>/\v\d+</code></td>
+      <td>Search with <a href="/regex">regex</a></td>
+    </tr>
+    <tr>
+      <td><code>n</code></td>
+      <td>Next matching search pattern</td>
+    </tr>
+    <tr>
+      <td><code>N</code></td>
+      <td>Previous match</td>
+    </tr>
+    <tr>
+      <td><code>*</code></td>
+      <td>Search for current word forward</td>
+    </tr>
+    <tr>
+      <td><code>#</code></td>
+      <td>Search for current word backward</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Replace LINE</h3><div class="wrap-body">
+<pre class="language-vim"><code class="language-vim code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">:</span><span class="token punctuation">[</span>range<span class="token punctuation">]</span>s<span class="token operator">/</span><span class="token punctuation">{</span>pattern<span class="token punctuation">}</span><span class="token operator">/</span><span class="token punctuation">{</span>str<span class="token punctuation">}</span><span class="token operator">/</span><span class="token punctuation">[</span>flags<span class="token punctuation">]</span>
+</span></code></pre>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:s/old/new</code></td>
+      <td>Replace first</td>
+    </tr>
+    <tr>
+      <td><code>:s/old/new/g</code></td>
+      <td>Replace all</td>
+    </tr>
+    <tr>
+      <td><code>:s/\vold/new/g</code></td>
+      <td>Replace all with <a href="/regex">regex</a></td>
+    </tr>
+    <tr>
+      <td><code>:s/old/new/gc</code></td>
+      <td>replace all <em>(Confirm)</em></td>
+    </tr>
+    <tr>
+      <td><code>:s/old/new/i</code></td>
+      <td>Ignore case replace first</td>
+    </tr>
+    <tr>
+      <td><code>:2,6s/old/new/g</code></td>
+      <td>Replace between lines <code>2</code>-<code>6</code></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Replace FILE</h3><div class="wrap-body">
+<pre class="language-vim"><code class="language-vim code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">:</span><span class="token operator">%</span>s<span class="token operator">/</span><span class="token punctuation">{</span>pattern<span class="token punctuation">}</span><span class="token operator">/</span><span class="token punctuation">{</span>str<span class="token punctuation">}</span><span class="token operator">/</span><span class="token punctuation">[</span>flags<span class="token punctuation">]</span>
+</span></code></pre>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:%s/old/new</code></td>
+      <td>Replace first</td>
+    </tr>
+    <tr>
+      <td><code>:%s/old/new/g</code></td>
+      <td>Replace all</td>
+    </tr>
+    <tr>
+      <td><code>:%s/old/new/gc</code></td>
+      <td>Replace all <em>(Confirm)</em></td>
+    </tr>
+    <tr>
+      <td><code>:%s/old/new/gi</code></td>
+      <td>Replace all <em>(ignore case)</em></td>
+    </tr>
+    <tr>
+      <td><code>:%s/\vold/new/g</code></td>
+      <td>Replace all with <a href="/regex">regex</a></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Ranges {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>%</code></td>
+      <td>Entire file</td>
+    </tr>
+    <tr>
+      <td><code>’&#x3C;,’></code></td>
+      <td>Current selection</td>
+    </tr>
+    <tr>
+      <td><code>5</code></td>
+      <td>Line <code>5</code></td>
+    </tr>
+    <tr>
+      <td><code>5,10</code></td>
+      <td>Lines <code>5</code> to <code>10</code></td>
+    </tr>
+    <tr>
+      <td><code>$</code></td>
+      <td>Last line</td>
+    </tr>
+    <tr>
+      <td><code>2,$</code></td>
+      <td>Lines <code>2</code> to Last</td>
+    </tr>
+    <tr>
+      <td><code>.</code></td>
+      <td>Current line</td>
+    </tr>
+    <tr>
+      <td><code>,3</code></td>
+      <td>Next <code>3</code> lines</td>
+    </tr>
+    <tr>
+      <td><code>-3,</code></td>
+      <td>Forward <code>3</code> lines</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Global command {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-vim"><code class="language-vim code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">:</span><span class="token punctuation">[</span>range<span class="token punctuation">]</span>g<span class="token operator">/</span><span class="token punctuation">{</span>pattern<span class="token punctuation">}</span><span class="token operator">/</span><span class="token punctuation">[</span>command<span class="token punctuation">]</span>
+</span></code></pre>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:g/foo/d</code></td>
+      <td>Delete lines containing <code>foo</code></td>
+    </tr>
+    <tr>
+      <td><code>:g!/foo/d</code></td>
+      <td>Delete lines not containing <code>foo</code></td>
+    </tr>
+    <tr>
+      <td><code>:g/^\s*$/d</code></td>
+      <td>Delete all blank lines</td>
+    </tr>
+    <tr>
+      <td><code>:g/foo/t$</code></td>
+      <td>Copy lines containing <code>foo</code> to EOF</td>
+    </tr>
+    <tr>
+      <td><code>:g/foo/m$</code></td>
+      <td>Move lines containing <code>foo</code> to EOF</td>
+    </tr>
+    <tr>
+      <td><code>:g/^/m0</code></td>
+      <td>Reverse a file</td>
+    </tr>
+    <tr>
+      <td><code>:g/^/t.</code></td>
+      <td>Duplicate every line</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Inverse :g</h3><div class="wrap-body">
+<pre class="language-vim"><code class="language-vim code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">:</span><span class="token punctuation">[</span>range<span class="token punctuation">]</span>v<span class="token operator">/</span><span class="token punctuation">{</span>pattern<span class="token punctuation">}</span><span class="token operator">/</span><span class="token punctuation">[</span>command<span class="token punctuation">]</span>
+</span></code></pre>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:v/foo/d</code></td>
+      <td>Delete lines not containing <code>foo</code><br><em>(also <code>:g!/foo/d</code>)</em></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Flags</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>g</code></td>
+      <td>Replace all occurrences</td>
+    </tr>
+    <tr>
+      <td><code>i</code></td>
+      <td>Ignore case</td>
+    </tr>
+    <tr>
+      <td><code>I</code></td>
+      <td>Don't ignore case</td>
+    </tr>
+    <tr>
+      <td><code>c</code></td>
+      <td>Confirm each substitution</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Substitute expression (magic)</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&#x26;</code> <em>|</em> <code>\0</code></td>
+      <td>Replace with the whole matched</td>
+    </tr>
+    <tr>
+      <td><code>\1</code>...<code>\9</code></td>
+      <td>Replace with the group 0-9</td>
+    </tr>
+    <tr>
+      <td><code>\u</code></td>
+      <td>Uppercase next letter</td>
+    </tr>
+    <tr>
+      <td><code>\U</code></td>
+      <td>Uppercase following characters</td>
+    </tr>
+    <tr>
+      <td><code>\l</code></td>
+      <td>Lowercase next letter</td>
+    </tr>
+    <tr>
+      <td><code>\L</code></td>
+      <td>Lowercase following characters</td>
+    </tr>
+    <tr>
+      <td><code>\e</code></td>
+      <td>End of <code>\u</code>, <code>\U</code>, <code>\l</code> and <code>\L</code></td>
+    </tr>
+    <tr>
+      <td><code>\E</code></td>
+      <td>End of <code>\u</code>, <code>\U</code>, <code>\l</code> and <code>\L</code></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Examples {.col-span-2}</h3><div class="wrap-body">
+<pre class="language-c"><code class="language-c code-highlight"><span class="code-line line-number" line="1"><span class="token operator">:</span>s<span class="token operator">/</span>a\<span class="token operator">|</span>b<span class="token operator">/</span>xxx\<span class="token number">0</span>xxx<span class="token operator">/</span>g		         # Modifies <span class="token string">"a b"</span>      to <span class="token string">"xxxaxxx xxxbxxx"</span>
+</span><span class="code-line line-number" line="2"><span class="token operator">:</span>s<span class="token operator">/</span>test<span class="token operator">/</span>\U<span class="token operator">&#x26;</span> file<span class="token operator">/</span>                # Modifies <span class="token string">"test"</span>     to <span class="token string">"TEST FILE"</span>
+</span><span class="code-line line-number" line="3"><span class="token operator">:</span>s<span class="token operator">/</span>\<span class="token punctuation">(</span>test\<span class="token punctuation">)</span><span class="token operator">/</span>\U\<span class="token number">1</span>\e file<span class="token operator">/</span>         # Modifies <span class="token string">"test"</span>     to <span class="token string">"TEST file"</span>
+</span><span class="code-line line-number" line="4"><span class="token operator">:</span>s<span class="token operator">/</span>\<span class="token function">v</span><span class="token punctuation">(</span><span class="token punctuation">[</span>abc<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">[</span>efg<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">/</span>\<span class="token number">2</span>\<span class="token number">1</span><span class="token operator">/</span>g	     # Modifies <span class="token string">"af fa bg"</span> to <span class="token string">"fa fa gb"</span>
+</span><span class="code-line line-number" line="5"><span class="token operator">:</span>s<span class="token operator">/</span>\v\w<span class="token operator">+</span><span class="token operator">/</span>\u\<span class="token number">0</span><span class="token operator">/</span>g		             # Modifies <span class="token string">"bla bla"</span>  to <span class="token string">"Bla Bla"</span>
+</span><span class="code-line line-number" line="6"><span class="token operator">:</span>s<span class="token operator">/</span>\<span class="token function">v</span><span class="token punctuation">(</span><span class="token punctuation">[</span>ab<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">|</span><span class="token punctuation">(</span><span class="token punctuation">[</span>cd<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">/</span>\<span class="token number">1</span>x<span class="token operator">/</span>g         # Modifies <span class="token string">"a b c d"</span>  to <span class="token string">"ax bx x x"</span>
+</span><span class="code-line line-number" line="7"><span class="token operator">:</span><span class="token operator">%</span>s<span class="token operator">/</span><span class="token punctuation">.</span><span class="token operator">*</span><span class="token operator">/</span>\L<span class="token operator">&#x26;</span><span class="token operator">/</span>                      # Modifies <span class="token string">"HTML"</span>     to <span class="token string">"html"</span>
+</span><span class="code-line line-number" line="8"><span class="token operator">:</span>s<span class="token operator">/</span>\v<span class="token operator">&#x3C;</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">(</span>\w<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">/</span>\u\<span class="token number">1</span>\L\<span class="token number">2</span><span class="token operator">/</span>g        # Make every first letter of a word uppercase
+</span><span class="code-line line-number" line="9"><span class="token operator">:</span><span class="token operator">%</span>s<span class="token operator">/</span><span class="token operator">^</span>\<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token operator">*</span>\<span class="token punctuation">)</span>\n\<span class="token number">1</span><span class="token operator">/</span>\<span class="token number">1</span><span class="token operator">/</span>              # Remove duplicate lines
+</span><span class="code-line line-number" line="10"><span class="token operator">:</span><span class="token operator">%</span>s<span class="token operator">/</span><span class="token operator">&#x3C;</span>\<span class="token operator">/</span>\<span class="token operator">=</span>\<span class="token punctuation">(</span>\w\<span class="token operator">+</span>\<span class="token punctuation">)</span>\<span class="token operator">></span><span class="token operator">/</span>\U<span class="token operator">&#x26;</span><span class="token operator">/</span>g        # Convert HTML<span class="token operator">-</span>Tags to uppercase
+</span><span class="code-line line-number" line="11"><span class="token operator">:</span>g<span class="token operator">/</span><span class="token operator">^</span>pattern<span class="token operator">/</span>s<span class="token operator">/</span>$<span class="token operator">/</span>mytext           # Find and append text to the end
+</span><span class="code-line line-number" line="12"><span class="token operator">:</span>g<span class="token operator">/</span>pattern<span class="token operator">/</span>norm<span class="token operator">!</span> @i              # Run a macro on matching lines
+</span><span class="code-line line-number" line="13"><span class="token operator">/</span><span class="token operator">^</span>\<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token operator">*</span>\<span class="token punctuation">)</span>\<span class="token punctuation">(</span>\r\<span class="token operator">?</span>\n\<span class="token number">1</span>\<span class="token punctuation">)</span>\<span class="token operator">+</span>$          # View the duplicates lines
+</span><span class="code-line line-number" line="14"><span class="token operator">/</span>\v<span class="token operator">^</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span>\r<span class="token operator">?</span>\n\<span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">+</span>$              # View the duplicates <span class="token function">lines</span> <span class="token punctuation">(</span>very magic<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="15"><span class="token operator">:</span>v<span class="token operator">/</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token punctuation">,</span><span class="token operator">/</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token operator">-</span>j                      # Compress blank lines into a blank line
+</span><span class="code-line line-number" line="16"><span class="token operator">:</span>g<span class="token operator">/</span><span class="token operator">&#x3C;</span>p1<span class="token operator">></span><span class="token operator">/</span><span class="token punctuation">,</span><span class="token operator">/</span><span class="token operator">&#x3C;</span>p2<span class="token operator">></span><span class="token operator">/</span>d                 # Delete inclusively from <span class="token operator">&#x3C;</span>p1<span class="token operator">></span> to <span class="token operator">&#x3C;</span>p2<span class="token operator">></span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Vimdiff {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Usage {.secondary}</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">
+</span><span class="code-line line-number" line="2">$ vimdiff file1 file2 <span class="token punctuation">[</span>file3<span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="3">$ <span class="token function">vim</span> <span class="token parameter variable">-d</span> file1 file2 <span class="token punctuation">[</span>file3<span class="token punctuation">]</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Editing {.row-span-2}</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">:[range]diffget [bufspec]
+</span><span class="code-line line-number" line="2">:[range]diffput [bufspec]
+</span></code></pre>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>do</code> <em>/</em> <code>:diffget</code></td>
+      <td>Obtain (get) difference</td>
+    </tr>
+    <tr>
+      <td><code>dp</code> <em>/</em> <code>:diffput</code></td>
+      <td>Put difference</td>
+    </tr>
+    <tr>
+      <td><code>:dif</code></td>
+      <td>Re-scan differences</td>
+    </tr>
+    <tr>
+      <td><code>:diffo</code></td>
+      <td>Switch off diff mode</td>
+    </tr>
+    <tr>
+      <td><code>:1,$+1diffget</code></td>
+      <td>Get all differences</td>
+    </tr>
+    <tr>
+      <td><code>ZQ</code></td>
+      <td>Quit without changes</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>See: <a href="#ranges">Ranges</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Folds {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>zo</code> <em>/</em> <code>zO</code></td>
+      <td>Open</td>
+    </tr>
+    <tr>
+      <td><code>zc</code> <em>/</em> <code>zC</code></td>
+      <td>Close</td>
+    </tr>
+    <tr>
+      <td><code>za</code> <em>/</em> <code>zA</code></td>
+      <td>Toggle</td>
+    </tr>
+    <tr>
+      <td><code>zv</code></td>
+      <td>Open folds for this line</td>
+    </tr>
+    <tr>
+      <td><code>zM</code></td>
+      <td>Close all</td>
+    </tr>
+    <tr>
+      <td><code>zR</code></td>
+      <td>Open all</td>
+    </tr>
+    <tr>
+      <td><code>zm</code></td>
+      <td>Fold more <em>(foldlevel += 1)</em></td>
+    </tr>
+    <tr>
+      <td><code>zr</code></td>
+      <td>Fold less <em>(foldlevel -= 1)</em></td>
+    </tr>
+    <tr>
+      <td><code>zx</code></td>
+      <td>Update folds</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Jumping</h3><div class="wrap-body"><br>
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>]c</code></td>
+      <td>Next difference</td>
+    </tr>
+    <tr>
+      <td><code>[c</code></td>
+      <td>Previous difference</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Miscellaneous {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Case {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>vU</code></td>
+      <td><em>Uppercase</em> character</td>
+    </tr>
+    <tr>
+      <td><code>vu</code></td>
+      <td><em>Lowercase</em> character</td>
+    </tr>
+    <tr>
+      <td><code>~</code></td>
+      <td><em>Toggle case</em> character</td>
+    </tr>
+    <tr>
+      <td><code>viw</code> <code>U</code></td>
+      <td><em>Uppercase</em> word</td>
+    </tr>
+    <tr>
+      <td><code>viw</code> <code>u</code></td>
+      <td><em>Lowercase</em> word</td>
+    </tr>
+    <tr>
+      <td><code>viw</code> <code>~</code></td>
+      <td><em>Toggle case</em> word</td>
+    </tr>
+    <tr>
+      <td><code>VU</code> <em>/</em> <code>gUU</code></td>
+      <td><em>Uppercase</em> line</td>
+    </tr>
+    <tr>
+      <td><code>Vu</code> <em>/</em> <code>guu</code></td>
+      <td><em>Lowercase</em> line</td>
+    </tr>
+    <tr>
+      <td><code>V~</code> <em>/</em> <code>g~~</code></td>
+      <td><em>Toggle case</em> line</td>
+    </tr>
+    <tr>
+      <td><code>gggUG</code></td>
+      <td><em>Uppercase</em> all text</td>
+    </tr>
+    <tr>
+      <td><code>ggguG</code></td>
+      <td><em>Lowercase</em> all text</td>
+    </tr>
+    <tr>
+      <td><code>ggg~G</code></td>
+      <td><em>Toggle case</em> all text</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Jumping</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&#x3C;C-o></code></td>
+      <td>Go back to previous</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-i></code></td>
+      <td>Go forward</td>
+    </tr>
+    <tr>
+      <td><code>gf</code></td>
+      <td>Go to file in cursor</td>
+    </tr>
+    <tr>
+      <td><code>ga</code></td>
+      <td>Display hex, ascii value</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Misc command-lines {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:h</code></td>
+      <td>Help open help view</td>
+    </tr>
+    <tr>
+      <td><code>:edit!</code></td>
+      <td>Reload current file</td>
+    </tr>
+    <tr>
+      <td><code>:2,8m0</code></td>
+      <td>Move lines <code>2</code>-<code>8</code> to <code>0</code></td>
+    </tr>
+    <tr>
+      <td><code>:noh</code></td>
+      <td>Clear search highlights</td>
+    </tr>
+    <tr>
+      <td><code>:sort</code></td>
+      <td>Sort lines</td>
+    </tr>
+    <tr>
+      <td><code>:ter</code></td>
+      <td>Open a terminal window</td>
+    </tr>
+    <tr>
+      <td><code>:set paste</code></td>
+      <td>Enable Insert Paste sub-mode</td>
+    </tr>
+    <tr>
+      <td><code>:set nopaste</code></td>
+      <td>disable Insert Paste sub-mode</td>
+    </tr>
+    <tr>
+      <td><code>:cq</code></td>
+      <td>Exiting with an error<br><em>(aborting Git)</em></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Navigating</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>%</code></td>
+      <td>Nearest/matching <code>{[()]}</code></td>
+    </tr>
+    <tr>
+      <td><code>[(</code> <em>|</em> <code>[{</code></td>
+      <td>Previous <code>(</code> or <code>{</code></td>
+    </tr>
+    <tr>
+      <td><code>])</code> <em>|</em> <code>]{</code></td>
+      <td>Next <code>)</code> or <code>}</code></td>
+    </tr>
+    <tr>
+      <td><code>[m</code></td>
+      <td>Previous method start</td>
+    </tr>
+    <tr>
+      <td><code>[M</code></td>
+      <td>Previous method end</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Counters</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&#x3C;C-a></code></td>
+      <td>Increase number</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-x></code></td>
+      <td>Decrease number</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Tags {.row-span-2 .col-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:tag Classname</code></td>
+      <td>Jump to first definition of Classname</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-]></code></td>
+      <td>Jump to definition</td>
+    </tr>
+    <tr>
+      <td><code>g]</code></td>
+      <td>See all definitions</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-t></code></td>
+      <td>Go back to last tag</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-o> &#x3C;C-i></code></td>
+      <td>Back/forward</td>
+    </tr>
+    <tr>
+      <td><code>:tselect Classname</code></td>
+      <td>Find definitions of Classname</td>
+    </tr>
+    <tr>
+      <td><code>:tjump Classname</code></td>
+      <td>Find definitions of Classname (auto-select 1st)</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Formatting</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:ce 8</code></td>
+      <td>Center lines between <code>8</code> columns</td>
+    </tr>
+    <tr>
+      <td><code>:ri 4</code></td>
+      <td>Right-align lines at <code>4</code> columns</td>
+    </tr>
+    <tr>
+      <td><code>:le</code></td>
+      <td>Left-align lines</td>
+    </tr>
+  </tbody>
+</table>
+<p>See <code>:help formatting</code></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Marks {.col-span-2 .row-span-4}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>`^</code></td>
+      <td>Last position of cursor in insert mode</td>
+    </tr>
+    <tr>
+      <td><code>`.</code></td>
+      <td>Last change in current buffer</td>
+    </tr>
+    <tr>
+      <td><code>`"</code></td>
+      <td>Last exited current buffer</td>
+    </tr>
+    <tr>
+      <td><code>`0</code></td>
+      <td>In last file edited</td>
+    </tr>
+    <tr>
+      <td><code>''</code></td>
+      <td>Back to line in current buffer where jumped from</td>
+    </tr>
+    <tr>
+      <td><code>``</code></td>
+      <td>Back to position in current buffer where jumped from</td>
+    </tr>
+    <tr>
+      <td><code>`[</code></td>
+      <td>To beginning of previously changed or yanked text</td>
+    </tr>
+    <tr>
+      <td><code>`]</code></td>
+      <td>To end of previously changed or yanked text</td>
+    </tr>
+    <tr>
+      <td><code>`&#x3C;</code></td>
+      <td>To beginning of last visual selection</td>
+    </tr>
+    <tr>
+      <td><code>`></code></td>
+      <td>To end of last visual selection</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  | <code>ma</code> | Mark this cursor position as <code>a</code> |
+  | <code>`a</code> | Jump to the cursor position <code>a</code> |
+  | <code>'a</code> | Jump to the beginning of the line with position <code>a</code> |
+  | <code>d'a</code> | Delete from current line to line of mark <code>a</code> |
+  | <code>d`a</code> | Delete from current position to position of mark <code>a</code> |
+  | <code>c'a</code> | Change text from current line to line of <code>a</code> |
+  | <code>y`a</code> | Yank text from current position to position of <code>a</code> |
+</p>
+<p>
+  | <code>:marks</code> | List all current marks |
+  | <code>:delm a</code> | Delete mark <code>a</code> |
+  | <code>:delm a-d</code> | Delete marks <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code> |
+  | <code>:delm abc</code> | Delete marks <code>a</code>, <code>b</code>, <code>c</code> |
+  {.shortcuts}
+</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Calculator</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&#x3C;C-r></code> <code>=</code> 7*7</td>
+      <td>Shows the result</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-r></code> <code>=</code> 10/2</td>
+      <td>Shows the result</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>Do this in INSERT mode</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Shell</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:!&#x3C;shell></code></td>
+      <td>Interpret Shell Command</td>
+    </tr>
+    <tr>
+      <td><code>:r!&#x3C;shell></code></td>
+      <td>Read in output of shell</td>
+    </tr>
+    <tr>
+      <td><code>:r!date</code></td>
+      <td>Insert date</td>
+    </tr>
+    <tr>
+      <td><code>:!!date</code></td>
+      <td>Replace current line with date</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Command line</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&#x3C;C-r>&#x3C;C-w></code></td>
+      <td>Insert current word into the command line</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-r>"</code></td>
+      <td>Paste from " register</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;C-x>&#x3C;C-f></code></td>
+      <td>Auto-completion of path in insert mode</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Tricks</h3><div class="wrap-body">
+<p>Remove duplicate lines</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">:sort <span class="token operator">|</span> %<span class="token operator">!</span>uniq <span class="token parameter variable">-u</span>
+</span></code></pre>
+<p>To number the lines in the file</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">:%<span class="token operator">!</span>cat <span class="token parameter variable">-n</span>
+</span></code></pre>
+<p>Copy whole doc to clipboard</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">:%w <span class="token operator">!</span>pbcopy            <span class="token comment"># Mac OS X</span>
+</span><span class="code-line line-number" line="2">:%w <span class="token operator">!</span>xclip <span class="token parameter variable">-i</span> <span class="token parameter variable">-sel</span> c   <span class="token comment"># GNU/Linux</span>
+</span><span class="code-line line-number" line="3">:%w <span class="token operator">!</span>xsel <span class="token parameter variable">-i</span> <span class="token parameter variable">-b</span>        <span class="token comment"># GNU/Linux</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Also see</h2><div class="wrap-body">
+<ul>
+  <li><a href="https://devhints.io/vim">Devhints</a> <em>(devhints.io)</em></li>
+  <li><a href="https://vim.rtorr.com/">Vim cheatsheet</a> <em>(vim.rotrr.com)</em></li>
+  <li><a href="http://vimdoc.sourceforge.net/htmldoc/">Vim documentation</a> <em>(vimdoc.sourceforge.net)</em></li>
+  <li><a href="http://openvim.com/">Interactive Vim tutorial</a> <em>(openvim.com)</em></li>
+</ul>
+
+</div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

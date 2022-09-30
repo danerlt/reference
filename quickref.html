@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: QuickRef
+date: 2020-11-25 18:28:43
+icon: icon-style
+background: bg-emerald-600
+tags:
+    - guide
+    - reference
+categories:
+    - Other
+intro: This is a reference of styles that you can use on quickref cheatsheets!
+---
+
+Variants {.cols-3}
+--------
+
+### H2 section
+
+| -          | -                      |
+|------------|------------------------|
+| `.cols-1`  | one column _(default)_ |
+| `.cols-2`  |                        |
+| `.cols-3`  | three column           |
+| ...        |                        |
+| `.cols-11` |                        |
+| `.cols-12` |                        |
+
+
+
+See: [H2 section](#h2-section-2)
+
+### H3 section
+
+
+| -            | -                 |
+|--------------|-------------------|
+| `.primary`   | Primary section   |
+| `.secondary` | Secondary section |
+#### Span n columns
+| -              | - |
+|----------------|---|
+| `.col-span-1`  |   |
+| ...            |   |
+| `.col-span-12` |   |
+#### Span n rows
+| -              | - |
+|----------------|---|
+| `.row-span-1`  |   |
+| ...            |   |
+| `.row-span-12` |   |
+|                |   |
+
+See: [H3 section](#h3-section-2)
+
+### Tables 
+
+
+| -              | -                          |
+|----------------|----------------------------|
+| `.bold-first`  | Bold first column          |
+| `.plus-first`  | Plus first column          |
+| `.show-header` | Show headers               |
+| `.left-text`   | Align the last column left |
+| `.no-wrap`     | Don't wrap text            |
+| `.shortcuts`   | Shortcut keys style        |
+
+See: [Tables](#tables-2)
+
+
+### Lists {.row-span-2}
+
+
+| -                 | -              |
+|-------------------|----------------|
+| `.style-none`     | No marker      |
+| `.style-round`    | Round style    |
+| `.style-timeline` | Timeline style |
+
+#### Layout
+
+| -          | -                      |
+|------------|------------------------|
+| `.cols-1`  | one column _(default)_ |
+| `.cols-2`  |                        |
+| `.cols-3`  | three column           |
+| ...        |                        |
+| `.cols-11` |                        |
+| `.cols-12` |                        |
+
+See: [Lists](#lists-2)
+
+
+
+### Code
+
+
+| -       | -                     |
+|---------|-----------------------|
+| `.wrap` | Enables line-wrapping |
+
+See: [Code](#code-2)
+
+### Paragraphs
+
+
+| -             | -                        |
+|---------------|--------------------------|
+| `.link-arrow` | Pretty links with arrows |
+
+See: [Paragraphs](#paragraphs-2) 
+
+
+
+### Global
+
+| -         | -               |
+|-----------|-----------------|
+| `.hidden` | Hide an element |
+
+
+
+### How to add variants {.secondary}
+
+```
+H2 section {.cols-3}
+----------
+
+### H3 section {.col-span-2}
+
+### primary section {.primary}
+
+[Home](/) {.link-arrow}
+```
+
+QuickRefs uses [markdown-it-attrs](https://github.com/arve0/markdown-it-attrs#markdown-it-attrs---), and supports adding classes via its syntax.
+
+Code {.cols-3}
+----
+
+### Basic code
+
+```js
+here.is(()  &#x26;  quickref cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,quickref">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/quickref.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>
+  title: QuickRef
+  date: 2020-11-25 18:28:43
+  icon: icon-style
+  background: bg-emerald-600
+  tags:
+  - guide
+  - reference
+  categories:
+  - Other
+  intro: This is a reference of styles that you can use on quickref cheatsheets!
+</h2><div class="wrap-body">
+</div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Variants {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>H2 section</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.cols-1</code></td>
+      <td>one column <em>(default)</em></td>
+    </tr>
+    <tr>
+      <td><code>.cols-2</code></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>.cols-3</code></td>
+      <td>three column</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>.cols-11</code></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>.cols-12</code></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>See: <a href="#h2-section-2">H2 section</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>H3 section</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.primary</code></td>
+      <td>Primary section</td>
+    </tr>
+    <tr>
+      <td><code>.secondary</code></td>
+      <td>Secondary section</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Span n columns</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.col-span-1</code></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>.col-span-12</code></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Span n rows</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.row-span-1</code></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>.row-span-12</code></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>See: <a href="#h3-section-2">H3 section</a></p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Tables</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.bold-first</code></td>
+      <td>Bold first column</td>
+    </tr>
+    <tr>
+      <td><code>.plus-first</code></td>
+      <td>Plus first column</td>
+    </tr>
+    <tr>
+      <td><code>.show-header</code></td>
+      <td>Show headers</td>
+    </tr>
+    <tr>
+      <td><code>.left-text</code></td>
+      <td>Align the last column left</td>
+    </tr>
+    <tr>
+      <td><code>.no-wrap</code></td>
+      <td>Don't wrap text</td>
+    </tr>
+    <tr>
+      <td><code>.shortcuts</code></td>
+      <td>Shortcut keys style</td>
+    </tr>
+  </tbody>
+</table>
+<p>See: <a href="#tables-2">Tables</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Lists {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.style-none</code></td>
+      <td>No marker</td>
+    </tr>
+    <tr>
+      <td><code>.style-round</code></td>
+      <td>Round style</td>
+    </tr>
+    <tr>
+      <td><code>.style-timeline</code></td>
+      <td>Timeline style</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Layout</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.cols-1</code></td>
+      <td>one column <em>(default)</em></td>
+    </tr>
+    <tr>
+      <td><code>.cols-2</code></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>.cols-3</code></td>
+      <td>three column</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>.cols-11</code></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>.cols-12</code></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>See: <a href="#lists-2">Lists</a></p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Code</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.wrap</code></td>
+      <td>Enables line-wrapping</td>
+    </tr>
+  </tbody>
+</table>
+<p>See: <a href="#code-2">Code</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Paragraphs</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.link-arrow</code></td>
+      <td>Pretty links with arrows</td>
+    </tr>
+  </tbody>
+</table>
+<p>See: <a href="#paragraphs-2">Paragraphs</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Global</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.hidden</code></td>
+      <td>Hide an element</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>How to add variants {.secondary}</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">H2 section {.cols-3}
+</span><span class="code-line line-number" line="2">----------
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4">### H3 section {.col-span-2}
+</span><span class="code-line line-number" line="5">
+</span><span class="code-line line-number" line="6">### primary section {.primary}
+</span><span class="code-line line-number" line="7">
+</span><span class="code-line line-number" line="8">[Home](/) {.link-arrow}
+</span></code></pre>
+<p>QuickRefs uses <a href="https://github.com/arve0/markdown-it-attrs#markdown-it-attrs---">markdown-it-attrs</a>, and supports adding classes via its syntax.</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Code {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Basic code</h3><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1">here<span class="token punctuation">.</span><span class="token method function property-access">is</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  some<span class="token punctuation">.</span><span class="token method function property-access">code</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span><span class="token punctuation">)</span>
+</span></code></pre>
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1">here<span class="token punctuation">.</span><span class="token property-access">is</span><span class="token punctuation">.</span><span class="token property-access">some</span><span class="token punctuation">.</span><span class="token method function property-access">more</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span></code></pre>
+<p>Code blocks can be placed one after the other.<br><br>See: <a href="/">Cheatsheets</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Code with headings</h3><div class="wrap-body">
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>index.js</h4><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1">here<span class="token punctuation">.</span><span class="token method function property-access">is</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  some<span class="token punctuation">.</span><span class="token method function property-access">code</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span><span class="token punctuation">)</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>other.js</h4><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1">here<span class="token punctuation">.</span><span class="token property-access">is</span><span class="token punctuation">.</span><span class="token property-access">some</span><span class="token punctuation">.</span><span class="token method function property-access">more</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span></code></pre>
+<p>Code blocks can have headings.</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Line wrapping</h3><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1"><span class="token operator">&#x3C;</span>script<span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">d<span class="token punctuation">,</span>s</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword control-flow">if</span><span class="token punctuation">(</span><span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token known-class-name class-name">Promise</span><span class="token operator">&#x26;&#x26;</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token property-access">includes</span><span class="token operator">&#x26;&#x26;</span><span class="token known-class-name class-name">Object</span><span class="token punctuation">.</span><span class="token property-access">assign</span><span class="token operator">&#x26;&#x26;</span><span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token known-class-name class-name">Map</span><span class="token punctuation">)</span><span class="token keyword control-flow">return</span><span class="token punctuation">;</span><span class="token keyword">var</span> js<span class="token punctuation">,</span>sc<span class="token operator">=</span>d<span class="token punctuation">.</span><span class="token method function property-access">getElementsByTagName</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>js<span class="token operator">=</span>d<span class="token punctuation">.</span><span class="token method function property-access">createElement</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>js<span class="token punctuation">.</span><span class="token property-access">src</span><span class="token operator">=</span><span class="token string">'https://cdn.polyfill.io/v2/polyfill.min.js'</span><span class="token punctuation">;</span>sc<span class="token punctuation">.</span><span class="token property-access">parentNode</span><span class="token punctuation">.</span><span class="token method function property-access">insertBefore</span><span class="token punctuation">(</span>js<span class="token punctuation">,</span> sc<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token dom variable">document</span><span class="token punctuation">,</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&#x3C;</span><span class="token operator">/</span>script<span class="token operator">></span>
+</span></code></pre>
+<p>Add <code>{.wrap}</code> to wrap long lines.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Long lines</h3><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">function</span> <span class="token function">createNode</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">nodeName</span><span class="token operator">:</span> string<span class="token punctuation">,</span> <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">key</span><span class="token operator">:</span> string <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token keyword control-flow">return</span> <span class="token boolean">true</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>Long lines will have scrollbars.</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Paragraphs {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Basic paragraphs</h3><div class="wrap-body">
+<p>The text that appears in the header</p>
+<p>This is a basic section with paragraphs in it. When paragraphs are the first elements in an H3 section's body, they appear as white.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Description</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">...
+</span></code></pre>
+<p>A gray background</p>
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">···
+</span></code></pre>
+<p>When paragraphs appear after <code>pre</code>/<code>table</code>/<code>ul</code>, they appear with a gray background.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Crosslink</h3><div class="wrap-body">
+<p>Add <code>{.link-arrow}</code> to make big loud external links:</p>
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">···
+</span><span class="code-line line-number" line="2">···
+</span><span class="code-line line-number" line="3">···
+</span></code></pre>
+<p><a href="/">Home</a> {.link-arrow}</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Tables {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Basic table</h3><div class="wrap-body">
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Date</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>%m/%d/%Y</code></td>
+      <td><code>06/05/2013</code></td>
+    </tr>
+    <tr>
+      <td><code>%A, %B %e, %Y</code></td>
+      <td><code>Sunday, June 5, 2013</code></td>
+    </tr>
+    <tr>
+      <td><code>%b %e %a</code></td>
+      <td><code>Jun 5 Sun</code></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Time</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>%H:%M</code></td>
+      <td><code>23:05</code></td>
+    </tr>
+    <tr>
+      <td><code>%I:%M %p</code></td>
+      <td><code>11:05 PM</code></td>
+    </tr>
+  </tbody>
+</table>
+<p>A basic table with heading level 4.</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Shortcuts</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>V</code></td>
+      <td>Vector</td>
+    </tr>
+    <tr>
+      <td><code>P</code></td>
+      <td>Pencil</td>
+    </tr>
+    <tr>
+      <td><code>T</code></td>
+      <td>Text</td>
+    </tr>
+    <tr>
+      <td><code>L</code></td>
+      <td>Line</td>
+    </tr>
+    <tr>
+      <td><code>R</code></td>
+      <td>Rectangle</td>
+    </tr>
+    <tr>
+      <td><code>O</code></td>
+      <td>Oval</td>
+    </tr>
+    <tr>
+      <td><code>U</code></td>
+      <td>Rounded</td>
+    </tr>
+    <tr>
+      <td>{.shortcuts}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>Add <code>{.shortcuts}</code> to tables.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Show headers</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Prefix</th>
+      <th>Example</th>
+      <th>What</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>//</code></td>
+      <td><code>//hr[@class='edge']</code></td>
+      <td>Anywhere</td>
+    </tr>
+    <tr>
+      <td><code>./</code></td>
+      <td><code>./a</code></td>
+      <td>Relative</td>
+    </tr>
+    <tr>
+      <td><code>/</code></td>
+      <td><code>/html/body/div</code></td>
+      <td>Root</td>
+    </tr>
+    <tr>
+      <td>{.show-header}</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>Add <code>{.show-header}</code> to add headers.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Rowspan {.col-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Stage</th>
+      <th>Direct Products</th>
+      <th>ATP Yields</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Glycolysis</td>
+      <td>2 ATP</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>^^</td>
+      <td>2 NADH</td>
+      <td>3--5 ATP</td>
+    </tr>
+    <tr>
+      <td>Pyruvaye oxidation</td>
+      <td>2 NADH</td>
+      <td>5 ATP</td>
+    </tr>
+    <tr>
+      <td>Citric acid cycle</td>
+      <td>2 ATP</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>^^</td>
+      <td>6 NADH</td>
+      <td>15 ATP</td>
+    </tr>
+    <tr>
+      <td>^^</td>
+      <td>2 FADH2</td>
+      <td>3 ATP</td>
+    </tr>
+    <tr>
+      <td><strong>30--32</strong> ATP</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>{.show-header}</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Source Code</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">| Stage              | Direct Products | ATP Yields |
+</span><span class="code-line line-number" line="2">|--------------------|-----------------|------------|
+</span><span class="code-line line-number" line="3">| Glycolysis         | 2 ATP           |            |
+</span><span class="code-line line-number" line="4">| ^^                 | 2 NADH          | 3--5 ATP   |
+</span><span class="code-line line-number" line="5">| Pyruvaye oxidation | 2 NADH          | 5 ATP      |
+</span><span class="code-line line-number" line="6">| Citric acid cycle  | 2 ATP           |            |
+</span><span class="code-line line-number" line="7">| ^^                 | 6 NADH          | 15 ATP     |
+</span><span class="code-line line-number" line="8">| ^^                 | 2 FADH2         | 3 ATP      |
+</span><span class="code-line line-number" line="9">| **30--32** ATP     |                 |            |
+</span><span class="code-line line-number" line="10">{.show-header}
+</span></code></pre>
+<p>QuickRef uses markdown-it-multimd-table to render the table, See：<a href="https://www.npmjs.com/package/markdown-it-multimd-table#rowspan-optional">markdown-it-multimd-table</a></p>
+</div></div></div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Lists {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>One column (Default)</h3><div class="wrap-body">
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Four column</h3><div class="wrap-body">
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+  <li>Item 4</li>
+  <li>Item 5</li>
+  <li>Item 6</li>
+  <li>Item 7</li>
+  <li>Item 8</li>
+  <li>
+    Item 9
+    {.cols-4}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Rename branch {.row-span-2}</h3><div class="wrap-body">
+<ul>
+  <li>
+    <h4><strong>Renamed</strong> to <code>new_name</code></h4>
+    <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> branch <span class="token parameter variable">-m</span> <span class="token operator">&#x3C;</span>new_name<span class="token operator">></span>
+</span></code></pre>
+  </li>
+  <li>
+    <h4><strong>Push</strong> and reset</h4>
+    <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> push origin <span class="token parameter variable">-u</span> <span class="token operator">&#x3C;</span>new_name<span class="token operator">></span>
+</span></code></pre>
+  </li>
+  <li>
+    <h4><strong>Delete</strong> remote branch</h4>
+    <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> push origin <span class="token parameter variable">--delete</span> <span class="token operator">&#x3C;</span>old<span class="token operator">></span>
+</span></code></pre>
+  </li>
+</ul>
+<p>{.style-timeline}</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>No marker</h3><div class="wrap-body">
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+  <li>Item 4</li>
+  <li>Item 5</li>
+  <li>
+    Item 6
+    {.cols-2 .style-none}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Round Style</h3><div class="wrap-body">
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>
+    Item 3
+    {.style-round}
+  </li>
+</ul>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>H2 section {.cols-5}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>One</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">···
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Two</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">···
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Three</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">···
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Four</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">···
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Five</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">···
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>H3 section {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>row-span-2 {.row-span-2}</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">···
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>col-span-2 {.col-span-2}</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">···
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Primary section {.primary}</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">···
+</span><span class="code-line line-number" line="2">···
+</span></code></pre>
+<p>Add <code>{.primary}</code> to make the title red.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Secondary section {.secondary}</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">···
+</span></code></pre>
+<p>Add <code>{.secondary}</code> to make the title yellow.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>col-span-3 {.col-span-3}</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">···
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Supported</h3><div class="wrap-body">
+<p>Each section can have the following children:</p>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>White</h4><div class="wrap-body">
+<ul>
+  <li><code>pre</code></li>
+  <li><code>ul</code></li>
+  <li><code>table</code></li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Gray</h4><div class="wrap-body">
+<ul>
+  <li><code>p</code></li>
+  <li><code>h4</code></li>
+</ul>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>H3 section</h3><div class="wrap-body">
+<p>Every box is an H3 section. The box will encompass everything inside the body of the H3.</p>
+<p>This is a basic section with paragraphs in it.</p>
+
+</div></div></div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

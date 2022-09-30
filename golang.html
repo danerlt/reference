@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: Golang
+date: 2020-12-17 21:51:44
+icon: icon-golang
+background: bg-[#4ba4cc]
+tags:
+    - Go
+categories:
+    - Programming
+intro: |
+    This cheat sheet provided basic syntax and methods to help you using [Golang](https://golang.org/). 
+---
+
+
+Getting started {.cols-3}
+--------
+
+
+
+### hello.go
+```go
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, world!")
+}
+```
+Run directly
+```shell script
+$ go run hello.go
+Hello, world!
+```
+Or try it out in the [Go repl](https://repl.it/languages/go)
+
+
+
+### Variables
+```go
+var s1 string
+s1  &#x26;  golang cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,golang">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/golang.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>
+  title: Golang
+  date: 2020-12-17 21:51:44
+  icon: icon-golang
+  background: bg-[#4ba4cc]
+  tags:
+  - Go
+  categories:
+  - Programming
+  intro: |
+  This cheat sheet provided basic syntax and methods to help you using <a href="https://golang.org/">Golang</a>.
+</h2><div class="wrap-body">
+</div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Getting started {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>hello.go</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">package</span> main
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token keyword">import</span> <span class="token string">"fmt"</span>
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="6">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Hello, world!"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="7"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>Run directly</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ go run hello.go
+</span><span class="code-line line-number" line="2">Hello, world<span class="token operator">!</span>
+</span></code></pre>
+<p>Or try it out in the <a href="https://repl.it/languages/go">Go repl</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Variables</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">var</span> s1 <span class="token builtin">string</span>
+</span><span class="code-line line-number" line="2">s1 <span class="token operator">=</span> <span class="token string">"Learn Go!"</span>
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4"><span class="token comment">// declare multiple variables at once</span>
+</span><span class="code-line line-number" line="5"><span class="token keyword">var</span> b<span class="token punctuation">,</span> c <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span>
+</span><span class="code-line line-number" line="6"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token boolean">true</span>
+</span></code></pre>
+<p>Short declaration</p>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">s1 <span class="token operator">:=</span> <span class="token string">"Learn Go!"</span>        <span class="token comment">// string</span>
+</span><span class="code-line line-number" line="2">b<span class="token punctuation">,</span> c <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span>             <span class="token comment">// int</span>
+</span><span class="code-line line-number" line="3">d <span class="token operator">:=</span> <span class="token boolean">true</span>                <span class="token comment">// bool</span>
+</span></code></pre>
+<p>See: <a href="#golang-basic-types">Basic types</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Functions</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">package</span> main
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token keyword">import</span> <span class="token string">"fmt"</span>
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5"><span class="token comment">// The entry point of the programs</span>
+</span><span class="code-line line-number" line="6"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="7">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Hello world!"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="8">    <span class="token function">say</span><span class="token punctuation">(</span><span class="token string">"Hello Go!"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="9"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="10">
+</span><span class="code-line line-number" line="11"><span class="token keyword">func</span> <span class="token function">say</span><span class="token punctuation">(</span>message <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="12">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"You said: "</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="13"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>See: <a href="#golang-functions">Functions</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Comments</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token comment">// Single line comment</span>
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token comment">/* Multi-
+</span></span><span class="code-line line-number" line="4"><span class="token comment"> line comment */</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>If statement</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">if</span> <span class="token boolean">true</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Yes!"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>See: <a href="#golang-flow-control">Flow control</a></p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Golang Basic types {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Strings</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">s1 <span class="token operator">:=</span> <span class="token string">"Hello"</span> <span class="token operator">+</span> <span class="token string">"World"</span>
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3">s2 <span class="token operator">:=</span> <span class="token string">`A "raw" string literal
+</span></span><span class="code-line line-number" line="4"><span class="token string">can include line breaks.`</span>
+</span><span class="code-line line-number" line="5">
+</span><span class="code-line line-number" line="6"><span class="token comment">// Outputs: 11</span>
+</span><span class="code-line line-number" line="7">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">len</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="8">
+</span><span class="code-line line-number" line="9"><span class="token comment">// Outputs: Hello</span>
+</span><span class="code-line line-number" line="10">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>s1<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</span></code></pre>
+<p>Strings are of type <code>string</code>.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Numbers</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">num <span class="token operator">:=</span> <span class="token number">3</span>         <span class="token comment">// int</span>
+</span><span class="code-line line-number" line="2">num <span class="token operator">:=</span> <span class="token number">3.</span>        <span class="token comment">// float64</span>
+</span><span class="code-line line-number" line="3">num <span class="token operator">:=</span> <span class="token number">3</span> <span class="token operator">+</span> <span class="token number">4i</span>    <span class="token comment">// complex128</span>
+</span><span class="code-line line-number" line="4">num <span class="token operator">:=</span> <span class="token function">byte</span><span class="token punctuation">(</span><span class="token char">'a'</span><span class="token punctuation">)</span> <span class="token comment">// byte (alias: uint8)</span>
+</span><span class="code-line line-number" line="5">
+</span><span class="code-line line-number" line="6"><span class="token keyword">var</span> u <span class="token builtin">uint</span> <span class="token operator">=</span> <span class="token number">7</span>        <span class="token comment">// uint (unsigned)</span>
+</span><span class="code-line line-number" line="7"><span class="token keyword">var</span> p <span class="token builtin">float32</span> <span class="token operator">=</span> <span class="token number">22.7</span>  <span class="token comment">// 32-bit float</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Operators</h4><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">x <span class="token operator">:=</span> <span class="token number">5</span>
+</span><span class="code-line line-number" line="2">x<span class="token operator">++</span>
+</span><span class="code-line line-number" line="3">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"x + 4 ="</span><span class="token punctuation">,</span> x <span class="token operator">+</span> <span class="token number">4</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="4">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"x * 4 ="</span><span class="token punctuation">,</span> x <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">)</span> 
+</span></code></pre>
+<p>See: <a href="#golang-operators-and-punctuation">More Operators</a></p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Booleans</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">isTrue   <span class="token operator">:=</span> <span class="token boolean">true</span>
+</span><span class="code-line line-number" line="2">isFalse  <span class="token operator">:=</span> <span class="token boolean">false</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Operators</h4><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token boolean">true</span> <span class="token operator">&#x26;&#x26;</span> <span class="token boolean">true</span><span class="token punctuation">)</span>   <span class="token comment">// true </span>
+</span><span class="code-line line-number" line="2">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token boolean">true</span> <span class="token operator">&#x26;&#x26;</span> <span class="token boolean">false</span><span class="token punctuation">)</span>  <span class="token comment">// false</span>
+</span><span class="code-line line-number" line="3">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token boolean">true</span> <span class="token operator">||</span> <span class="token boolean">true</span><span class="token punctuation">)</span>   <span class="token comment">// true</span>
+</span><span class="code-line line-number" line="4">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token boolean">true</span> <span class="token operator">||</span> <span class="token boolean">false</span><span class="token punctuation">)</span>  <span class="token comment">// true</span>
+</span><span class="code-line line-number" line="5">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token boolean">true</span><span class="token punctuation">)</span>          <span class="token comment">// false</span>
+</span></code></pre>
+<p>See: <a href="#golang-operators-and-punctuation">More Operators</a></p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Arrays {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">┌────┬────┬────┬────┬─────┬─────┐
+</span><span class="code-line line-number" line="2"><span class="token operator">|</span> <span class="token number">2</span>  <span class="token operator">|</span> <span class="token number">3</span>  <span class="token operator">|</span> <span class="token number">5</span>  <span class="token operator">|</span> <span class="token number">7</span>  <span class="token operator">|</span> <span class="token number">11</span>  <span class="token operator">|</span> <span class="token number">13</span>  <span class="token operator">|</span>
+</span><span class="code-line line-number" line="3">└────┴────┴────┴────┴─────┴─────┘
+</span><span class="code-line line-number" line="4">  <span class="token number">0</span>    <span class="token number">1</span>    <span class="token number">2</span>    <span class="token number">3</span>     <span class="token number">4</span>     <span class="token number">5</span>
+</span></code></pre>
+<hr>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">primes <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="2">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">len</span><span class="token punctuation">(</span>primes<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// => 6</span>
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4"><span class="token comment">// Outputs: [2 3 5 7 11 13]</span>
+</span><span class="code-line line-number" line="5">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>primes<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="6">
+</span><span class="code-line line-number" line="7"><span class="token comment">// Same as [:3], Outputs: [2 3 5]</span>
+</span><span class="code-line line-number" line="8">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>primes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</span></code></pre>
+<hr>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">var</span> a <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token builtin">string</span>
+</span><span class="code-line line-number" line="2">a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello"</span>
+</span><span class="code-line line-number" line="3">a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"World"</span>
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment">//=> Hello World</span>
+</span><span class="code-line line-number" line="6">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>   <span class="token comment">// => [Hello World]</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>2d array</h4><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">var</span> twoDimension <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token builtin">int</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&#x3C;</span> <span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    <span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&#x3C;</span> <span class="token number">3</span><span class="token punctuation">;</span> j<span class="token operator">++</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="4">        twoDimension<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> i <span class="token operator">+</span> j
+</span><span class="code-line line-number" line="5">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="7"><span class="token comment">// => 2d:  [[0 1 2] [1 2 3]]</span>
+</span><span class="code-line line-number" line="8">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"2d: "</span><span class="token punctuation">,</span> twoDimension<span class="token punctuation">)</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Pointers</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> main <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  b <span class="token operator">:=</span> <span class="token operator">*</span><span class="token function">getPointer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3">  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Value is"</span><span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> getPointer <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>myPointer <span class="token operator">*</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  a <span class="token operator">:=</span> <span class="token number">234</span>
+</span><span class="code-line line-number" line="3">  <span class="token keyword">return</span> <span class="token operator">&#x26;</span>a
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">a <span class="token operator">:=</span> <span class="token function">new</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="2"><span class="token operator">*</span>a <span class="token operator">=</span> <span class="token number">234</span>
+</span></code></pre>
+<p>See: <a href="https://tour.golang.org/moretypes/1">Pointers</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Slices</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">s <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="2">s<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"a"</span>
+</span><span class="code-line line-number" line="3">s<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"b"</span>
+</span><span class="code-line line-number" line="4">s <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> <span class="token string">"d"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="5">s <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> <span class="token string">"e"</span><span class="token punctuation">,</span> <span class="token string">"f"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="6">
+</span><span class="code-line line-number" line="7">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="8">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="9">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="10">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="11">
+</span><span class="code-line line-number" line="12">slice <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span>
+</span></code></pre>
+<p>See also: <a href="https://gobyexample.com/slices">Slices example</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Constants</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">const</span> s <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token string">"constant"</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">const</span> Phi <span class="token operator">=</span> <span class="token number">1.618</span>
+</span><span class="code-line line-number" line="3"><span class="token keyword">const</span> n <span class="token operator">=</span> <span class="token number">500000000</span>
+</span><span class="code-line line-number" line="4"><span class="token keyword">const</span> d <span class="token operator">=</span> <span class="token number">3e20</span> <span class="token operator">/</span> n
+</span><span class="code-line line-number" line="5">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Type conversions</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">i <span class="token operator">:=</span> <span class="token number">90</span>
+</span><span class="code-line line-number" line="2">f <span class="token operator">:=</span> <span class="token function">float64</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3">u <span class="token operator">:=</span> <span class="token function">uint</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5"><span class="token comment">// Will be equal to the character Z</span>
+</span><span class="code-line line-number" line="6">s <span class="token operator">:=</span> <span class="token function">string</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>How to get int string?</h4><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">i <span class="token operator">:=</span> <span class="token number">90</span>
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token comment">// need import "strconv"</span>
+</span><span class="code-line line-number" line="4">s <span class="token operator">:=</span> strconv<span class="token punctuation">.</span><span class="token function">Itoa</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="5">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token comment">// Outputs: 90</span>
+</span></code></pre>
+</div></div></div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Golang Strings {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Strings function</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">package</span> main
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token keyword">import</span> <span class="token punctuation">(</span>
+</span><span class="code-line line-number" line="4">	<span class="token string">"fmt"</span>
+</span><span class="code-line line-number" line="5">	s <span class="token string">"strings"</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="7">
+</span><span class="code-line line-number" line="8"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="9">    <span class="token comment">/* Need to import strings as s */</span>
+</span><span class="code-line line-number" line="10">	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">Contains</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">,</span> <span class="token string">"e"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="11">
+</span><span class="code-line line-number" line="12">    <span class="token comment">/* Build in */</span>
+</span><span class="code-line line-number" line="13">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">len</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">// => 5</span>
+</span><span class="code-line line-number" line="14">    <span class="token comment">// Outputs: 101</span>
+</span><span class="code-line line-number" line="15">	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="16">    <span class="token comment">// Outputs: e</span>
+</span><span class="code-line line-number" line="17">	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="18">
+</span><span class="code-line line-number" line="19"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>fmt.Printf {.row-span-2 .col-span-2}</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">package</span> main
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token keyword">import</span> <span class="token punctuation">(</span>
+</span><span class="code-line line-number" line="4">	<span class="token string">"fmt"</span>
+</span><span class="code-line line-number" line="5">	<span class="token string">"os"</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="7">
+</span><span class="code-line line-number" line="8"><span class="token keyword">type</span> point <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="9">	x<span class="token punctuation">,</span> y <span class="token builtin">int</span>
+</span><span class="code-line line-number" line="10"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="11">
+</span><span class="code-line line-number" line="12"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="13">	p <span class="token operator">:=</span> point<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="14">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%v\n"</span><span class="token punctuation">,</span> p<span class="token punctuation">)</span>                        <span class="token comment">// => {1 2}</span>
+</span><span class="code-line line-number" line="15">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%+v\n"</span><span class="token punctuation">,</span> p<span class="token punctuation">)</span>                       <span class="token comment">// => {x:1 y:2}</span>
+</span><span class="code-line line-number" line="16">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%#v\n"</span><span class="token punctuation">,</span> p<span class="token punctuation">)</span>                       <span class="token comment">// => main.point{x:1, y:2}</span>
+</span><span class="code-line line-number" line="17">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%T\n"</span><span class="token punctuation">,</span> p<span class="token punctuation">)</span>                        <span class="token comment">// => main.point</span>
+</span><span class="code-line line-number" line="18">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%t\n"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>                     <span class="token comment">// => TRUE</span>
+</span><span class="code-line line-number" line="19">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token number">123</span><span class="token punctuation">)</span>                      <span class="token comment">// => 123</span>
+</span><span class="code-line line-number" line="20">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%b\n"</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">)</span>                       <span class="token comment">// => 1110</span>
+</span><span class="code-line line-number" line="21">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%c\n"</span><span class="token punctuation">,</span> <span class="token number">33</span><span class="token punctuation">)</span>                       <span class="token comment">// => !</span>
+</span><span class="code-line line-number" line="22">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%x\n"</span><span class="token punctuation">,</span> <span class="token number">456</span><span class="token punctuation">)</span>                      <span class="token comment">// => 1c8</span>
+</span><span class="code-line line-number" line="23">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%f\n"</span><span class="token punctuation">,</span> <span class="token number">78.9</span><span class="token punctuation">)</span>                     <span class="token comment">// => 78.9</span>
+</span><span class="code-line line-number" line="24">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%e\n"</span><span class="token punctuation">,</span> <span class="token number">123400000.0</span><span class="token punctuation">)</span>              <span class="token comment">// => 1.23E+08</span>
+</span><span class="code-line line-number" line="25">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%E\n"</span><span class="token punctuation">,</span> <span class="token number">123400000.0</span><span class="token punctuation">)</span>              <span class="token comment">// => 1.23E+08</span>
+</span><span class="code-line line-number" line="26">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span> <span class="token string">"\"string\""</span><span class="token punctuation">)</span>             <span class="token comment">// => "string"</span>
+</span><span class="code-line line-number" line="27">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%q\n"</span><span class="token punctuation">,</span> <span class="token string">"\"string\""</span><span class="token punctuation">)</span>             <span class="token comment">// => "\"string\""</span>
+</span><span class="code-line line-number" line="28">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%x\n"</span><span class="token punctuation">,</span> <span class="token string">"hex this"</span><span class="token punctuation">)</span>               <span class="token comment">// => 6.86578E+15</span>
+</span><span class="code-line line-number" line="29">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%p\n"</span><span class="token punctuation">,</span> <span class="token operator">&#x26;</span>p<span class="token punctuation">)</span>                       <span class="token comment">// => 0xc00002c040</span>
+</span><span class="code-line line-number" line="30">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"|%6d|%6d|\n"</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">345</span><span class="token punctuation">)</span>           <span class="token comment">// => |    12|   345|</span>
+</span><span class="code-line line-number" line="31">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"|%6.2f|%6.2f|\n"</span><span class="token punctuation">,</span> <span class="token number">1.2</span><span class="token punctuation">,</span> <span class="token number">3.45</span><span class="token punctuation">)</span>     <span class="token comment">// => |  1.20|  3.45|</span>
+</span><span class="code-line line-number" line="32">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"|%-6.2f|%-6.2f|\n"</span><span class="token punctuation">,</span> <span class="token number">1.2</span><span class="token punctuation">,</span> <span class="token number">3.45</span><span class="token punctuation">)</span>   <span class="token comment">// => |1.20  |3.45  |</span>
+</span><span class="code-line line-number" line="33">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"|%6s|%6s|\n"</span><span class="token punctuation">,</span> <span class="token string">"foo"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">)</span>        <span class="token comment">// => |   foo|     b|</span>
+</span><span class="code-line line-number" line="34">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"|%-6s|%-6s|\n"</span><span class="token punctuation">,</span> <span class="token string">"foo"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">)</span>      <span class="token comment">// => |foo   |b     |</span>
+</span><span class="code-line line-number" line="35">
+</span><span class="code-line line-number" line="36">	s <span class="token operator">:=</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"a %s"</span><span class="token punctuation">,</span> <span class="token string">"string"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="37">	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="38">
+</span><span class="code-line line-number" line="39">	fmt<span class="token punctuation">.</span><span class="token function">Fprintf</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Stderr<span class="token punctuation">,</span> <span class="token string">"an %s\n"</span><span class="token punctuation">,</span> <span class="token string">"error"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="40"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="41">
+</span></code></pre>
+<p>See also: <a href="https://golang.org/pkg/fmt/">fmt</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Function examples</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Contains("test", "es")</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>Count("test", "t")</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>HasPrefix("test", "te")</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>HasSuffix("test", "st")</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>Index("test", "e")</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Join([]string{"a", "b"}, "-")</td>
+      <td>a-b</td>
+    </tr>
+    <tr>
+      <td>Repeat("a", 5)</td>
+      <td>aaaaa</td>
+    </tr>
+    <tr>
+      <td>Replace("foo", "o", "0", -1)</td>
+      <td>f00</td>
+    </tr>
+    <tr>
+      <td>Replace("foo", "o", "0", 1)</td>
+      <td>f0o</td>
+    </tr>
+    <tr>
+      <td>Split("a-b-c-d-e", "-")</td>
+      <td>[a b c d e]</td>
+    </tr>
+    <tr>
+      <td>ToLower("TEST")</td>
+      <td>test</td>
+    </tr>
+    <tr>
+      <td>ToUpper("test")</td>
+      <td>TEST</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Golang Flow control {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Conditional</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">
+</span><span class="code-line line-number" line="2">a <span class="token operator">:=</span> <span class="token number">10</span>
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4"><span class="token keyword">if</span> a <span class="token operator">></span> <span class="token number">20</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="5">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">">"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> a <span class="token operator">&#x3C;</span> <span class="token number">20</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="7">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"&#x3C;"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="8"><span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="9">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"="</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="10"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Statements in if</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">x <span class="token operator">:=</span> <span class="token string">"hello go!"</span>
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token keyword">if</span> count <span class="token operator">:=</span> <span class="token function">len</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> count <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="4">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Yes"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="6">
+</span></code></pre>
+<hr>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">
+</span><span class="code-line line-number" line="2"><span class="token keyword">if</span> <span class="token boolean">_</span><span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">doThing</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Uh oh"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Switch</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">x <span class="token operator">:=</span> <span class="token number">42.0</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">switch</span> x <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3"><span class="token keyword">case</span> <span class="token number">0</span><span class="token punctuation">:</span>
+</span><span class="code-line line-number" line="4"><span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">:</span>
+</span><span class="code-line line-number" line="5">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Multiple matches"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="6"><span class="token keyword">case</span> <span class="token number">42</span><span class="token punctuation">:</span>   <span class="token comment">// Don't "fall through".</span>
+</span><span class="code-line line-number" line="7">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"reached"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="8"><span class="token keyword">case</span> <span class="token number">43</span><span class="token punctuation">:</span>
+</span><span class="code-line line-number" line="9">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Unreached"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="10"><span class="token keyword">default</span><span class="token punctuation">:</span>
+</span><span class="code-line line-number" line="11">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Optional"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="12"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>See: <a href="https://github.com/golang/go/wiki/Switch">Switch</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>For loop</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&#x3C;=</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"i: "</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>For-Range loop</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">nums <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="2">sum <span class="token operator">:=</span> <span class="token number">0</span>
+</span><span class="code-line line-number" line="3"><span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> num <span class="token operator">:=</span> <span class="token keyword">range</span> nums <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="4">    sum <span class="token operator">+=</span> num
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="6">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"sum:"</span><span class="token punctuation">,</span> sum<span class="token punctuation">)</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>While loop</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">i <span class="token operator">:=</span> <span class="token number">1</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">for</span> i <span class="token operator">&#x3C;=</span> <span class="token number">3</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="4">    i<span class="token operator">++</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Continue keyword</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&#x3C;=</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    <span class="token keyword">if</span> i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">        <span class="token keyword">continue</span>
+</span><span class="code-line line-number" line="4">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="5">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Break keyword</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">for</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"loop"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3">    <span class="token keyword">break</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Golang Structs &#x26; Maps {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Defining {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">package</span> main
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token keyword">import</span> <span class="token punctuation">(</span>
+</span><span class="code-line line-number" line="4">	<span class="token string">"fmt"</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="6">
+</span><span class="code-line line-number" line="7"><span class="token keyword">type</span> Vertex <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="8">	X <span class="token builtin">int</span>
+</span><span class="code-line line-number" line="9">	Y <span class="token builtin">int</span>
+</span><span class="code-line line-number" line="10"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="11">
+</span><span class="code-line line-number" line="12"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="13">	v <span class="token operator">:=</span> Vertex<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="14">	v<span class="token punctuation">.</span>X <span class="token operator">=</span> <span class="token number">4</span>
+</span><span class="code-line line-number" line="15">	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>v<span class="token punctuation">.</span>X<span class="token punctuation">,</span> v<span class="token punctuation">.</span>Y<span class="token punctuation">)</span> <span class="token comment">// => 4 2</span>
+</span><span class="code-line line-number" line="16"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>See: <a href="https://tour.golang.org/moretypes/2">Structs</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Literals</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">v <span class="token operator">:=</span> Vertex<span class="token punctuation">{</span>X<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> Y<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="2"><span class="token comment">// Field names can be omitted</span>
+</span><span class="code-line line-number" line="3">v <span class="token operator">:=</span> Vertex<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="4"><span class="token comment">// Y is implicit</span>
+</span><span class="code-line line-number" line="5">v <span class="token operator">:=</span> Vertex<span class="token punctuation">{</span>X<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">}</span>
+</span></code></pre>
+<p>You can also put field names.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Maps {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">m <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="2">m<span class="token punctuation">[</span><span class="token string">"k1"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">7</span>
+</span><span class="code-line line-number" line="3">m<span class="token punctuation">[</span><span class="token string">"k2"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">13</span>
+</span><span class="code-line line-number" line="4">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span> <span class="token comment">// => map[k1:7 k2:13]</span>
+</span><span class="code-line line-number" line="5">
+</span><span class="code-line line-number" line="6">v1 <span class="token operator">:=</span> m<span class="token punctuation">[</span><span class="token string">"k1"</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="7">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>v1<span class="token punctuation">)</span>     <span class="token comment">// => 7</span>
+</span><span class="code-line line-number" line="8">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">len</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// => 2</span>
+</span><span class="code-line line-number" line="9">
+</span><span class="code-line line-number" line="10"><span class="token function">delete</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token string">"k2"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="11">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span> <span class="token comment">// => map[k1:7]</span>
+</span><span class="code-line line-number" line="12">
+</span><span class="code-line line-number" line="13"><span class="token boolean">_</span><span class="token punctuation">,</span> prs <span class="token operator">:=</span> m<span class="token punctuation">[</span><span class="token string">"k2"</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="14">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>prs<span class="token punctuation">)</span> <span class="token comment">// => false</span>
+</span><span class="code-line line-number" line="15">
+</span><span class="code-line line-number" line="16">n <span class="token operator">:=</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token string">"foo"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"bar"</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="17">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token comment">// => map[bar:2 foo:1]</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Pointers to structs</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">v <span class="token operator">:=</span> <span class="token operator">&#x26;</span>Vertex<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="2">v<span class="token punctuation">.</span>X <span class="token operator">=</span> <span class="token number">2</span>
+</span></code></pre>
+<p>Doing <code>v.X</code> is the same as doing <code>(*v).X</code>, when <code>v</code> is a pointer.</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Golang Functions {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Multiple arguments</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token function">plus</span><span class="token punctuation">(</span>a <span class="token builtin">int</span><span class="token punctuation">,</span> b <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    <span class="token keyword">return</span> a <span class="token operator">+</span> b
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="4"><span class="token keyword">func</span> <span class="token function">plusPlus</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="5">    <span class="token keyword">return</span> a <span class="token operator">+</span> b <span class="token operator">+</span> c
+</span><span class="code-line line-number" line="6"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="7">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">plus</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="8">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">plusPlus</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Multiple return</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token function">vals</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    <span class="token keyword">return</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">7</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5">a<span class="token punctuation">,</span> b <span class="token operator">:=</span> <span class="token function">vals</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="6">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>    <span class="token comment">// => 3</span>
+</span><span class="code-line line-number" line="7">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>    <span class="token comment">// => 7</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Anonymous function</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">r1<span class="token punctuation">,</span> r2 <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    x <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token string">"world"</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="3">    <span class="token keyword">return</span> x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> x<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="5">
+</span><span class="code-line line-number" line="6"><span class="token comment">// => hello world</span>
+</span><span class="code-line line-number" line="7">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>r1<span class="token punctuation">,</span> r2<span class="token punctuation">)</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Named return</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token function">split</span><span class="token punctuation">(</span>sum <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  x <span class="token operator">=</span> sum <span class="token operator">*</span> <span class="token number">4</span> <span class="token operator">/</span> <span class="token number">9</span>
+</span><span class="code-line line-number" line="3">  y <span class="token operator">=</span> sum <span class="token operator">-</span> x
+</span><span class="code-line line-number" line="4">  <span class="token keyword">return</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="6">
+</span><span class="code-line line-number" line="7">x<span class="token punctuation">,</span> y <span class="token operator">:=</span> <span class="token function">split</span><span class="token punctuation">(</span><span class="token number">17</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="8">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>   <span class="token comment">// => 7</span>
+</span><span class="code-line line-number" line="9">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span>   <span class="token comment">// => 10</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Variadic functions</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token function">sum</span><span class="token punctuation">(</span>nums <span class="token operator">...</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> <span class="token string">" "</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3">    total <span class="token operator">:=</span> <span class="token number">0</span>
+</span><span class="code-line line-number" line="4">    <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> num <span class="token operator">:=</span> <span class="token keyword">range</span> nums <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="5">        total <span class="token operator">+=</span> num
+</span><span class="code-line line-number" line="6">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="7">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>total<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="8"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="9"><span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>     <span class="token comment">//=> [1 2] 3</span>
+</span><span class="code-line line-number" line="10"><span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>  <span class="token comment">// => [1 2 3] 6</span>
+</span><span class="code-line line-number" line="11">
+</span><span class="code-line line-number" line="12">nums <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="13"><span class="token function">sum</span><span class="token punctuation">(</span>nums<span class="token operator">...</span><span class="token punctuation">)</span>  <span class="token comment">// => [1 2 3 4] 10</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>init function</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">import</span> <span class="token operator">--</span><span class="token operator">></span> <span class="token keyword">const</span> <span class="token operator">--</span><span class="token operator">></span> <span class="token keyword">var</span> <span class="token operator">--</span><span class="token operator">></span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span></code></pre>
+<hr>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token function">setNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token keyword">func</span> <span class="token function">setNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="4">    <span class="token keyword">return</span> <span class="token number">42</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="6"><span class="token keyword">func</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="7">    num <span class="token operator">=</span> <span class="token number">0</span>
+</span><span class="code-line line-number" line="8"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="9"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="10">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token comment">// => 0</span>
+</span><span class="code-line line-number" line="11"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Functions as values</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    <span class="token comment">// assign a function to a name</span>
+</span><span class="code-line line-number" line="3">    add <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="4">        <span class="token keyword">return</span> a <span class="token operator">+</span> b
+</span><span class="code-line line-number" line="5">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="6">    <span class="token comment">// use the name to call the function</span>
+</span><span class="code-line line-number" line="7">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// => 7</span>
+</span><span class="code-line line-number" line="8"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Closures 1</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token function">scope</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    outer_var <span class="token operator">:=</span> <span class="token number">2</span>
+</span><span class="code-line line-number" line="3">    foo <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span><span class="token keyword">return</span> outer_var<span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="4">    <span class="token keyword">return</span> foo
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="6">
+</span><span class="code-line line-number" line="7"><span class="token comment">// Outpus: 2</span>
+</span><span class="code-line line-number" line="8">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">scope</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Closures 2</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token function">outer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    outer_var <span class="token operator">:=</span> <span class="token number">2</span>
+</span><span class="code-line line-number" line="3">    inner <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="4">        outer_var <span class="token operator">+=</span> <span class="token number">99</span>
+</span><span class="code-line line-number" line="5">        <span class="token keyword">return</span> outer_var
+</span><span class="code-line line-number" line="6">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="7">    <span class="token function">inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="8">    <span class="token keyword">return</span> inner<span class="token punctuation">,</span> outer_var
+</span><span class="code-line line-number" line="9"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="10">inner<span class="token punctuation">,</span> val <span class="token operator">:=</span> <span class="token function">outer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="11">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// => 200</span>
+</span><span class="code-line line-number" line="12">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>     <span class="token comment">// => 101</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Golang Packages {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Importing {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">import</span> <span class="token string">"fmt"</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">import</span> <span class="token string">"math/rand"</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Same as</h4><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">import</span> <span class="token punctuation">(</span>
+</span><span class="code-line line-number" line="2">  <span class="token string">"fmt"</span>        <span class="token comment">// gives fmt.Println</span>
+</span><span class="code-line line-number" line="3">  <span class="token string">"math/rand"</span>  <span class="token comment">// gives rand.Intn</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">)</span>
+</span></code></pre>
+<p>See: <a href="https://tour.golang.org/basics/1">Importing</a></p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Aliases {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">import</span> r <span class="token string">"math/rand"</span>
+</span></code></pre>
+<hr>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">import</span> <span class="token punctuation">(</span>
+</span><span class="code-line line-number" line="2">    <span class="token string">"fmt"</span>
+</span><span class="code-line line-number" line="3">    r <span class="token string">"math/rand"</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">)</span>
+</span></code></pre>
+<hr>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">r<span class="token punctuation">.</span><span class="token function">Intn</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Packages</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">package</span> main
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token comment">// An internal package may be imported only by another package</span>
+</span><span class="code-line line-number" line="4"><span class="token comment">// that is inside the tree rooted at the parent of the internal directory</span>
+</span><span class="code-line line-number" line="5"><span class="token keyword">package</span> internal
+</span></code></pre>
+<p>See: <a href="https://go.dev/doc/go1.4#internalpackages">Internal packages</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Exporting names</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token comment">// Begin with a capital letter</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">func</span> Hello <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">  ···
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>See: <a href="https://tour.golang.org/basics/3">Exported names</a></p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Golang Concurrency {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Goroutines {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">package</span> main
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token keyword">import</span> <span class="token punctuation">(</span>
+</span><span class="code-line line-number" line="4">	<span class="token string">"fmt"</span>
+</span><span class="code-line line-number" line="5">	<span class="token string">"time"</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="7">
+</span><span class="code-line line-number" line="8"><span class="token keyword">func</span> <span class="token function">f</span><span class="token punctuation">(</span>from <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="9">	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&#x3C;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="10">		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>from<span class="token punctuation">,</span> <span class="token string">":"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="11">	<span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="12"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="13">
+</span><span class="code-line line-number" line="14"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="15">	<span class="token function">f</span><span class="token punctuation">(</span><span class="token string">"direct"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="16">	<span class="token keyword">go</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token string">"goroutine"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="17">
+</span><span class="code-line line-number" line="18">	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span>msg <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="19">		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="20">	<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token string">"going"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="21">
+</span><span class="code-line line-number" line="22">	time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="23">	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"done"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="24"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>See: <a href="https://tour.golang.org/concurrency/1">Goroutines</a>, <a href="https://tour.golang.org/concurrency/2">Channels</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>WaitGroup {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">package</span> main
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token keyword">import</span> <span class="token punctuation">(</span>
+</span><span class="code-line line-number" line="4">	<span class="token string">"fmt"</span>
+</span><span class="code-line line-number" line="5">	<span class="token string">"sync"</span>
+</span><span class="code-line line-number" line="6">	<span class="token string">"time"</span>
+</span><span class="code-line line-number" line="7"><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="8">
+</span><span class="code-line line-number" line="9"><span class="token keyword">func</span> <span class="token function">w</span><span class="token punctuation">(</span>id <span class="token builtin">int</span><span class="token punctuation">,</span> wg <span class="token operator">*</span>sync<span class="token punctuation">.</span>WaitGroup<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="10">	<span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="11">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%d starting\n"</span><span class="token punctuation">,</span> id<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="12">
+</span><span class="code-line line-number" line="13">	time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="14">	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%d done\n"</span><span class="token punctuation">,</span> id<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="15"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="16">
+</span><span class="code-line line-number" line="17"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="18">	<span class="token keyword">var</span> wg sync<span class="token punctuation">.</span>WaitGroup
+</span><span class="code-line line-number" line="19">	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&#x3C;=</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="20">		wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="21">		<span class="token keyword">go</span> <span class="token function">w</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token operator">&#x26;</span>wg<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="22">	<span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="23">	wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="24"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>See: <a href="https://golang.org/pkg/sync/#WaitGroup">WaitGroup</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Closing channels</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">ch <span class="token operator">&#x3C;-</span> <span class="token number">1</span>
+</span><span class="code-line line-number" line="2">ch <span class="token operator">&#x3C;-</span> <span class="token number">2</span>
+</span><span class="code-line line-number" line="3">ch <span class="token operator">&#x3C;-</span> <span class="token number">3</span>
+</span><span class="code-line line-number" line="4"><span class="token function">close</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span> <span class="token comment">// Closes a channel</span>
+</span></code></pre>
+<hr>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token comment">// Iterate the channel until closed</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token keyword">range</span> ch <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">  ···
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+<hr>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token comment">// Closed if `ok == false`</span>
+</span><span class="code-line line-number" line="2">v<span class="token punctuation">,</span> ok <span class="token operator">:=</span> <span class="token operator">&#x3C;-</span> ch
+</span></code></pre>
+<p>See: <a href="https://tour.golang.org/concurrency/4">Range and close</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Buffered channels</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="2">ch <span class="token operator">&#x3C;-</span> <span class="token number">1</span>
+</span><span class="code-line line-number" line="3">ch <span class="token operator">&#x3C;-</span> <span class="token number">2</span>
+</span><span class="code-line line-number" line="4">ch <span class="token operator">&#x3C;-</span> <span class="token number">3</span>
+</span><span class="code-line line-number" line="5"><span class="token comment">// fatal error:</span>
+</span><span class="code-line line-number" line="6"><span class="token comment">// all goroutines are asleep - deadlock</span>
+</span></code></pre>
+<p>See: <a href="https://tour.golang.org/concurrency/3">Buffered channels</a></p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Golang Error control {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Deferring functions</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token keyword">defer</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Done"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="4">  <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="5">  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Working..."</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Lambda defer</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token function">int64</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3">  <span class="token keyword">defer</span> <span class="token keyword">func</span><span class="token punctuation">(</span>d <span class="token operator">*</span><span class="token builtin">int64</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="4">    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"&#x26; %v Unix Sec\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>d<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="5">  <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span>d<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="6">  fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"Done "</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="7">  d <span class="token operator">=</span> time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Unix</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="8"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>The defer func uses current value of d, unless we use a pointer to get final value at end of main.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Defer</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token keyword">defer</span> fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Done"</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3">  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Working..."</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>See: <a href="https://blog.golang.org/defer-panic-and-recover">Defer, panic and recover</a></p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Golang Methods {.cols-2}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Receivers</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">type</span> Vertex <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  X<span class="token punctuation">,</span> Y <span class="token builtin">float64</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span></code></pre>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token punctuation">(</span>v Vertex<span class="token punctuation">)</span> <span class="token function">Abs</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">float64</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token keyword">return</span> math<span class="token punctuation">.</span><span class="token function">Sqrt</span><span class="token punctuation">(</span>v<span class="token punctuation">.</span>X <span class="token operator">*</span> v<span class="token punctuation">.</span>X <span class="token operator">+</span> v<span class="token punctuation">.</span>Y <span class="token operator">*</span> v<span class="token punctuation">.</span>Y<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span></code></pre>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">v <span class="token operator">:=</span> Vertex<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="2">v<span class="token punctuation">.</span><span class="token function">Abs</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span></code></pre>
+<p>See: <a href="https://tour.golang.org/methods/1">Methods</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Mutation</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token punctuation">(</span>v <span class="token operator">*</span>Vertex<span class="token punctuation">)</span> <span class="token function">Scale</span><span class="token punctuation">(</span>f <span class="token builtin">float64</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  v<span class="token punctuation">.</span>X <span class="token operator">=</span> v<span class="token punctuation">.</span>X <span class="token operator">*</span> f
+</span><span class="code-line line-number" line="3">  v<span class="token punctuation">.</span>Y <span class="token operator">=</span> v<span class="token punctuation">.</span>Y <span class="token operator">*</span> f
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1">v <span class="token operator">:=</span> Vertex<span class="token punctuation">{</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="2">v<span class="token punctuation">.</span><span class="token function">Scale</span><span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3"><span class="token comment">// `v` is updated</span>
+</span></code></pre>
+<p>See: <a href="https://tour.golang.org/methods/4">Pointer receivers</a></p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Golang Interfaces {.cols-2}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>A basic interface</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">type</span> Shape <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">float64</span>
+</span><span class="code-line line-number" line="3">  <span class="token function">Perimeter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">float64</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Struct</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">type</span> Rectangle <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  Length<span class="token punctuation">,</span> Width <span class="token builtin">float64</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>Struct <code>Rectangle</code> implicitly implements interface <code>Shape</code> by implementing all of its methods.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Methods</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token punctuation">(</span>r Rectangle<span class="token punctuation">)</span> <span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">float64</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token keyword">return</span> r<span class="token punctuation">.</span>Length <span class="token operator">*</span> r<span class="token punctuation">.</span>Width
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5"><span class="token keyword">func</span> <span class="token punctuation">(</span>r Rectangle<span class="token punctuation">)</span> <span class="token function">Perimeter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">float64</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="6">  <span class="token keyword">return</span> <span class="token number">2</span> <span class="token operator">*</span> <span class="token punctuation">(</span>r<span class="token punctuation">.</span>Length <span class="token operator">+</span> r<span class="token punctuation">.</span>Width<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="7"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>The methods defined in <code>Shape</code> are implemented in <code>Rectangle</code>.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Interface example</h3><div class="wrap-body">
+<pre class="language-go"><code class="language-go code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token keyword">var</span> r Shape <span class="token operator">=</span> Rectangle<span class="token punctuation">{</span>Length<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> Width<span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="3">  fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"Type of r: %T, Area: %v, Perimeter: %v."</span><span class="token punctuation">,</span> r<span class="token punctuation">,</span> r<span class="token punctuation">.</span><span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> r<span class="token punctuation">.</span><span class="token function">Perimeter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Miscellaneous {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Keywords</h3><div class="wrap-body">
+<ul>
+  <li>break</li>
+  <li>default</li>
+  <li>func</li>
+  <li>interface</li>
+  <li>select</li>
+  <li>case</li>
+  <li>defer</li>
+  <li>go</li>
+  <li>map</li>
+  <li>struct</li>
+  <li>chan</li>
+  <li>else</li>
+  <li>goto</li>
+  <li>package</li>
+  <li>switch</li>
+  <li>const</li>
+  <li>fallthrough</li>
+  <li>if</li>
+  <li>range</li>
+  <li>type</li>
+  <li>continue</li>
+  <li>for</li>
+  <li>import</li>
+  <li>return</li>
+  <li>
+    var
+    {.cols-3 .style-none}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Operators and punctuation</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>+</td>
+      <td>&#x26;</td>
+      <td>+=</td>
+      <td>&#x26;=</td>
+      <td>&#x26;&#x26;</td>
+      <td>==</td>
+      <td>!=</td>
+      <td>(</td>
+      <td>)</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>|</td>
+      <td>-=</td>
+      <td>|=</td>
+      <td>||</td>
+      <td>&#x3C;</td>
+      <td>&#x3C;=</td>
+      <td>[</td>
+      <td>]</td>
+    </tr>
+    <tr>
+      <td>*</td>
+      <td>^</td>
+      <td>*=</td>
+      <td>^=</td>
+      <td>&#x3C;-</td>
+      <td>></td>
+      <td>>=</td>
+      <td>{</td>
+      <td>}</td>
+    </tr>
+    <tr>
+      <td>/</td>
+      <td>&#x3C;&#x3C;</td>
+      <td>/=</td>
+      <td>&#x3C;&#x3C;=</td>
+      <td>++</td>
+      <td>=</td>
+      <td>:=</td>
+      <td>,</td>
+      <td>;</td>
+    </tr>
+    <tr>
+      <td>%</td>
+      <td>>></td>
+      <td>%=</td>
+      <td>>>=</td>
+      <td>--</td>
+      <td>!</td>
+      <td>...</td>
+      <td>.</td>
+      <td>:</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&#x26;^</td>
+      <td>&#x26;^=</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Also see {.cols-1}</h2><div class="wrap-body">
+<ul>
+  <li><a href="https://devhints.io/go">Devhints</a> <em>(devhints.io)</em></li>
+  <li><a href="https://tour.golang.org/welcome/1">A tour of Go</a> <em>(tour.golang.org)</em></li>
+  <li><a href="https://github.com/golang/go/wiki/">Golang wiki</a> <em>(github.com)</em></li>
+  <li><a href="https://golang.org/doc/effective_go.html">Effective Go</a> <em>(golang.org)</em></li>
+  <li><a href="https://gobyexample.com/">Go by Example</a> <em>(gobyexample.com)</em></li>
+  <li><a href="https://awesome-go.com/">Awesome Go</a> <em>(awesome-go.com)</em></li>
+  <li><a href="https://www.youtube.com/channel/UC_BzFbxG2za3bp5NRRRXJSw">JustForFunc Youtube</a> <em>(youtube.com)</em></li>
+  <li><a href="https://github.com/golang/go/wiki/CodeReviewComments">Style Guide</a> <em>(github.com)</em></li>
+</ul>
+
+</div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: GraphQL
+date: 2021-07-15 20:51:44
+icon: icon-graphql
+background: bg-[#cc44a2]
+tags:
+    - query
+    - API
+categories:
+    - Programming
+intro: |
+    This quick reference cheat sheet provides a brief overview of GraphQL.
+---
+
+
+Getting started {.cols-3}
+--------
+
+### Overview
+
+- An alternative approach to RESTful APIs
+- GraphQL is a query language for APIs
+- Easily describe the shape of the GraphQL API using clear shared terms.
+- Clients issue queries/mutations to read and update data
+- GraphQL syntax can express complex entity relations
+- Libraries to implement GraphQL in [different languages](https://graphql.org/code/)
+
+[GraphQL](https://graphql.org/)
+{.link-arrow}
+
+
+### Schema
+
+|                |                                  |
+|----------------|----------------------------------|
+| `schema`       | GraphQL schema definition        |
+| `query`        | Read and traverse data           |
+| `mutation`     | Modify data or trigger an action |
+| `subscription` | Run a query when an event occurs |
+
+
+
+### Built-in Scalar Types
+
+|           |                                              |
+|-----------|----------------------------------------------|
+| `Int`     | Signed 32‐bit integer                        |
+| `Float`   | Signed double-precision floating-point value |
+| `String`  | UTF‐8 character sequence                     |
+| `Boolean` | true or false                                |
+| `ID`      | A Unique identifier                          |
+
+
+
+### Type Definitions
+
+|             |                   |
+|-------------|-------------------|
+| `scalar`    | Scalar Type       |
+| `type`      | Object Type       |
+| `interface` | Interface Type    |
+| `union`     | Union Type        |
+| `enum`      | Enum Type         |
+| `input`     | Input Object Type |
+
+
+
+### Type Modifiers
+
+|              |                                   |
+|--------------|-----------------------------------|
+| `String`     | Nullable String                   |
+| `String!`    | Non-null String                   |
+| `[String]`   | List of nullable Strings          |
+| `[String]!`  | Non-null list of nullable Strings |
+| `[String!]!` | Non-null list of non-null Strings |
+
+
+### Input Arguments {.row-span-2}
+#### Basic Input
+```js
+type Query {
+    users(limit: Int): [User]
+}
+```
+
+#### Input with default value
+```js
+type Query {
+    users(limit: Int  &#x26;  graphql cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,graphql">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/graphql.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>
+  title: GraphQL
+  date: 2021-07-15 20:51:44
+  icon: icon-graphql
+  background: bg-[#cc44a2]
+  tags:
+  - query
+  - API
+  categories:
+  - Programming
+  intro: |
+  This quick reference cheat sheet provides a brief overview of GraphQL.
+</h2><div class="wrap-body">
+</div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Getting started {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Overview</h3><div class="wrap-body">
+<ul>
+  <li>An alternative approach to RESTful APIs</li>
+  <li>GraphQL is a query language for APIs</li>
+  <li>Easily describe the shape of the GraphQL API using clear shared terms.</li>
+  <li>Clients issue queries/mutations to read and update data</li>
+  <li>GraphQL syntax can express complex entity relations</li>
+  <li>Libraries to implement GraphQL in <a href="https://graphql.org/code/">different languages</a></li>
+</ul>
+<p>
+  <a href="https://graphql.org/">GraphQL</a>
+  {.link-arrow}
+</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Schema</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>schema</code></td>
+      <td>GraphQL schema definition</td>
+    </tr>
+    <tr>
+      <td><code>query</code></td>
+      <td>Read and traverse data</td>
+    </tr>
+    <tr>
+      <td><code>mutation</code></td>
+      <td>Modify data or trigger an action</td>
+    </tr>
+    <tr>
+      <td><code>subscription</code></td>
+      <td>Run a query when an event occurs</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Built-in Scalar Types</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Int</code></td>
+      <td>Signed 32‐bit integer</td>
+    </tr>
+    <tr>
+      <td><code>Float</code></td>
+      <td>Signed double-precision floating-point value</td>
+    </tr>
+    <tr>
+      <td><code>String</code></td>
+      <td>UTF‐8 character sequence</td>
+    </tr>
+    <tr>
+      <td><code>Boolean</code></td>
+      <td>true or false</td>
+    </tr>
+    <tr>
+      <td><code>ID</code></td>
+      <td>A Unique identifier</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Type Definitions</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>scalar</code></td>
+      <td>Scalar Type</td>
+    </tr>
+    <tr>
+      <td><code>type</code></td>
+      <td>Object Type</td>
+    </tr>
+    <tr>
+      <td><code>interface</code></td>
+      <td>Interface Type</td>
+    </tr>
+    <tr>
+      <td><code>union</code></td>
+      <td>Union Type</td>
+    </tr>
+    <tr>
+      <td><code>enum</code></td>
+      <td>Enum Type</td>
+    </tr>
+    <tr>
+      <td><code>input</code></td>
+      <td>Input Object Type</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Type Modifiers</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>String</code></td>
+      <td>Nullable String</td>
+    </tr>
+    <tr>
+      <td><code>String!</code></td>
+      <td>Non-null String</td>
+    </tr>
+    <tr>
+      <td><code>[String]</code></td>
+      <td>List of nullable Strings</td>
+    </tr>
+    <tr>
+      <td><code>[String]!</code></td>
+      <td>Non-null list of nullable Strings</td>
+    </tr>
+    <tr>
+      <td><code>[String!]!</code></td>
+      <td>Non-null list of non-null Strings</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Input Arguments {.row-span-2}</h3><div class="wrap-body">
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Basic Input</h4><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1">type <span class="token maybe-class-name">Query</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    <span class="token function">users</span><span class="token punctuation">(</span>limit<span class="token operator">:</span> <span class="token maybe-class-name">Int</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token maybe-class-name">User</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Input with default value</h4><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1">type <span class="token maybe-class-name">Query</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    <span class="token function">users</span><span class="token punctuation">(</span>limit<span class="token operator">:</span> <span class="token maybe-class-name">Int</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token maybe-class-name">User</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Input with multiple arguments</h4><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1">type <span class="token maybe-class-name">Query</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    <span class="token function">users</span><span class="token punctuation">(</span>limit<span class="token operator">:</span> <span class="token maybe-class-name">Int</span><span class="token punctuation">,</span> <span class="token literal-property property">sort</span><span class="token operator">:</span> <span class="token known-class-name class-name">String</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token maybe-class-name">User</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Input with multiple arguments and default values</h4><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1">type <span class="token maybe-class-name">Query</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    <span class="token function">users</span><span class="token punctuation">(</span>limit<span class="token operator">:</span> <span class="token maybe-class-name">Int</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token literal-property property">sort</span><span class="token operator">:</span> <span class="token known-class-name class-name">String</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token maybe-class-name">User</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="4">type <span class="token maybe-class-name">Query</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="5">    <span class="token function">users</span><span class="token punctuation">(</span>limit<span class="token operator">:</span> <span class="token maybe-class-name">Int</span><span class="token punctuation">,</span> <span class="token literal-property property">sort</span><span class="token operator">:</span> <span class="token known-class-name class-name">String</span> <span class="token operator">=</span> <span class="token string">"asc"</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token maybe-class-name">User</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="7">type <span class="token maybe-class-name">Query</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="8">    <span class="token function">users</span><span class="token punctuation">(</span>limit<span class="token operator">:</span> <span class="token maybe-class-name">Int</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token literal-property property">sort</span><span class="token operator">:</span> <span class="token known-class-name class-name">String</span> <span class="token operator">=</span> <span class="token string">"asc"</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token maybe-class-name">User</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="9"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Input Types</h3><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1">input <span class="token maybe-class-name">ListUsersInput</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    <span class="token literal-property property">limit</span><span class="token operator">:</span> <span class="token maybe-class-name">Int</span>
+</span><span class="code-line line-number" line="3">    <span class="token literal-property property">since_id</span><span class="token operator">:</span> <span class="token constant">ID</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1">type <span class="token maybe-class-name">Mutation</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    <span class="token function">users</span><span class="token punctuation">(</span>params<span class="token operator">:</span> <span class="token maybe-class-name">ListUsersInput</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token maybe-class-name">User</span><span class="token punctuation">]</span><span class="token operator">!</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Custom Scalars</h3><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1">scalar <span class="token maybe-class-name">Url</span>
+</span><span class="code-line line-number" line="2">type <span class="token maybe-class-name">User</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token known-class-name class-name">String</span>
+</span><span class="code-line line-number" line="4">    <span class="token literal-property property">homepage</span><span class="token operator">:</span> <span class="token maybe-class-name">Url</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Interfaces</h3><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">interface</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    <span class="token literal-property property">is_foo</span><span class="token operator">:</span> <span class="token known-class-name class-name">Boolean</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="4"><span class="token keyword">interface</span> <span class="token class-name">Goo</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="5">    <span class="token literal-property property">is_goo</span><span class="token operator">:</span> <span class="token known-class-name class-name">Boolean</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="7">type <span class="token maybe-class-name">Bar</span> <span class="token keyword">implements</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="8">    <span class="token literal-property property">is_foo</span><span class="token operator">:</span> <span class="token known-class-name class-name">Boolean</span>
+</span><span class="code-line line-number" line="9">    <span class="token literal-property property">is_bar</span><span class="token operator">:</span> <span class="token known-class-name class-name">Boolean</span>
+</span><span class="code-line line-number" line="10"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="11">type <span class="token maybe-class-name">Baz</span> <span class="token keyword">implements</span> <span class="token class-name">Foo</span><span class="token punctuation">,</span> <span class="token maybe-class-name">Goo</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="12">    <span class="token literal-property property">is_foo</span><span class="token operator">:</span> <span class="token known-class-name class-name">Boolean</span>
+</span><span class="code-line line-number" line="13">    <span class="token literal-property property">is_goo</span><span class="token operator">:</span> <span class="token known-class-name class-name">Boolean</span>
+</span><span class="code-line line-number" line="14">    <span class="token literal-property property">is_baz</span><span class="token operator">:</span> <span class="token known-class-name class-name">Boolean</span>
+</span><span class="code-line line-number" line="15"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>Object implementing one or more Interfaces</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Unions</h3><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1">type <span class="token maybe-class-name">Foo</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token known-class-name class-name">String</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="4">type <span class="token maybe-class-name">Bar</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="5">    <span class="token literal-property property">is_bar</span><span class="token operator">:</span> <span class="token known-class-name class-name">String</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="7">union <span class="token maybe-class-name">SingleUnion</span> <span class="token operator">=</span> <span class="token maybe-class-name">Foo</span>
+</span><span class="code-line line-number" line="8">union <span class="token maybe-class-name">MultipleUnion</span> <span class="token operator">=</span> <span class="token maybe-class-name">Foo</span> <span class="token operator">|</span> <span class="token maybe-class-name">Bar</span>
+</span><span class="code-line line-number" line="9">type <span class="token maybe-class-name">Root</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="10">    <span class="token literal-property property">single</span><span class="token operator">:</span> <span class="token maybe-class-name">SingleUnion</span>
+</span><span class="code-line line-number" line="11">    <span class="token literal-property property">multiple</span><span class="token operator">:</span> <span class="token maybe-class-name">MultipleUnion</span>
+</span><span class="code-line line-number" line="12"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>Union of one or more Objects</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Enums</h3><div class="wrap-body">
+<pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">enum</span> <span class="token constant">USER_STATE</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">    <span class="token constant">NOT_FOUND</span>
+</span><span class="code-line line-number" line="3">    <span class="token constant">ACTIVE</span>
+</span><span class="code-line line-number" line="4">    <span class="token constant">INACTIVE</span>
+</span><span class="code-line line-number" line="5">    <span class="token constant">SUSPENDED</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="7">type <span class="token maybe-class-name">Root</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="8">    <span class="token function">stateForUser</span><span class="token punctuation">(</span>userID<span class="token operator">:</span> <span class="token constant">ID</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">USER_STATE</span><span class="token operator">!</span>
+</span><span class="code-line line-number" line="9">    <span class="token function">users</span><span class="token punctuation">(</span>state<span class="token operator">:</span> <span class="token constant">USER_STATE</span><span class="token punctuation">,</span> <span class="token literal-property property">limit</span><span class="token operator">:</span> <span class="token maybe-class-name">Int</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token maybe-class-name">User</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="10"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Also see</h2><div class="wrap-body">
+<ul>
+  <li><a href="https://github.com/sogko/graphql-schema-language-cheat-sheet">GraphQL Schema Language Cheat Sheet</a> <em>(github.com)</em></li>
+</ul>
+
+</div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

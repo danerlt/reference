@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title> ssh cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,ssh">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/ssh.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>
+  title: SSH
+  date: 2021-01-27 11:48:05
+  icon: icon-style
+  background: bg-blue-400
+  tags:
+  - protocol
+  - remote
+  - network
+  - 22
+  categories:
+  - Linux Command
+  intro: |
+  This quick reference cheat sheet provides various for using SSH.
+</h2><div class="wrap-body">
+</div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Getting started {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Connecting</h3><div class="wrap-body">
+<p>Connect to a server (default port 22)</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">ssh</span> root@192.168.1.5
+</span></code></pre>
+<p>Connect on a specific port</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">ssh</span> root@192.168.1.5 <span class="token parameter variable">-p</span> <span class="token number">6222</span>
+</span></code></pre>
+<p>Connect via pem file (0400 permissions)</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">ssh</span> <span class="token parameter variable">-i</span> /path/file.pem root@192.168.1.5
+</span></code></pre>
+<p>See: <a href="/chmod#ssh-permissions">SSH Permissions</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Executing</h3><div class="wrap-body">
+<p>Executes remote command</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">ssh</span> root@192.168.1.5 <span class="token string">'ls -l'</span>
+</span></code></pre>
+<p>Invoke a local script</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">ssh</span> root@192.168.1.5 <span class="token function">bash</span> <span class="token operator">&#x3C;</span> script.sh
+</span></code></pre>
+<p>Compresses and downloads from a server</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">ssh</span> root@192.168.1.5 <span class="token string">"tar cvzf - ~/source"</span> <span class="token operator">></span> output.tgz
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>SCP {.row-span-2}</h3><div class="wrap-body">
+<p>Copies from remote to local</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">scp</span> user@server:/dir/file.ext dest/
+</span></code></pre>
+<p>Copies between two servers</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">scp</span> user@server:/file user@server:/dir
+</span></code></pre>
+<p>Copies from local to remote</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">scp</span> dest/file.ext user@server:/dir
+</span></code></pre>
+<p>Copies a whole folder</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">scp</span> <span class="token parameter variable">-r</span> user@server:/dir dest/
+</span></code></pre>
+<p>Copies all files from a folder</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">scp</span> user@server:/dir/* dest/
+</span></code></pre>
+<p>Copies from a server folder to the current folder</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">scp</span> user@server:/dir/* <span class="token builtin class-name">.</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Config location</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>File Path</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>/etc/ssh/ssh_config</code></td>
+      <td>System-wide config</td>
+    </tr>
+    <tr>
+      <td><code>~/.ssh/config</code></td>
+      <td>User-specific config</td>
+    </tr>
+    <tr>
+      <td><code>~/.ssh/id_{type}</code></td>
+      <td>Private key</td>
+    </tr>
+    <tr>
+      <td><code>~/.ssh/id_{type}.pub</code></td>
+      <td>Public key</td>
+    </tr>
+    <tr>
+      <td><code>~/.ssh/known_hosts</code></td>
+      <td>Logged in host</td>
+    </tr>
+    <tr>
+      <td><code>~/.ssh/authorized_keys</code></td>
+      <td>Authorized login key</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>SCP Options</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Options</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>scp <code>-r</code></td>
+      <td>
+        <yel>R</yel>ecursively copy entire directories
+      </td>
+    </tr>
+    <tr>
+      <td>scp <code>-C</code></td>
+      <td>
+        <yel>C</yel>ompresses data
+      </td>
+    </tr>
+    <tr>
+      <td>scp <code>-v</code></td>
+      <td>Prints 
+        <yel>v</yel>erbose info
+      </td>
+    </tr>
+    <tr>
+      <td>scp <code>-P</code> 8080</td>
+      <td>Uses a specific 
+        <yel>P</yel>ort
+      </td>
+    </tr>
+    <tr>
+      <td>scp <code>-B</code></td>
+      <td>
+        <yel>B</yel>atch mode <em>(Prevents password)</em>
+      </td>
+    </tr>
+    <tr>
+      <td>scp <code>-p</code></td>
+      <td>
+        <yel>P</yel>reserves times and modes
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Config sample</h3><div class="wrap-body">
+<pre class="language-toml"><code class="language-toml code-highlight"><span class="code-line line-number" line="1">Host server1 
+</span><span class="code-line line-number" line="2">    HostName <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">1.5</span>
+</span><span class="code-line line-number" line="3">    User root
+</span><span class="code-line line-number" line="4">    Port <span class="token number">22</span>
+</span><span class="code-line line-number" line="5">    IdentityFile ~/<span class="token punctuation">.</span>ssh/server1<span class="token punctuation">.</span>key
+</span></code></pre>
+<p>Launch by alias</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">ssh</span> server1
+</span></code></pre>
+<p>See: Full <a href="https://linux.die.net/man/5/ssh_config">Config Options</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>ProxyJump</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">ssh</span> <span class="token parameter variable">-J</span> proxy_host1 remote_host2
+</span></code></pre>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">ssh</span> <span class="token parameter variable">-J</span> user@proxy_host1 user@remote_host2
+</span></code></pre>
+<p>Multiple jumps</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">ssh</span> <span class="token parameter variable">-J</span> user@proxy_host1:port1,user@proxy_host2:port2 user@remote_host3
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>ssh-copy-id</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ ssh-copy-id user@server
+</span></code></pre>
+<p>Copy to alias server</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ ssh-copy-id server1
+</span></code></pre>
+<p>Copy specific key</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ ssh-copy-id <span class="token parameter variable">-i</span> ~/.ssh/id_rsa.pub user@server
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>SSH keygen {.cols-5}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>ssh-keygen {.col-span-2}</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-b</span> <span class="token number">4096</span> <span class="token parameter variable">-C</span> <span class="token string">"your@mail.com"</span> 
+</span></code></pre>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td><code>-t</code></td>
+      <td><a href="#key-type">Type</a> of key</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><code>-b</code></td>
+      <td>The number of bits in the key</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><code>-C</code></td>
+      <td>Provides a new comment</td>
+    </tr>
+    <tr>
+      <td>{.left-text}</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>Generate an RSA 4096 bit key with email as a comment</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Generate {.col-span-2 .row-span-2}</h3><div class="wrap-body">
+<p>Generate a key interactively</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ ssh-keygen
+</span></code></pre>
+<p>Specify filename</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ ssh-keygen <span class="token parameter variable">-f</span> ~/.ssh/filename
+</span></code></pre>
+<p>Generate public key from private key</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ ssh-keygen <span class="token parameter variable">-y</span> <span class="token parameter variable">-f</span> private.key <span class="token operator">></span> public.pub
+</span></code></pre>
+<p>Change comment</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ ssh-keygen <span class="token parameter variable">-c</span> <span class="token parameter variable">-f</span> ~/.ssh/id_rsa
+</span></code></pre>
+<p>Change private key passphrase</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ ssh-keygen <span class="token parameter variable">-p</span> <span class="token parameter variable">-f</span> ~/.ssh/id_rsa
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Key type</h3><div class="wrap-body">
+<ul>
+  <li>rsa</li>
+  <li>ed25519</li>
+  <li>dsa</li>
+  <li>ecdsa</li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>known_hosts {.col-span-2}</h3><div class="wrap-body">
+<p>Search from known_hosts</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ ssh-keygen <span class="token parameter variable">-F</span> <span class="token operator">&#x3C;</span>ip/hostname<span class="token operator">></span>
+</span></code></pre>
+<p>Remove from known_hosts</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ ssh-keygen <span class="token parameter variable">-R</span> <span class="token operator">&#x3C;</span>ip/hostname<span class="token operator">></span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Key format</h3><div class="wrap-body">
+<ul>
+  <li>PEM</li>
+  <li>PKCS8</li>
+</ul>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Also see</h2><div class="wrap-body">
+<ul>
+  <li><a href="https://www.cyberciti.biz/faq/create-ssh-config-file-on-linux-unix/">OpenSSH Config File Examples</a> <em>(cyberciti.biz)</em></li>
+  <li><a href="https://linux.die.net/man/5/ssh_config">ssh_config</a> <em>(linux.die.net)</em></li>
+</ul>
+
+</div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

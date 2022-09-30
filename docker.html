@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: Docker
+date: 2020-12-30 10:55:24
+icon: icon-docker
+background: bg-[#488fdf]
+tags:
+    - container
+    - virtual
+categories:
+    - Programming
+intro: |
+    This is a quick reference cheat sheet for [Docker](https://docs.docker.com/get-started/). And you can find the most common Docker commands here.
+---
+
+Getting started {.cols-2}
+---------------
+
+### Getting started 
+Create and run a container in background
+
+```shell script 
+$ docker run -d -p 80:80 docker/getting-started
+```
+
+----
+
+- `-d` - Run the container in detached mode
+- `-p 80:80` -  Map port 80 to port 80 in the container
+- `docker/getting-started` - The image to use
+{.style-none}
+
+
+Create and run a container in foreground
+```shell script
+$ docker run -it -p 8001:8080 --name my-nginx nginx
+```
+
+----
+
+- `-it` - Interactive bash mode
+- `-p 8001:8080` - Map port 8001 to port 8080 in the container
+- `--name my-nginx` - Specify a name
+- `nginx` - The image to use
+{.style-none}
+
+
+
+### General commands 
+| Example                             | Description                                      |
+|-------------------------------------|--------------------------------------------------|
+| `docker ps`                         | List running containers                          |
+| `docker ps -a`                      | List all containers                              |
+| `docker ps -s`                      | List running containers&#x3C;br>_(with CPU / memory)_ |
+| `docker images`                     | List all images                                  |
+| `docker exec -it &#x3C;container>  bash` | Connecting to container                          |
+| `docker logs &#x3C;container>`           | Shows container's console log                    |
+| `docker stop &#x3C;container>`           | Stop a container                                 |
+| `docker restart &#x3C;container>`        | Restart a container                              |
+| `docker rm &#x3C;container>`             | Remove a container                               |
+| `docker port &#x3C;container>`           | Shows container's port mapping                   |
+| `docker top &#x3C;container>`            | List processes                                   |
+| `docker kill &#x3C;container>`           | Kill a container                                 |
+
+Parameter `&#x3C;container>` can be container id or name
+
+
+
+
+Docker Containers {.cols-2}
+----------
+
+
+### Starting &#x26; Stopping
+| Description                   | Example                             |
+|-------------------------------|-------------------------------------|
+| `docker start nginx-server`   | Starting                            |
+| `docker stop nginx-server`    | Stopping                            |
+| `docker restart nginx-server` | Restarting                          |
+| `docker pause nginx-server`   | Pausing                             |
+| `docker unpause nginx-server` | Unpausing                           |
+| `docker wait nginx-server`    | Blocking a Container                |
+| `docker kill nginx-server`    | Sending a SIGKILL                   |
+| `docker attach nginx-server`  | Connecting to an Existing Container |
+
+
+
+### Information
+
+| Example                       | Description                            |
+|-------------------------------|----------------------------------------|
+| `docker ps`                   | List running containers                |
+| `docker ps -a`                | List all containers                    |
+| `docker logs nginx-server`    | Container Logs                         |
+| `docker inspect nginx-server` | Inspecting Containers                  |
+| `docker events nginx-server`  | Containers Events                      |
+| `docker port nginx-server`    | Public Ports                           |
+| `docker top nginx-server`     | Running Processes                      |
+| `docker stats nginx-server`   | Container Resource Usage               |
+| `docker diff nginx-server`    | Lists the changes made to a container. |
+
+
+### Creating
+
+```yaml
+docker create [options] IMAGE
+  -a, --attach               # attach stdout/err
+  -i, --interactive          # attach stdin (interactive)
+  -t, --tty                  # pseudo-tty
+      --name NAME            # name your image
+  -p, --publish 5000:5000    # port map (host:container)
+      --expose 5432          # expose a port to containers
+  -P, --publish-all          # publish all ports
+      --link container:alias # linking
+  -v, --volume `pwd`:/app    # mount (absolute paths needed)
+  -e, --env NAME &#x26;  docker cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,docker">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/docker.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>
+  title: Docker
+  date: 2020-12-30 10:55:24
+  icon: icon-docker
+  background: bg-[#488fdf]
+  tags:
+  - container
+  - virtual
+  categories:
+  - Programming
+  intro: |
+  This is a quick reference cheat sheet for <a href="https://docs.docker.com/get-started/">Docker</a>. And you can find the most common Docker commands here.
+</h2><div class="wrap-body">
+</div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Getting started {.cols-2}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Getting started</h3><div class="wrap-body">
+<p>Create and run a container in background</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">docker</span> run <span class="token parameter variable">-d</span> <span class="token parameter variable">-p</span> <span class="token number">80</span>:80 docker/getting-started
+</span></code></pre>
+<hr>
+<ul>
+  <li><code>-d</code> - Run the container in detached mode</li>
+  <li><code>-p 80:80</code> - Map port 80 to port 80 in the container</li>
+  <li>
+    <code>docker/getting-started</code> - The image to use
+    {.style-none}
+  </li>
+</ul>
+<p>Create and run a container in foreground</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">docker</span> run <span class="token parameter variable">-it</span> <span class="token parameter variable">-p</span> <span class="token number">8001</span>:8080 <span class="token parameter variable">--name</span> my-nginx nginx
+</span></code></pre>
+<hr>
+<ul>
+  <li><code>-it</code> - Interactive bash mode</li>
+  <li><code>-p 8001:8080</code> - Map port 8001 to port 8080 in the container</li>
+  <li><code>--name my-nginx</code> - Specify a name</li>
+  <li>
+    <code>nginx</code> - The image to use
+    {.style-none}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>General commands</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>docker ps</code></td>
+      <td>List running containers</td>
+    </tr>
+    <tr>
+      <td><code>docker ps -a</code></td>
+      <td>List all containers</td>
+    </tr>
+    <tr>
+      <td><code>docker ps -s</code></td>
+      <td>List running containers<br><em>(with CPU / memory)</em></td>
+    </tr>
+    <tr>
+      <td><code>docker images</code></td>
+      <td>List all images</td>
+    </tr>
+    <tr>
+      <td><code>docker exec -it &#x3C;container> bash</code></td>
+      <td>Connecting to container</td>
+    </tr>
+    <tr>
+      <td><code>docker logs &#x3C;container></code></td>
+      <td>Shows container's console log</td>
+    </tr>
+    <tr>
+      <td><code>docker stop &#x3C;container></code></td>
+      <td>Stop a container</td>
+    </tr>
+    <tr>
+      <td><code>docker restart &#x3C;container></code></td>
+      <td>Restart a container</td>
+    </tr>
+    <tr>
+      <td><code>docker rm &#x3C;container></code></td>
+      <td>Remove a container</td>
+    </tr>
+    <tr>
+      <td><code>docker port &#x3C;container></code></td>
+      <td>Shows container's port mapping</td>
+    </tr>
+    <tr>
+      <td><code>docker top &#x3C;container></code></td>
+      <td>List processes</td>
+    </tr>
+    <tr>
+      <td><code>docker kill &#x3C;container></code></td>
+      <td>Kill a container</td>
+    </tr>
+  </tbody>
+</table>
+<p>Parameter <code>&#x3C;container></code> can be container id or name</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Docker Containers {.cols-2}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Starting &#x26; Stopping</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>docker start nginx-server</code></td>
+      <td>Starting</td>
+    </tr>
+    <tr>
+      <td><code>docker stop nginx-server</code></td>
+      <td>Stopping</td>
+    </tr>
+    <tr>
+      <td><code>docker restart nginx-server</code></td>
+      <td>Restarting</td>
+    </tr>
+    <tr>
+      <td><code>docker pause nginx-server</code></td>
+      <td>Pausing</td>
+    </tr>
+    <tr>
+      <td><code>docker unpause nginx-server</code></td>
+      <td>Unpausing</td>
+    </tr>
+    <tr>
+      <td><code>docker wait nginx-server</code></td>
+      <td>Blocking a Container</td>
+    </tr>
+    <tr>
+      <td><code>docker kill nginx-server</code></td>
+      <td>Sending a SIGKILL</td>
+    </tr>
+    <tr>
+      <td><code>docker attach nginx-server</code></td>
+      <td>Connecting to an Existing Container</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Information</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>docker ps</code></td>
+      <td>List running containers</td>
+    </tr>
+    <tr>
+      <td><code>docker ps -a</code></td>
+      <td>List all containers</td>
+    </tr>
+    <tr>
+      <td><code>docker logs nginx-server</code></td>
+      <td>Container Logs</td>
+    </tr>
+    <tr>
+      <td><code>docker inspect nginx-server</code></td>
+      <td>Inspecting Containers</td>
+    </tr>
+    <tr>
+      <td><code>docker events nginx-server</code></td>
+      <td>Containers Events</td>
+    </tr>
+    <tr>
+      <td><code>docker port nginx-server</code></td>
+      <td>Public Ports</td>
+    </tr>
+    <tr>
+      <td><code>docker top nginx-server</code></td>
+      <td>Running Processes</td>
+    </tr>
+    <tr>
+      <td><code>docker stats nginx-server</code></td>
+      <td>Container Resource Usage</td>
+    </tr>
+    <tr>
+      <td><code>docker diff nginx-server</code></td>
+      <td>Lists the changes made to a container.</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Creating</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1">docker create <span class="token punctuation">[</span>options<span class="token punctuation">]</span> IMAGE
+</span><span class="code-line line-number" line="2">  <span class="token punctuation">-</span>a<span class="token punctuation">,</span> <span class="token punctuation">-</span><span class="token punctuation">-</span>attach               <span class="token comment"># attach stdout/err</span>
+</span><span class="code-line line-number" line="3">  <span class="token punctuation">-</span>i<span class="token punctuation">,</span> <span class="token punctuation">-</span><span class="token punctuation">-</span>interactive          <span class="token comment"># attach stdin (interactive)</span>
+</span><span class="code-line line-number" line="4">  <span class="token punctuation">-</span>t<span class="token punctuation">,</span> <span class="token punctuation">-</span><span class="token punctuation">-</span>tty                  <span class="token comment"># pseudo-tty</span>
+</span><span class="code-line line-number" line="5">      <span class="token punctuation">-</span><span class="token punctuation">-</span>name NAME            <span class="token comment"># name your image</span>
+</span><span class="code-line line-number" line="6">  <span class="token punctuation">-</span>p<span class="token punctuation">,</span> <span class="token punctuation">-</span><span class="token punctuation">-</span>publish 5000<span class="token punctuation">:</span><span class="token number">5000</span>    <span class="token comment"># port map (host:container)</span>
+</span><span class="code-line line-number" line="7">      <span class="token punctuation">-</span><span class="token punctuation">-</span>expose 5432          <span class="token comment"># expose a port to containers</span>
+</span><span class="code-line line-number" line="8">  <span class="token punctuation">-</span>P<span class="token punctuation">,</span> <span class="token punctuation">-</span><span class="token punctuation">-</span>publish<span class="token punctuation">-</span>all          <span class="token comment"># publish all ports</span>
+</span><span class="code-line line-number" line="9">      <span class="token punctuation">-</span><span class="token punctuation">-</span>link container<span class="token punctuation">:</span>alias <span class="token comment"># linking</span>
+</span><span class="code-line line-number" line="10">  <span class="token punctuation">-</span>v<span class="token punctuation">,</span> <span class="token punctuation">-</span><span class="token punctuation">-</span>volume `pwd`<span class="token punctuation">:</span>/app    <span class="token comment"># mount (absolute paths needed)</span>
+</span><span class="code-line line-number" line="11">  <span class="token punctuation">-</span>e<span class="token punctuation">,</span> <span class="token punctuation">-</span><span class="token punctuation">-</span>env NAME=hello       <span class="token comment"># env vars</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Example</h4><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">docker</span> create <span class="token parameter variable">--name</span> my_redis <span class="token parameter variable">--expose</span> <span class="token number">6379</span> redis:3.0.2
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Manipulating</h3><div class="wrap-body">
+<p>Renaming a Container</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">docker</span> <span class="token function">rename</span> my-nginx nginx-server
+</span></code></pre>
+<p>Removing a Container</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">docker</span> <span class="token function">rm</span> nginx-server
+</span></code></pre>
+<p>Updating a Container</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">docker</span> update --cpu-shares <span class="token number">512</span> <span class="token parameter variable">-m</span> 300M nginx-server
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Docker Images {.cols-2}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Manipulating</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th><code>Example</code></th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>docker images</code></td>
+      <td>Listing images</td>
+    </tr>
+    <tr>
+      <td><code>docker rmi nginx</code></td>
+      <td>Removing an image</td>
+    </tr>
+    <tr>
+      <td><code>docker load &#x3C; ubuntu.tar.gz</code></td>
+      <td>Loading a tarred repository</td>
+    </tr>
+    <tr>
+      <td><code>docker load --input ubuntu.tar</code></td>
+      <td>Loading a tarred repository</td>
+    </tr>
+    <tr>
+      <td><code>docker save busybox > ubuntu.tar</code></td>
+      <td>Save an image to a tar archive</td>
+    </tr>
+    <tr>
+      <td><code>docker history</code></td>
+      <td>Showing the history of an image</td>
+    </tr>
+    <tr>
+      <td><code>docker commit nginx</code></td>
+      <td>Save a container as an image.</td>
+    </tr>
+    <tr>
+      <td><code>docker tag nginx eon01/nginx</code></td>
+      <td>Tagging an image</td>
+    </tr>
+    <tr>
+      <td><code>docker push eon01/nginx</code></td>
+      <td>Pushing an image</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Building Images</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">docker</span> build <span class="token builtin class-name">.</span>
+</span><span class="code-line line-number" line="2">$ <span class="token function">docker</span> build github.com/creack/docker-firefox
+</span><span class="code-line line-number" line="3">$ <span class="token function">docker</span> build - <span class="token operator">&#x3C;</span> Dockerfile
+</span><span class="code-line line-number" line="4">$ <span class="token function">docker</span> build - <span class="token operator">&#x3C;</span> context.tar.gz
+</span><span class="code-line line-number" line="5">$ <span class="token function">docker</span> build <span class="token parameter variable">-t</span> eon/nginx-server <span class="token builtin class-name">.</span>
+</span><span class="code-line line-number" line="6">$ <span class="token function">docker</span> build <span class="token parameter variable">-f</span> myOtherDockerfile <span class="token builtin class-name">.</span>
+</span><span class="code-line line-number" line="7">$ <span class="token function">curl</span> example.com/remote/Dockerfile <span class="token operator">|</span> <span class="token function">docker</span> build <span class="token parameter variable">-f</span> - <span class="token builtin class-name">.</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Docker Networking {.cols-2}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Manipulating</h3><div class="wrap-body">
+<p>Removing a network</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">docker</span> network <span class="token function">rm</span> MyOverlayNetwork
+</span></code></pre>
+<p>Listing networks</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">docker</span> network <span class="token function">ls</span>
+</span></code></pre>
+<p>Getting information about a network</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">docker</span> network inspect MyOverlayNetwork
+</span></code></pre>
+<p>Connecting a running container to a network</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">docker</span> network connect MyOverlayNetwork nginx
+</span></code></pre>
+<p>Connecting a container to a network when it starts</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">docker</span> run <span class="token parameter variable">-it</span> <span class="token parameter variable">-d</span> <span class="token parameter variable">--network</span><span class="token operator">=</span>MyOverlayNetwork nginx
+</span></code></pre>
+<p>Disconnecting a container from a network</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">docker</span> network disconnect MyOverlayNetwork nginx
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Creating Networks</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">docker</span> network create <span class="token parameter variable">-d</span> overlay MyOverlayNetwork
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token function">docker</span> network create <span class="token parameter variable">-d</span> bridge MyBridgeNetwork
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5"><span class="token function">docker</span> network create <span class="token parameter variable">-d</span> overlay <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="6">  <span class="token parameter variable">--subnet</span><span class="token operator">=</span><span class="token number">192.168</span>.0.0/16 <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="7">  <span class="token parameter variable">--subnet</span><span class="token operator">=</span><span class="token number">192.170</span>.0.0/16 <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="8">  <span class="token parameter variable">--gateway</span><span class="token operator">=</span><span class="token number">192.168</span>.0.100 <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="9">  <span class="token parameter variable">--gateway</span><span class="token operator">=</span><span class="token number">192.170</span>.0.100 <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="10">  --ip-range<span class="token operator">=</span><span class="token number">192.168</span>.1.0/24 <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="11">  --aux-address<span class="token operator">=</span><span class="token string">"my-router=192.168.1.5"</span> <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="12">  --aux-address<span class="token operator">=</span><span class="token string">"my-switch=192.168.1.6"</span> <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="13">  --aux-address<span class="token operator">=</span><span class="token string">"my-printer=192.170.1.5"</span> <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="14">  --aux-address<span class="token operator">=</span><span class="token string">"my-nas=192.170.1.6"</span> <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="15">  MyOverlayNetwork
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Miscellaneous {.cols-2}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Docker Hub</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Docker Syntax</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>docker search search_word</code></td>
+      <td>Search docker hub for images.</td>
+    </tr>
+    <tr>
+      <td><code>docker pull user/image</code></td>
+      <td>Downloads an image from docker hub.</td>
+    </tr>
+    <tr>
+      <td><code>docker login</code></td>
+      <td>Authenticate to docker hub</td>
+    </tr>
+    <tr>
+      <td><code>docker push user/image</code></td>
+      <td>Uploads an image to docker hub.</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Registry commands {.row-span-3}</h3><div class="wrap-body">
+<p>Login to a Registry</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">docker</span> login
+</span><span class="code-line line-number" line="2">$ <span class="token function">docker</span> login localhost:8080
+</span></code></pre>
+<p>Logout from a Registry</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">docker</span> <span class="token builtin class-name">logout</span>
+</span><span class="code-line line-number" line="2">$ <span class="token function">docker</span> <span class="token builtin class-name">logout</span> localhost:8080
+</span></code></pre>
+<p>Searching an Image</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">docker</span> search nginx
+</span><span class="code-line line-number" line="2">$ <span class="token function">docker</span> search nginx <span class="token parameter variable">--stars</span><span class="token operator">=</span><span class="token number">3</span> --no-trunc busybox
+</span></code></pre>
+<p>Pulling an Image</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">docker</span> pull nginx
+</span><span class="code-line line-number" line="2">$ <span class="token function">docker</span> pull eon01/nginx localhost:5000/myadmin/nginx
+</span></code></pre>
+<p>Pushing an Image</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">docker</span> push eon01/nginx
+</span><span class="code-line line-number" line="2">$ <span class="token function">docker</span> push eon01/nginx localhost:5000/myadmin/nginx
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Batch clean</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>docker stop -f $(docker ps -a -q)</code></td>
+      <td>Stopping all containers</td>
+    </tr>
+    <tr>
+      <td><code>docker rm -f $(docker ps -a -q)</code></td>
+      <td>Removing all containers</td>
+    </tr>
+    <tr>
+      <td><code>docker rmi -f $(docker images -q)</code></td>
+      <td>Removing all images</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Volumes</h3><div class="wrap-body">
+<p>Check volumes</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">docker</span> volume <span class="token function">ls</span>
+</span></code></pre>
+<p>Cleanup unused volumes</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">docker</span> volume prune
+</span></code></pre>
+
+</div></div></div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

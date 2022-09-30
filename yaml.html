@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: YAML
+date: 2020-12-29 18:26:55
+icon: icon-yaml
+background: bg-[#b42e28]
+tags:
+   - config
+   - format
+categories:
+   - Programming
+intro: |
+    This is a quick reference cheat sheet for understanding and writing YAML format configuration files.
+---
+
+Getting started {.cols-3}
+---------------
+
+
+### Introduction
+
+[YAML](https://yaml.org/) is a data serialisation language designed to be directly writable and readable by humans
+
+- YAML does not allow the use of tabs
+- Must be space between the element parts
+- YAML is CASE sensitive
+- End your YAML file with the `.yaml` or `.yml` extension
+- YAML is a superset of JSON
+- Ansible playbooks are YAML files
+{.style-round}
+
+
+### Scalar types {.row-span-2}
+```yaml
+n1: 1            # integer          
+n2: 1.234        # float      
+
+s1: 'abc'        # string        
+s2: "abc"        # string           
+s3: abc          # string           
+
+b: false         # boolean type 
+
+d: 2015-04-05    # date type
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{
+  "n1": 1,
+  "n2": 1.234,
+  "s1": "abc",
+  "s2": "abc",
+  "s3": "abc",
+  "b": false,
+  "d": "2015-04-05"
+}
+```
+Use spaces to indent. There must be space between the element parts.
+
+
+### Variables
+```yaml
+some_thing: &#x26;VAR_NAME foobar
+other_thing: *VAR_NAME
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{
+  "some_thing": "foobar",
+  "other_thing": "foobar"
+}
+```
+
+
+
+
+### Comments
+```yaml
+# A single line comment example
+
+# block level comment example
+# comment line 1
+# comment line 2
+# comment line 3
+```
+
+
+
+### Multiline strings
+```yaml
+description: |
+  hello
+  world
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{"description": "hello\nworld\n"}
+```
+
+
+
+### Inheritance {.row-span-2}
+```yaml
+parent: &#x26;defaults
+  a: 2
+  b: 3
+
+child:
+  &#x3C;&#x3C;: *defaults
+  b: 4
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{
+  "parent": {
+    "a": 2,
+    "b": 3
+  },
+  "child": {
+    "a": 2,
+    "b": 4
+  }
+}
+```
+
+
+
+### Reference {.row-span-2}
+```yaml
+values: &#x26;ref
+  - Will be
+  - reused below
+  
+other_values:
+  i_am_ref: *ref
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{
+  "values": [
+    "Will be",
+    "reused below"
+  ],
+  "other_values": {
+    "i_am_ref": [
+      "Will be",
+      "reused below"
+    ]
+  }
+}
+```
+
+
+### Folded strings
+```yaml
+description: >
+  hello
+  world
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{"description": "hello world\n"}
+```
+
+
+
+### Two Documents
+```yaml
+---
+document: this is doc 1
+---
+document: this is doc 2
+```
+YAML uses `---` to separate directives from document content.
+
+
+
+
+
+
+YAML Collections {.cols-3}
+-----------
+
+### Sequence
+```yaml
+- Mark McGwire
+- Sammy Sosa
+- Ken Griffey
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+[
+  "Mark McGwire",
+  "Sammy Sosa",
+  "Ken Griffey"
+]
+```
+
+
+### Mapping
+```yaml
+hr:  65       # Home runs
+avg: 0.278    # Batting average
+rbi: 147      # Runs Batted In
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{
+  "hr": 65,
+  "avg": 0.278,
+  "rbi": 147
+}
+```
+
+
+
+### Mapping to Sequences
+```yaml
+attributes:
+  - a1
+  - a2
+methods: [getter, setter]
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{
+  "attributes": ["a1", "a2"],
+  "methods": ["getter", "setter"]
+}
+```
+
+
+
+
+
+### Sequence of Mappings
+```yaml
+children:
+  - name: Jimmy Smith
+    age: 15
+  - name: Jimmy Smith
+    age: 15
+  -
+    name: Sammy Sosa
+    age: 12
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{
+  "children": [
+    {"name": "Jimmy Smith", "age": 15},
+    {"name": "Jimmy Smith", "age": 15},
+    {"name": "Sammy Sosa", "age": 12}
+  ]
+}
+```
+
+
+### Sequence of Sequences
+```yaml
+my_sequences:
+  - [1, 2, 3]
+  - [4, 5, 6]
+  -  
+    - 7
+    - 8
+    - 9
+    - 0 
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{
+  "my_sequences": [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9, 0]
+  ]
+}
+```
+
+
+### Mapping of Mappings
+```yaml
+Mark McGwire: {hr: 65, avg: 0.278}
+Sammy Sosa: {
+    hr: 63,
+    avg: 0.288
+  }
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{
+  "Mark McGwire": {
+    "hr": 65,
+    "avg": 0.278
+  },
+  "Sammy Sosa": {
+    "hr": 63,
+    "avg": 0.288
+  }
+}
+```
+
+
+
+### Nested Collections
+```yaml
+Jack:
+  id: 1
+  name: Franc
+  salary: 25000
+  hobby:
+    - a
+    - b
+  location: {country: "A", city: "A-A"}
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{
+  "Jack": {
+    "id": 1,
+    "name": "Franc",
+    "salary": 25000,
+    "hobby": ["a", "b"],
+    "location": {
+        "country": "A", "city": "A-A"
+    }
+  }
+}
+```
+
+
+### Unordered Sets
+```yaml
+set1: !!set
+  ? one
+  ? two
+set2: !!set {'one', "two"}
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{
+  "set1": {"one": null, "two": null},
+  "set2": {"one": null, "two": null}
+}
+```
+Sets are represented as a Mapping where each key is associated with a null value
+
+
+### Ordered Mappings
+```yaml
+ordered: !!omap
+- Mark McGwire: 65
+- Sammy Sosa: 63
+- Ken Griffy: 58
+```
+#### ↓ Equivalent JSON
+```json {.wrap}
+{
+  "ordered": [
+     {"Mark McGwire": 65},
+     {"Sammy Sosa": 63},
+     {"Ken Griffy": 58}
+  ]
+}
+```
+
+
+
+
+
+
+YAML Reference {.cols-3}
+--------------
+
+### Terms
+
+- Sequences aka arrays or lists
+- Scalars aka strings or numbers
+- Mappings aka hashes or dictionaries
+{.style-round}
+
+Based on the YAML.org [refcard](https://yaml.org/refcard.html).
+
+
+### Document indicators
+
+|       |                     |
+|-------|---------------------|
+| `%`   | Directive indicator |
+| `---` | Document header     |
+| `...` | Document terminator |
+
+
+
+### Collection indicators {.row-span-2}
+
+|      |                                 |
+|------|---------------------------------|
+| `?`  | Key indicator                   |
+| `:`  | Value indicator                 |
+| `-`  | Nested series entry indicator   |
+| `,`  | Separate in-line branch entries |
+| `[]` | Surround in-line series branch  |
+| `{}` | Surround in-line keyed branch   |
+
+
+### Alias indicators
+
+|     |                 |
+|-----|-----------------|
+| `&#x26;` | Anchor property |
+| `*` | Alias indicator |
+
+
+### Special keys
+
+|      |                                 |
+|------|---------------------------------|
+| ` &#x26;  yaml cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,yaml">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/yaml.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>Getting started {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Introduction</h3><div class="wrap-body">
+<p><a href="https://yaml.org/">YAML</a> is a data serialisation language designed to be directly writable and readable by humans</p>
+<ul>
+  <li>YAML does not allow the use of tabs</li>
+  <li>Must be space between the element parts</li>
+  <li>YAML is CASE sensitive</li>
+  <li>End your YAML file with the <code>.yaml</code> or <code>.yml</code> extension</li>
+  <li>YAML is a superset of JSON</li>
+  <li>
+    Ansible playbooks are YAML files
+    {.style-round}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Scalar types {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">n1</span><span class="token punctuation">:</span> <span class="token number">1</span>            <span class="token comment"># integer          </span>
+</span><span class="code-line line-number" line="2"><span class="token key atrule">n2</span><span class="token punctuation">:</span> <span class="token number">1.234</span>        <span class="token comment"># float      </span>
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4"><span class="token key atrule">s1</span><span class="token punctuation">:</span> <span class="token string">'abc'</span>        <span class="token comment"># string        </span>
+</span><span class="code-line line-number" line="5"><span class="token key atrule">s2</span><span class="token punctuation">:</span> <span class="token string">"abc"</span>        <span class="token comment"># string           </span>
+</span><span class="code-line line-number" line="6"><span class="token key atrule">s3</span><span class="token punctuation">:</span> abc          <span class="token comment"># string           </span>
+</span><span class="code-line line-number" line="7">
+</span><span class="code-line line-number" line="8"><span class="token key atrule">b</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>         <span class="token comment"># boolean type </span>
+</span><span class="code-line line-number" line="9">
+</span><span class="code-line line-number" line="10"><span class="token key atrule">d</span><span class="token punctuation">:</span> <span class="token datetime number">2015-04-05</span>    <span class="token comment"># date type</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"n1"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"n2"</span><span class="token operator">:</span> <span class="token number">1.234</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"s1"</span><span class="token operator">:</span> <span class="token string">"abc"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">  <span class="token property">"s2"</span><span class="token operator">:</span> <span class="token string">"abc"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">  <span class="token property">"s3"</span><span class="token operator">:</span> <span class="token string">"abc"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">  <span class="token property">"b"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="8">  <span class="token property">"d"</span><span class="token operator">:</span> <span class="token string">"2015-04-05"</span>
+</span><span class="code-line line-number" line="9"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>Use spaces to indent. There must be space between the element parts.</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Variables</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">some_thing</span><span class="token punctuation">:</span> <span class="token important">&#x26;VAR_NAME</span> foobar
+</span><span class="code-line line-number" line="2"><span class="token key atrule">other_thing</span><span class="token punctuation">:</span> <span class="token important">*VAR_NAME</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"some_thing"</span><span class="token operator">:</span> <span class="token string">"foobar"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"other_thing"</span><span class="token operator">:</span> <span class="token string">"foobar"</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Comments</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># A single line comment example</span>
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token comment"># block level comment example</span>
+</span><span class="code-line line-number" line="4"><span class="token comment"># comment line 1</span>
+</span><span class="code-line line-number" line="5"><span class="token comment"># comment line 2</span>
+</span><span class="code-line line-number" line="6"><span class="token comment"># comment line 3</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Multiline strings</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+</span></span><span class="code-line line-number" line="2"><span class="token scalar string">  hello
+</span></span><span class="code-line line-number" line="3"><span class="token scalar string">  world</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span><span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"hello\nworld\n"</span><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Inheritance {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">parent</span><span class="token punctuation">:</span> <span class="token important">&#x26;defaults</span>
+</span><span class="code-line line-number" line="2">  <span class="token key atrule">a</span><span class="token punctuation">:</span> <span class="token number">2</span>
+</span><span class="code-line line-number" line="3">  <span class="token key atrule">b</span><span class="token punctuation">:</span> <span class="token number">3</span>
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5"><span class="token key atrule">child</span><span class="token punctuation">:</span>
+</span><span class="code-line line-number" line="6">  <span class="token key atrule">&#x3C;&#x3C;</span><span class="token punctuation">:</span> <span class="token important">*defaults</span>
+</span><span class="code-line line-number" line="7">  <span class="token key atrule">b</span><span class="token punctuation">:</span> <span class="token number">4</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"parent"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    <span class="token property">"a"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token property">"b"</span><span class="token operator">:</span> <span class="token number">3</span>
+</span><span class="code-line line-number" line="5">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">  <span class="token property">"child"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="7">    <span class="token property">"a"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="8">    <span class="token property">"b"</span><span class="token operator">:</span> <span class="token number">4</span>
+</span><span class="code-line line-number" line="9">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="10"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Reference {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">values</span><span class="token punctuation">:</span> <span class="token important">&#x26;ref</span>
+</span><span class="code-line line-number" line="2">  <span class="token punctuation">-</span> Will be
+</span><span class="code-line line-number" line="3">  <span class="token punctuation">-</span> reused below
+</span><span class="code-line line-number" line="4">  
+</span><span class="code-line line-number" line="5"><span class="token key atrule">other_values</span><span class="token punctuation">:</span>
+</span><span class="code-line line-number" line="6">  <span class="token key atrule">i_am_ref</span><span class="token punctuation">:</span> <span class="token important">*ref</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"values"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="3">    <span class="token string">"Will be"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token string">"reused below"</span>
+</span><span class="code-line line-number" line="5">  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">  <span class="token property">"other_values"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="7">    <span class="token property">"i_am_ref"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="8">      <span class="token string">"Will be"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="9">      <span class="token string">"reused below"</span>
+</span><span class="code-line line-number" line="10">    <span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="11">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="12"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Folded strings</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token punctuation">></span><span class="token scalar string">
+</span></span><span class="code-line line-number" line="2"><span class="token scalar string">  hello
+</span></span><span class="code-line line-number" line="3"><span class="token scalar string">  world</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span><span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"hello world\n"</span><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Two Documents</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">---</span>
+</span><span class="code-line line-number" line="2"><span class="token key atrule">document</span><span class="token punctuation">:</span> this is doc 1
+</span><span class="code-line line-number" line="3"><span class="token punctuation">---</span>
+</span><span class="code-line line-number" line="4"><span class="token key atrule">document</span><span class="token punctuation">:</span> this is doc 2
+</span></code></pre>
+<p>YAML uses <code>---</code> to separate directives from document content.</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>YAML Collections {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Sequence</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">-</span> Mark McGwire
+</span><span class="code-line line-number" line="2"><span class="token punctuation">-</span> Sammy Sosa
+</span><span class="code-line line-number" line="3"><span class="token punctuation">-</span> Ken Griffey
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="2">  <span class="token string">"Mark McGwire"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token string">"Sammy Sosa"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token string">"Ken Griffey"</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">]</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Mapping</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">hr</span><span class="token punctuation">:</span>  <span class="token number">65</span>       <span class="token comment"># Home runs</span>
+</span><span class="code-line line-number" line="2"><span class="token key atrule">avg</span><span class="token punctuation">:</span> <span class="token number">0.278</span>    <span class="token comment"># Batting average</span>
+</span><span class="code-line line-number" line="3"><span class="token key atrule">rbi</span><span class="token punctuation">:</span> <span class="token number">147</span>      <span class="token comment"># Runs Batted In</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"hr"</span><span class="token operator">:</span> <span class="token number">65</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"avg"</span><span class="token operator">:</span> <span class="token number">0.278</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"rbi"</span><span class="token operator">:</span> <span class="token number">147</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Mapping to Sequences</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">attributes</span><span class="token punctuation">:</span>
+</span><span class="code-line line-number" line="2">  <span class="token punctuation">-</span> a1
+</span><span class="code-line line-number" line="3">  <span class="token punctuation">-</span> a2
+</span><span class="code-line line-number" line="4"><span class="token key atrule">methods</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>getter<span class="token punctuation">,</span> setter<span class="token punctuation">]</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"attributes"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"a1"</span><span class="token punctuation">,</span> <span class="token string">"a2"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"methods"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"getter"</span><span class="token punctuation">,</span> <span class="token string">"setter"</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Sequence of Mappings</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">children</span><span class="token punctuation">:</span>
+</span><span class="code-line line-number" line="2">  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Jimmy Smith
+</span><span class="code-line line-number" line="3">    <span class="token key atrule">age</span><span class="token punctuation">:</span> <span class="token number">15</span>
+</span><span class="code-line line-number" line="4">  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Jimmy Smith
+</span><span class="code-line line-number" line="5">    <span class="token key atrule">age</span><span class="token punctuation">:</span> <span class="token number">15</span>
+</span><span class="code-line line-number" line="6">  <span class="token punctuation">-</span>
+</span><span class="code-line line-number" line="7">    <span class="token key atrule">name</span><span class="token punctuation">:</span> Sammy Sosa
+</span><span class="code-line line-number" line="8">    <span class="token key atrule">age</span><span class="token punctuation">:</span> <span class="token number">12</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"children"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="3">    <span class="token punctuation">{</span><span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Jimmy Smith"</span><span class="token punctuation">,</span> <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">15</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token punctuation">{</span><span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Jimmy Smith"</span><span class="token punctuation">,</span> <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">15</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">    <span class="token punctuation">{</span><span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Sammy Sosa"</span><span class="token punctuation">,</span> <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">12</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="6">  <span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="7"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Sequence of Sequences</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">my_sequences</span><span class="token punctuation">:</span>
+</span><span class="code-line line-number" line="2">  <span class="token punctuation">-</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="3">  <span class="token punctuation">-</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="4">  <span class="token punctuation">-</span>  
+</span><span class="code-line line-number" line="5">    <span class="token punctuation">-</span> <span class="token number">7</span>
+</span><span class="code-line line-number" line="6">    <span class="token punctuation">-</span> <span class="token number">8</span>
+</span><span class="code-line line-number" line="7">    <span class="token punctuation">-</span> <span class="token number">9</span>
+</span><span class="code-line line-number" line="8">    <span class="token punctuation">-</span> <span class="token number">0</span> 
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"my_sequences"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="3">    <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">    <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="6">  <span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="7"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Mapping of Mappings</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">Mark McGwire</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token key atrule">hr</span><span class="token punctuation">:</span> <span class="token number">65</span><span class="token punctuation">,</span> <span class="token key atrule">avg</span><span class="token punctuation">:</span> <span class="token number">0.278</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="2"><span class="token key atrule">Sammy Sosa</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    <span class="token key atrule">hr</span><span class="token punctuation">:</span> <span class="token number">63</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token key atrule">avg</span><span class="token punctuation">:</span> <span class="token number">0.288</span>
+</span><span class="code-line line-number" line="5">  <span class="token punctuation">}</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"Mark McGwire"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    <span class="token property">"hr"</span><span class="token operator">:</span> <span class="token number">65</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token property">"avg"</span><span class="token operator">:</span> <span class="token number">0.278</span>
+</span><span class="code-line line-number" line="5">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">  <span class="token property">"Sammy Sosa"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="7">    <span class="token property">"hr"</span><span class="token operator">:</span> <span class="token number">63</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="8">    <span class="token property">"avg"</span><span class="token operator">:</span> <span class="token number">0.288</span>
+</span><span class="code-line line-number" line="9">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="10"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Nested Collections</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">Jack</span><span class="token punctuation">:</span>
+</span><span class="code-line line-number" line="2">  <span class="token key atrule">id</span><span class="token punctuation">:</span> <span class="token number">1</span>
+</span><span class="code-line line-number" line="3">  <span class="token key atrule">name</span><span class="token punctuation">:</span> Franc
+</span><span class="code-line line-number" line="4">  <span class="token key atrule">salary</span><span class="token punctuation">:</span> <span class="token number">25000</span>
+</span><span class="code-line line-number" line="5">  <span class="token key atrule">hobby</span><span class="token punctuation">:</span>
+</span><span class="code-line line-number" line="6">    <span class="token punctuation">-</span> a
+</span><span class="code-line line-number" line="7">    <span class="token punctuation">-</span> b
+</span><span class="code-line line-number" line="8">  <span class="token key atrule">location</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token key atrule">country</span><span class="token punctuation">:</span> <span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token key atrule">city</span><span class="token punctuation">:</span> <span class="token string">"A-A"</span><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"Jack"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Franc"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">    <span class="token property">"salary"</span><span class="token operator">:</span> <span class="token number">25000</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">    <span class="token property">"hobby"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">    <span class="token property">"location"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="8">        <span class="token property">"country"</span><span class="token operator">:</span> <span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token property">"city"</span><span class="token operator">:</span> <span class="token string">"A-A"</span>
+</span><span class="code-line line-number" line="9">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="10">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="11"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Unordered Sets</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">set1</span><span class="token punctuation">:</span> <span class="token tag">!!set</span>
+</span><span class="code-line line-number" line="2">  <span class="token punctuation">?</span> one
+</span><span class="code-line line-number" line="3">  <span class="token punctuation">?</span> two
+</span><span class="code-line line-number" line="4"><span class="token key atrule">set2</span><span class="token punctuation">:</span> <span class="token tag">!!set</span> <span class="token punctuation">{</span><span class="token string">'one'</span><span class="token punctuation">,</span> <span class="token string">"two"</span><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"set1"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token property">"one"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span> <span class="token property">"two"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"set2"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token property">"one"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span> <span class="token property">"two"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>Sets are represented as a Mapping where each key is associated with a null value</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Ordered Mappings</h3><div class="wrap-body">
+<pre class="language-yaml"><code class="language-yaml code-highlight"><span class="code-line line-number" line="1"><span class="token key atrule">ordered</span><span class="token punctuation">:</span> <span class="token tag">!!omap</span>
+</span><span class="code-line line-number" line="2"><span class="token punctuation">-</span> <span class="token key atrule">Mark McGwire</span><span class="token punctuation">:</span> <span class="token number">65</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">-</span> <span class="token key atrule">Sammy Sosa</span><span class="token punctuation">:</span> <span class="token number">63</span>
+</span><span class="code-line line-number" line="4"><span class="token punctuation">-</span> <span class="token key atrule">Ken Griffy</span><span class="token punctuation">:</span> <span class="token number">58</span>
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>↓ Equivalent JSON</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"ordered"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="3">     <span class="token punctuation">{</span><span class="token property">"Mark McGwire"</span><span class="token operator">:</span> <span class="token number">65</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">     <span class="token punctuation">{</span><span class="token property">"Sammy Sosa"</span><span class="token operator">:</span> <span class="token number">63</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">     <span class="token punctuation">{</span><span class="token property">"Ken Griffy"</span><span class="token operator">:</span> <span class="token number">58</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="6">  <span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="7"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>YAML Reference {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Terms</h3><div class="wrap-body">
+<ul>
+  <li>Sequences aka arrays or lists</li>
+  <li>Scalars aka strings or numbers</li>
+  <li>
+    Mappings aka hashes or dictionaries
+    {.style-round}
+  </li>
+</ul>
+<p>Based on the YAML.org <a href="https://yaml.org/refcard.html">refcard</a>.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Document indicators</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>%</code></td>
+      <td>Directive indicator</td>
+    </tr>
+    <tr>
+      <td><code>---</code></td>
+      <td>Document header</td>
+    </tr>
+    <tr>
+      <td><code>...</code></td>
+      <td>Document terminator</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Collection indicators {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>?</code></td>
+      <td>Key indicator</td>
+    </tr>
+    <tr>
+      <td><code>:</code></td>
+      <td>Value indicator</td>
+    </tr>
+    <tr>
+      <td><code>-</code></td>
+      <td>Nested series entry indicator</td>
+    </tr>
+    <tr>
+      <td><code>,</code></td>
+      <td>Separate in-line branch entries</td>
+    </tr>
+    <tr>
+      <td><code>[]</code></td>
+      <td>Surround in-line series branch</td>
+    </tr>
+    <tr>
+      <td><code>{}</code></td>
+      <td>Surround in-line keyed branch</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Alias indicators</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&#x26;</code></td>
+      <td>Anchor property</td>
+    </tr>
+    <tr>
+      <td><code>*</code></td>
+      <td>Alias indicator</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Special keys</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>=</code></td>
+      <td>Default "value" mapping key</td>
+    </tr>
+    <tr>
+      <td><code>&#x3C;&#x3C;</code></td>
+      <td>Merge keys from another mapping</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Scalar indicators</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>''</code></td>
+      <td>Surround in-line unescaped scalar</td>
+    </tr>
+    <tr>
+      <td><code>"</code></td>
+      <td>Surround in-line escaped scalar</td>
+    </tr>
+    <tr>
+      <td>`</td>
+      <td>`</td>
+    </tr>
+    <tr>
+      <td><code>></code></td>
+      <td>Folded scalar indicator</td>
+    </tr>
+    <tr>
+      <td><code>-</code></td>
+      <td>Strip chomp modifier (`</td>
+    </tr>
+    <tr>
+      <td><code>+</code></td>
+      <td>Keep chomp modifier (`</td>
+    </tr>
+    <tr>
+      <td><code>1-9</code></td>
+      <td>Explicit indentation modifier (`</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Tag Property (usually unspecified) {.col-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>none</code></td>
+      <td>Unspecified tag (automatically resolved by application)</td>
+    </tr>
+    <tr>
+      <td><code>!</code></td>
+      <td>Non-specific tag (by default, <code>!!map</code>/<code>!!seq</code>/<code>!!str</code>)</td>
+    </tr>
+    <tr>
+      <td><code>!foo</code></td>
+      <td>Primary (by convention, means a local <code>!foo</code> tag)</td>
+    </tr>
+    <tr>
+      <td><code>!!foo</code></td>
+      <td>Secondary (by convention, means <code>tag:yaml.org,2002:foo</code>)</td>
+    </tr>
+    <tr>
+      <td><code>!h!foo</code></td>
+      <td>Requires <code>%TAG !h! &#x3C;prefix></code> (and then means <code>&#x3C;prefix>foo</code>)</td>
+    </tr>
+    <tr>
+      <td><code>!&#x3C;foo></code></td>
+      <td>Verbatim tag (always means <code>foo</code>)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Misc indicators</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>#</code></td>
+      <td>Throwaway comment indicator</td>
+    </tr>
+    <tr>
+      <td><code>`@</code></td>
+      <td>Both reserved for future use</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Core types (default automatic tags) {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>!!map</code></td>
+      <td><code>{Hash table, dictionary, mapping}</code></td>
+    </tr>
+    <tr>
+      <td><code>!!seq</code></td>
+      <td><code>{List, array, tuple, vector, sequence}</code></td>
+    </tr>
+    <tr>
+      <td><code>!!str</code></td>
+      <td>Unicode string</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Escape Codes {.row-span-3}</h3><div class="wrap-body">
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Numeric</h4><div class="wrap-body">
+<ul>
+  <li><code>\x12</code> (8-bit)</li>
+  <li><code>\u1234</code> (16-bit)</li>
+  <li>
+    <code>\U00102030</code> (32-bit)
+    {.cols-2 .style-none}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Protective</h4><div class="wrap-body">
+<ul>
+  <li><code>\\</code> (\)</li>
+  <li><code>\"</code> (")</li>
+  <li><code>\ </code>( )</li>
+  <li>
+    <code>\&#x3C;TAB></code> (TAB)
+    {.cols-3 .style-none}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>C</h4><div class="wrap-body">
+<ul>
+  <li><code>\0</code> (NUL)</li>
+  <li><code>\a</code> (BEL)</li>
+  <li><code>\b</code> (BS)</li>
+  <li><code>\f</code> (FF)</li>
+  <li><code>\n</code> (LF)</li>
+  <li><code>\r</code> (CR)</li>
+  <li><code>\t</code> (TAB)</li>
+  <li>
+    <code>\v</code> (VTAB)
+    {.cols-3 .style-none}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Additional</h4><div class="wrap-body">
+<ul>
+  <li><code>\e</code> (ESC)</li>
+  <li><code>\_</code> (NBSP)</li>
+  <li><code>\N</code> (NEL)</li>
+  <li><code>\L</code> (LS)</li>
+  <li>
+    <code>\P</code> (PS)
+    {.cols-3 .style-none}
+  </li>
+</ul>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>More types</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>!!set</code></td>
+      <td><code>{cherries, plums, apples}</code></td>
+    </tr>
+    <tr>
+      <td><code>!!omap</code></td>
+      <td><code>[one: 1, two: 2]</code></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Language Independent Scalar Types {.col-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>{~, null}</code></td>
+      <td>Null (no value).</td>
+    </tr>
+    <tr>
+      <td><code>[1234, 0x4D2, 02333]</code></td>
+      <td>[Decimal int, Hexadecimal int, Octal int]</td>
+    </tr>
+    <tr>
+      <td><code>[1_230.15, 12.3015e+02]</code></td>
+      <td>[Fixed float, Exponential float]</td>
+    </tr>
+    <tr>
+      <td><code>[.inf, -.Inf, .NAN]</code></td>
+      <td>[Infinity (float), Negative, Not a number]</td>
+    </tr>
+    <tr>
+      <td><code>{Y, true, Yes, ON}</code></td>
+      <td>Boolean true</td>
+    </tr>
+    <tr>
+      <td><code>{n, FALSE, No, off}</code></td>
+      <td>Boolean false</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Also see</h2><div class="wrap-body">
+<ul>
+  <li><a href="https://yaml.org/refcard.html">YAML Reference Card</a> <em>(yaml.org)</em></li>
+  <li><a href="https://learnxinyminutes.com/docs/yaml/">Learn X in Y minutes</a> <em>(learnxinyminutes.com)</em></li>
+  <li><a href="http://www.yamllint.com/">YAML lint online</a> <em>(yamllint.com)</em></li>
+</ul>
+
+</div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

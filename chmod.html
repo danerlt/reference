@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: Chmod
+date: 2021-07-01 10:51:44
+icon: icon-permission
+background: bg-emerald-600
+tags:
+    - permission
+categories:
+    - Linux Command
+intro: |
+    This quick reference cheat sheet provides a brief overview of file permissions, and the operation of the chmod command
+---
+
+
+Getting started {.cols-3}
+--------
+
+
+### Syntax
+```shell script
+$ chmod [options] &#x3C;permissions> &#x3C;file> 
+```
+#### Example
+```shell
+$ chmod 755 foo.txt
+$ chmod +x quickref.py
+$ chmod u-x quickref.py
+$ chmod u &#x26;  chmod cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,chmod">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/chmod.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>
+  title: Chmod
+  date: 2021-07-01 10:51:44
+  icon: icon-permission
+  background: bg-emerald-600
+  tags:
+  - permission
+  categories:
+  - Linux Command
+  intro: |
+  This quick reference cheat sheet provides a brief overview of file permissions, and the operation of the chmod command
+</h2><div class="wrap-body">
+</div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Getting started {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Syntax</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span> <span class="token operator">&#x3C;</span>permissions<span class="token operator">></span> <span class="token operator">&#x3C;</span>file<span class="token operator">></span> 
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Example</h4><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> <span class="token number">755</span> foo.txt
+</span><span class="code-line line-number" line="2">$ <span class="token function">chmod</span> +x quickref.py
+</span><span class="code-line line-number" line="3">$ <span class="token function">chmod</span> u-x quickref.py
+</span><span class="code-line line-number" line="4">$ <span class="token function">chmod</span> <span class="token assign-left variable">u</span><span class="token operator">=</span>rwx,g<span class="token operator">=</span>rx,o<span class="token operator">=</span> quickref.sh
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Change files and directories recursively</h4><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> <span class="token parameter variable">-R</span> <span class="token number">755</span> my_directory
+</span></code></pre>
+<p>The <code>chmod</code> command stands for "change mode"</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Chmod Generator</h3><div class="wrap-body">
+<widget name="chmod">
+  <p>Chmod Generator allows you to quickly and visually generate permissions in numerical and symbolic.</p>
+  <h3>Common Permissions</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Command</th>
+        <th>s</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>400</code></td>
+        <td>r--------</td>
+        <td>Readable by owner only</td>
+      </tr>
+      <tr>
+        <td><code>500</code></td>
+        <td>r-x------</td>
+        <td>Avoid Changing</td>
+      </tr>
+      <tr>
+        <td><code>600</code></td>
+        <td>rw-------</td>
+        <td>Changeable by user</td>
+      </tr>
+      <tr>
+        <td><code>644</code></td>
+        <td>rw-r--r--</td>
+        <td>Read and change by user</td>
+      </tr>
+      <tr>
+        <td><code>660</code></td>
+        <td>rw-rw----</td>
+        <td>Changeable by user and group</td>
+      </tr>
+      <tr>
+        <td><code>700</code></td>
+        <td>rwx------</td>
+        <td>Only user has full access</td>
+      </tr>
+      <tr>
+        <td><code>755</code></td>
+        <td>rwxr-xr-x</td>
+        <td>Only changeable by user</td>
+      </tr>
+      <tr>
+        <td><code>775</code></td>
+        <td>rwxrwxr-x</td>
+        <td>Sharing mode for a group</td>
+      </tr>
+      <tr>
+        <td><code>777</code></td>
+        <td>rwxrwxrwx</td>
+        <td>Everybody can do everything</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Explains</h3>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">ls</span> <span class="token parameter variable">-l</span>
+</span><span class="code-line line-number" line="2">-rw-r--r--  <span class="token number">1</span> root root <span class="token number">3</span> Jun <span class="token number">29</span> <span class="token number">15</span>:35 a.log
+</span><span class="code-line line-number" line="3">drwxr-xr-x  <span class="token number">2</span> root root <span class="token number">2</span> Jun <span class="token number">30</span> <span class="token number">18</span>:06 <span class="token function">dir</span>
+</span></code></pre>
+  <h4>Permission analysis of "dir"</h4>
+  <pre class="language-text"><code class="language-text code-highlight"><span class="code-line line-number" line="1">d  rwx  r-x  r-x
+</span><span class="code-line line-number" line="2">┬  ─┬─  ─┬─  ─┬─  
+</span><span class="code-line line-number" line="3">│   │    │    │  
+</span><span class="code-line line-number" line="4">│   │    │    └─ 4. Other｜5 (4+0+1)
+</span><span class="code-line line-number" line="5">│   │    └────── 3. Group｜5 (4+0+1)
+</span><span class="code-line line-number" line="6">│   └─────────── 2. User ｜7 (4+2+1)
+</span><span class="code-line line-number" line="7">└─────────────── 1. File Type | directory
+</span></code></pre>
+  <h3>Permission Modes {.col-span-2}</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Permission</th>
+        <th>Description</th>
+        <th>Octal</th>
+        <th>Decimal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>---</code></td>
+        <td>No Permission</td>
+        <td>000</td>
+        <td>0 (0+0+0)</td>
+      </tr>
+      <tr>
+        <td><code>--x</code></td>
+        <td>Execute</td>
+        <td>001</td>
+        <td>1 (0+0+1)</td>
+      </tr>
+      <tr>
+        <td><code>-w-</code></td>
+        <td>Write</td>
+        <td>010</td>
+        <td>2 (0+2+0)</td>
+      </tr>
+      <tr>
+        <td><code>-wx</code></td>
+        <td>Execute and Write</td>
+        <td>011</td>
+        <td>3 (0+2+1)</td>
+      </tr>
+      <tr>
+        <td><code>r--</code></td>
+        <td>Read</td>
+        <td>100</td>
+        <td>4 (4+0+0)</td>
+      </tr>
+      <tr>
+        <td><code>r-x</code></td>
+        <td>Read and Execute</td>
+        <td>101</td>
+        <td>5 (4+0+1)</td>
+      </tr>
+      <tr>
+        <td><code>rw-</code></td>
+        <td>Read and Write</td>
+        <td>110</td>
+        <td>6 (4+2+0)</td>
+      </tr>
+      <tr>
+        <td><code>rwx</code></td>
+        <td>Read, Write and Execute</td>
+        <td>111</td>
+        <td>7 (4+2+1)</td>
+      </tr>
+      <tr>
+        <td>{.show-header}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Objects</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Who (abbr.)</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>u</code></td>
+        <td><code>U</code>ser</td>
+      </tr>
+      <tr>
+        <td><code>g</code></td>
+        <td><code>G</code>roup</td>
+      </tr>
+      <tr>
+        <td><code>o</code></td>
+        <td><code>O</code>thers</td>
+      </tr>
+      <tr>
+        <td><code>a</code></td>
+        <td><code>A</code>ll, same as ugo</td>
+      </tr>
+      <tr>
+        <td>{.show-header}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Permissions</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Abbreviation</th>
+        <th>Permission</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>r</code></td>
+        <td><code>R</code>ead</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td><code>w</code></td>
+        <td><code>W</code>rite</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td><code>x</code></td>
+        <td>E<code>x</code>ecute</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td><code>-</code></td>
+        <td>No permission</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>{.show-header}</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>File Types</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Abbreviation</th>
+        <th>File Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>d</code></td>
+        <td><code>D</code>irectory</td>
+      </tr>
+      <tr>
+        <td><code>-</code></td>
+        <td>Regular file</td>
+      </tr>
+      <tr>
+        <td><code>l</code></td>
+        <td>Symbolic <code>L</code>ink</td>
+      </tr>
+      <tr>
+        <td>{.show-header}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h2>Chmod Examples {.cols-3}</h2>
+  <h3>Operators</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>+</code></td>
+        <td>Add</td>
+      </tr>
+      <tr>
+        <td><code>-</code></td>
+        <td>Remove</td>
+      </tr>
+      <tr>
+        <td><code>=</code></td>
+        <td>Set</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>chmod 600</h3>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> <span class="token number">600</span> example.txt
+</span><span class="code-line line-number" line="2">$ <span class="token function">chmod</span> <span class="token assign-left variable">u</span><span class="token operator">=</span>rw,g<span class="token operator">=</span>,o<span class="token operator">=</span> example.txt
+</span><span class="code-line line-number" line="3">$ <span class="token function">chmod</span> a+rwx,u-x,g-rwx,o-rwx example.txt
+</span></code></pre>
+  <h3>chmod 664</h3>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> <span class="token number">664</span> example.txt
+</span><span class="code-line line-number" line="2">$ <span class="token function">chmod</span> <span class="token assign-left variable">u</span><span class="token operator">=</span>rw,g<span class="token operator">=</span>rw,o<span class="token operator">=</span>r example.txt
+</span><span class="code-line line-number" line="3">$ <span class="token function">chmod</span> a+rwx,u-x,g-x,o-wx example.txt
+</span></code></pre>
+  <h3>chmod 777</h3>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> <span class="token number">777</span> example.txt
+</span><span class="code-line line-number" line="2">$ <span class="token function">chmod</span> <span class="token assign-left variable">u</span><span class="token operator">=</span>rwx,g<span class="token operator">=</span>rwx,o<span class="token operator">=</span>rwx example.txt
+</span><span class="code-line line-number" line="3">$ <span class="token function">chmod</span> <span class="token assign-left variable">a</span><span class="token operator">=</span>rwx example.txt
+</span></code></pre>
+  <h3>Symbolic mode {.row-span-3}</h3>
+  <p>Deny execute permission to everyone.</p>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> a-x chmodExampleFile.txt
+</span></code></pre>
+  <p>Allow read permission to everyone.</p>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> a+r chmodExampleFile.txt
+</span></code></pre>
+  <p>Make a file readable and writable by the group and others.</p>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> go+rw chmodExampleFile.txt
+</span></code></pre>
+  <p>Make a shell script executable by the user/owner.</p>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> u+x chmodExampleScript.sh
+</span></code></pre>
+  <p>Allow everyone to read, write, and execute the file and turn on the set group-ID.</p>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> <span class="token operator">=</span>rwx,g+s chmodExampleScript.sh
+</span></code></pre>
+  <h3>Removing Permissions {.row-span-3}</h3>
+  <p>In order to remove read write permissions given to a file, use the following syntax:</p>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> o-rw example.txt
+</span></code></pre>
+  <p>For our file example.txt, we can remove read write permissions using chmod for group by running the following command:</p>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span>  g-rx example.txt
+</span></code></pre>
+  <p>To remove chmod read write permissions from the group while adding read write permission to public/others, we can use the following command:</p>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> g-rx, o+rx example.txt
+</span></code></pre>
+  <p>But, if you wish to remove all permissions for group and others, you can do so using the go= instead:</p>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> <span class="token assign-left variable">go</span><span class="token operator">=</span> example.txt
+</span></code></pre>
+  <h3>Executable</h3>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> +x ~/example.py
+</span><span class="code-line line-number" line="2">$ <span class="token function">chmod</span> u+x ~/example.py
+</span><span class="code-line line-number" line="3">$ <span class="token function">chmod</span> a+x ~/example.py
+</span></code></pre>
+  <h3>chmod 754</h3>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> <span class="token number">754</span> foo.sh
+</span><span class="code-line line-number" line="2">$ <span class="token function">chmod</span> <span class="token assign-left variable">u</span><span class="token operator">=</span>rwx,g<span class="token operator">=</span>rx,o<span class="token operator">=</span>r foo.sh
+</span></code></pre>
+  <h2>Chmod Practices {.cols-3}</h2>
+  <h3>SSH Permissions</h3>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> <span class="token number">700</span> ~/.ssh
+</span><span class="code-line line-number" line="2">$ <span class="token function">chmod</span> <span class="token number">600</span> ~/.ssh/authorized_keys
+</span><span class="code-line line-number" line="3">$ <span class="token function">chmod</span> <span class="token number">600</span> ~/.ssh/id_rsa
+</span><span class="code-line line-number" line="4">$ <span class="token function">chmod</span> <span class="token number">600</span> ~/.ssh/id_rsa.pub
+</span><span class="code-line line-number" line="5">$ <span class="token function">chmod</span> <span class="token number">400</span> /path/to/access_key.pem
+</span></code></pre>
+  <h3>Web Permissions</h3>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> <span class="token parameter variable">-R</span> <span class="token number">644</span> /var/www/html/
+</span><span class="code-line line-number" line="2">$ <span class="token function">chmod</span> <span class="token number">644</span> .htaccess
+</span><span class="code-line line-number" line="3">$ <span class="token function">chmod</span> <span class="token number">644</span> robots.txt
+</span><span class="code-line line-number" line="4">$ <span class="token function">chmod</span> <span class="token number">755</span> /var/www/uploads/
+</span><span class="code-line line-number" line="5">$ <span class="token function">find</span> /var/www/html <span class="token parameter variable">-type</span> d <span class="token parameter variable">-exec</span> <span class="token function">chmod</span> <span class="token number">755</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span></code></pre>
+  <h3>Batch Change</h3>
+  <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">chmod</span> <span class="token parameter variable">-R</span> <span class="token number">644</span> /your_path
+</span><span class="code-line line-number" line="2">$ <span class="token function">find</span> /path <span class="token parameter variable">-type</span> d <span class="token parameter variable">-exec</span> <span class="token function">chmod</span> <span class="token number">755</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="3">$ <span class="token function">find</span> /path <span class="token parameter variable">-type</span> f <span class="token parameter variable">-exec</span> <span class="token function">chmod</span> <span class="token number">644</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span></code></pre>
+  <p>See: <a href="https://tldp.org/LDP/abs/html/commandsub.html">Command Substitution</a></p>
+  <h2>Also see</h2>
+  <ul>
+    <li><a href="https://www.linode.com/docs/guides/modify-file-permissions-with-chmod/">Modify File Permissions with chmod</a> <em>(linode.com)</em></li>
+  </ul>
+</widget>
+
+</div></div></div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

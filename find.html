@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: Find
+icon: icon-search
+date: 2020-12-28 16:52:20
+tags:
+    - search
+    - file
+    - directory
+categories:
+    - Linux Command
+intro: |
+    This is a quick reference list of cheatsheet for linux find command, contains common options and examples.
+---
+
+
+Getting started {.cols-3}
+---------------
+
+### Usage
+
+```shell script
+$ find [path...] [options] [expression]
+```
+
+Wildcard
+```shell script
+$ find . -name "*.txt"
+$ find . -name "2020*.csv"
+$ find . -name "json_*"
+```
+
+----
+- [Regex reference](/regex) _(quickref.me)_
+- [Find cheatsheet](https://gist.github.com/gr1ev0us/3a9b9d9dbdd38f6379288eb2686fc538) _(gist.github.com)_
+
+### Option Examples {.col-span-2}
+| Option      | Example                                   | Description                                 |
+|-------------|-------------------------------------------|---------------------------------------------|
+| `-type`     | find . -type d                            | Find only directories                       |
+| `-name`     | find . -type f -name "*.txt"              | Find file by name                           |
+| `-iname`    | find . -type f -iname "hello"             | Find file by name (case-insensitive)        |
+| `-size`     | find . -size +1G                          | Find files larger than 1G                   |
+| `-user`     | find . -type d -user jack                 | Find jack's file                            |
+| `-regex`    | find /var -regex '.\*/tmp/.\*[0-9]*.file' | Using Regex with find. See [regex](/regex)  |
+| `-maxdepth` | find . -maxdepth 1 -name "a.txt"          | In the current directory and subdirectories |
+| `-mindepth` | find / -mindepth 3 -maxdepth 5 -name pass | Between sub-directory level 2 and 4         |
+{.show-header}
+
+
+### Type
+|           |                      |
+|-----------|----------------------|
+| `-type d` | Directory            |
+| `-type f` | File                 |
+| `-type l` | Symbolic link        |
+| `-type b` | Buffered block       |
+| `-type c` | Unbuffered character |
+| `-type p` | Named pipe           |
+| `-type s` | Socket               |
+
+
+
+### Size
+|           |                           |
+|-----------|---------------------------|
+| `-size b` | 512-byte blocks (default) |
+| `-size c` | Bytes                     |
+| `-size k` | Kilobytes                 |
+| `-size M` | Megabytes                 |
+| `-size G` | Gigabytes                 |
+| `-size T` | Terabytes _(only BSD)_    |
+| `-size P` | Petabytes _(only BSD)_    |
+
+### Size +/-
+
+Find all bigger than 10MB files
+```shell script
+$ find / -size +10M
+```
+
+Find all smaller than 10MB files
+```shell script
+$ find / -size -10M
+````
+
+Find all files that are exactly 10M
+```shell script
+$ find / -size 10M
+```
+
+Find Size between 100MB and 1GB
+```shell script
+$ find / -size +100M -size -1G
+```
+
+The `+` and `-` prefixes signify greater than and less than, as usual.
+
+
+
+
+### Names
+
+Find files using name in current directory
+```shell script
+$ find . -name tecmint.txt
+```
+
+Find files under home directory
+
+```shell script
+$ find /home -name tecmint.txt
+```
+
+Find files using name and ignoring case
+```shell script
+$ find /home -iname tecmint.txt
+```
+
+Find directories using name
+```shell script
+$ find / -type d -name tecmint
+```
+
+Find php files using name
+```shell script
+$ find . -type f -name tecmint.php
+```
+
+Find all php files in directory
+```shell script
+$ find . -type f -name "*.php"
+```
+
+
+### Permissions
+
+Find the files whose permissions are 777.
+
+```shell script
+$ find . -type f -perm 0777 -print
+```
+
+Find the files without permission 777.
+
+```shell script
+$ find / -type f ! -perm 777
+```
+
+Find SUID set files.
+
+```shell script
+$ find / -perm /u &#x26;  find cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,find">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/find.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>
+  title: Find
+  icon: icon-search
+  date: 2020-12-28 16:52:20
+  tags:
+  - search
+  - file
+  - directory
+  categories:
+  - Linux Command
+  intro: |
+  This is a quick reference list of cheatsheet for linux find command, contains common options and examples.
+</h2><div class="wrap-body">
+</div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Getting started {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Usage</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token punctuation">[</span>path<span class="token punctuation">..</span>.<span class="token punctuation">]</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span> <span class="token punctuation">[</span>expression<span class="token punctuation">]</span>
+</span></code></pre>
+<p>Wildcard</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-name</span> <span class="token string">"*.txt"</span>
+</span><span class="code-line line-number" line="2">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-name</span> <span class="token string">"2020*.csv"</span>
+</span><span class="code-line line-number" line="3">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-name</span> <span class="token string">"json_*"</span>
+</span></code></pre>
+<hr>
+<ul>
+  <li><a href="/regex">Regex reference</a> <em>(quickref.me)</em></li>
+  <li><a href="https://gist.github.com/gr1ev0us/3a9b9d9dbdd38f6379288eb2686fc538">Find cheatsheet</a> <em>(gist.github.com)</em></li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Option Examples {.col-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>-type</code></td>
+      <td>find . -type d</td>
+      <td>Find only directories</td>
+    </tr>
+    <tr>
+      <td><code>-name</code></td>
+      <td>find . -type f -name "*.txt"</td>
+      <td>Find file by name</td>
+    </tr>
+    <tr>
+      <td><code>-iname</code></td>
+      <td>find . -type f -iname "hello"</td>
+      <td>Find file by name (case-insensitive)</td>
+    </tr>
+    <tr>
+      <td><code>-size</code></td>
+      <td>find . -size +1G</td>
+      <td>Find files larger than 1G</td>
+    </tr>
+    <tr>
+      <td><code>-user</code></td>
+      <td>find . -type d -user jack</td>
+      <td>Find jack's file</td>
+    </tr>
+    <tr>
+      <td><code>-regex</code></td>
+      <td>find /var -regex '.*/tmp/.*[0-9]*.file'</td>
+      <td>Using Regex with find. See <a href="/regex">regex</a></td>
+    </tr>
+    <tr>
+      <td><code>-maxdepth</code></td>
+      <td>find . -maxdepth 1 -name "a.txt"</td>
+      <td>In the current directory and subdirectories</td>
+    </tr>
+    <tr>
+      <td><code>-mindepth</code></td>
+      <td>find / -mindepth 3 -maxdepth 5 -name pass</td>
+      <td>Between sub-directory level 2 and 4</td>
+    </tr>
+    <tr>
+      <td>{.show-header}</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Type</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>-type d</code></td>
+      <td>Directory</td>
+    </tr>
+    <tr>
+      <td><code>-type f</code></td>
+      <td>File</td>
+    </tr>
+    <tr>
+      <td><code>-type l</code></td>
+      <td>Symbolic link</td>
+    </tr>
+    <tr>
+      <td><code>-type b</code></td>
+      <td>Buffered block</td>
+    </tr>
+    <tr>
+      <td><code>-type c</code></td>
+      <td>Unbuffered character</td>
+    </tr>
+    <tr>
+      <td><code>-type p</code></td>
+      <td>Named pipe</td>
+    </tr>
+    <tr>
+      <td><code>-type s</code></td>
+      <td>Socket</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Size</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>-size b</code></td>
+      <td>512-byte blocks (default)</td>
+    </tr>
+    <tr>
+      <td><code>-size c</code></td>
+      <td>Bytes</td>
+    </tr>
+    <tr>
+      <td><code>-size k</code></td>
+      <td>Kilobytes</td>
+    </tr>
+    <tr>
+      <td><code>-size M</code></td>
+      <td>Megabytes</td>
+    </tr>
+    <tr>
+      <td><code>-size G</code></td>
+      <td>Gigabytes</td>
+    </tr>
+    <tr>
+      <td><code>-size T</code></td>
+      <td>Terabytes <em>(only BSD)</em></td>
+    </tr>
+    <tr>
+      <td><code>-size P</code></td>
+      <td>Petabytes <em>(only BSD)</em></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Size +/-</h3><div class="wrap-body">
+<p>Find all bigger than 10MB files</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-size</span> +10M
+</span></code></pre>
+<p>Find all smaller than 10MB files</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-size</span> <span class="token parameter variable">-10M</span>
+</span></code></pre>
+<p>Find all files that are exactly 10M</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-size</span> 10M
+</span></code></pre>
+<p>Find Size between 100MB and 1GB</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-size</span> +100M <span class="token parameter variable">-size</span> <span class="token parameter variable">-1G</span>
+</span></code></pre>
+<p>The <code>+</code> and <code>-</code> prefixes signify greater than and less than, as usual.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Names</h3><div class="wrap-body">
+<p>Find files using name in current directory</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-name</span> tecmint.txt
+</span></code></pre>
+<p>Find files under home directory</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> /home <span class="token parameter variable">-name</span> tecmint.txt
+</span></code></pre>
+<p>Find files using name and ignoring case</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> /home <span class="token parameter variable">-iname</span> tecmint.txt
+</span></code></pre>
+<p>Find directories using name</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-type</span> d <span class="token parameter variable">-name</span> tecmint
+</span></code></pre>
+<p>Find php files using name</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-name</span> tecmint.php
+</span></code></pre>
+<p>Find all php files in directory</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-name</span> <span class="token string">"*.php"</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Permissions</h3><div class="wrap-body">
+<p>Find the files whose permissions are 777.</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-perm</span> 0777 <span class="token parameter variable">-print</span>
+</span></code></pre>
+<p>Find the files without permission 777.</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-type</span> f <span class="token operator">!</span> <span class="token parameter variable">-perm</span> <span class="token number">777</span>
+</span></code></pre>
+<p>Find SUID set files.</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-perm</span> /u<span class="token operator">=</span>s
+</span></code></pre>
+<p>Find SGID set files.</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-perm</span> /g<span class="token operator">=</span>s
+</span></code></pre>
+<p>Find Read Only files.</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-perm</span> /u<span class="token operator">=</span>r
+</span></code></pre>
+<p>Find Executable files.</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-perm</span> /a<span class="token operator">=</span>x
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Owners and Groups</h3><div class="wrap-body">
+<p>Find single file based on user</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-user</span> root <span class="token parameter variable">-name</span> tecmint.txt
+</span></code></pre>
+<p>Find all files based on user</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> /home <span class="token parameter variable">-user</span> tecmint
+</span></code></pre>
+<p>Find all files based on group</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> /home <span class="token parameter variable">-group</span> developer
+</span></code></pre>
+<p>Find particular files of user</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> /home <span class="token parameter variable">-user</span> tecmint <span class="token parameter variable">-iname</span> <span class="token string">"*.txt"</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Multiple filenames</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> f <span class="token punctuation">\</span><span class="token punctuation">(</span> <span class="token parameter variable">-name</span> <span class="token string">"*.sh"</span> <span class="token parameter variable">-o</span> <span class="token parameter variable">-name</span> <span class="token string">"*.txt"</span> <span class="token punctuation">\</span><span class="token punctuation">)</span>
+</span></code></pre>
+<p>Find files with <code>.sh</code> and <code>.txt</code> extensions</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Multiple dirs</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> /opt /usr /var <span class="token parameter variable">-name</span> foo.scala <span class="token parameter variable">-type</span> f
+</span></code></pre>
+<p>Find files with multiple dirs</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Empty</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> d <span class="token parameter variable">-empty</span>
+</span></code></pre>
+<p>Delete all empty files in a directory</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-empty</span> <span class="token parameter variable">-delete</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Find Date and Time {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Means {.col-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>atime</code></td>
+      <td>access time (last time file 
+        <yel>opened</yel>)
+      </td>
+    </tr>
+    <tr>
+      <td><code>mtime</code></td>
+      <td>modified time (last time file 
+        <yel>contents was modified</yel>)
+      </td>
+    </tr>
+    <tr>
+      <td><code>ctime</code></td>
+      <td>changed time (last time file 
+        <yel>inode was changed</yel>)
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Example</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>-mtime +0</code></td>
+      <td>Modified greater than 24 hours ago</td>
+    </tr>
+    <tr>
+      <td><code>-mtime 0</code></td>
+      <td>Modified between now and 1 day ago</td>
+    </tr>
+    <tr>
+      <td><code>-mtime -1</code></td>
+      <td>Modified less than 1 day ago (same as <code>-mtime 0</code>)</td>
+    </tr>
+    <tr>
+      <td><code>-mtime 1</code></td>
+      <td>Modified between 24 and 48 hours ago</td>
+    </tr>
+    <tr>
+      <td><code>-mtime +1</code></td>
+      <td>Modified more than 48 hours ago</td>
+    </tr>
+    <tr>
+      <td><code>-mtime +1w</code></td>
+      <td>Last modified more than 1 week ago</td>
+    </tr>
+    <tr>
+      <td><code>-atime 0</code></td>
+      <td>Last accessed between now and 24 hours ago</td>
+    </tr>
+    <tr>
+      <td><code>-atime +0</code></td>
+      <td>Accessed more than 24 hours ago</td>
+    </tr>
+    <tr>
+      <td><code>-atime 1</code></td>
+      <td>Accessed between 24 and 48 hours ago</td>
+    </tr>
+    <tr>
+      <td><code>-atime +1</code></td>
+      <td>Accessed more than 48 hours ago</td>
+    </tr>
+    <tr>
+      <td><code>-atime -1</code></td>
+      <td>Accessed less than 24 hours ago (same as <code>-atime 0</code>)</td>
+    </tr>
+    <tr>
+      <td><code>-ctime -6h30m</code></td>
+      <td>File status changed within the last 6 hours and 30 minutes</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Examples</h3><div class="wrap-body">
+<p>Find last 50 days modified files</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-mtime</span> <span class="token number">50</span>
+</span></code></pre>
+<p>find last 50 days accessed files</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-atime</span> <span class="token number">50</span>
+</span></code></pre>
+<p>find last 50-100 days modified files</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-mtime</span> +50 –mtime <span class="token parameter variable">-100</span>
+</span></code></pre>
+<p>find changed files in last 1 hour</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-cmin</span> <span class="token parameter variable">-60</span>
+</span></code></pre>
+<p>find modified files in last 1 hour</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-mmin</span> <span class="token parameter variable">-60</span>
+</span></code></pre>
+<p>find accessed files in last 1 hour</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-amin</span> <span class="token parameter variable">-60</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Find and {.cols-2}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Find and delete {.row-span-3}</h3><div class="wrap-body">
+<p>Find and remove multiple files</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-name</span> <span class="token string">"*.mp3"</span> <span class="token parameter variable">-exec</span> <span class="token function">rm</span> <span class="token parameter variable">-f</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Find and remove single file</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-name</span> <span class="token string">"tecmint.txt"</span> <span class="token parameter variable">-exec</span> <span class="token function">rm</span> <span class="token parameter variable">-f</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Find and delete 100mb files</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-type</span> f <span class="token parameter variable">-size</span> +100m <span class="token parameter variable">-exec</span> <span class="token function">rm</span> <span class="token parameter variable">-f</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Find specific files and delete</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-type</span> f <span class="token parameter variable">-name</span> *.mp3 <span class="token parameter variable">-size</span> +10m <span class="token parameter variable">-exec</span> <span class="token function">rm</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Find and replace</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> ./ <span class="token parameter variable">-type</span> f <span class="token parameter variable">-exec</span> <span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s/find/replace/g'</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="2">$ <span class="token function">find</span> ./ <span class="token parameter variable">-type</span> f <span class="token parameter variable">-readable</span> <span class="token parameter variable">-writable</span> <span class="token parameter variable">-exec</span> <span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">"s/old/new/g"</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>See also: <a href="/sed">sed</a> command</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Find and rename</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-name</span> <span class="token string">'file*'</span> <span class="token parameter variable">-exec</span> <span class="token function">mv</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>_renamed <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="2">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-name</span> <span class="token string">'file*'</span> <span class="token parameter variable">-exec</span> <span class="token function">sh</span> <span class="token parameter variable">-c</span> <span class="token string">'x="{}"; mv "$x" "${x}.bak"'</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Find and move</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-name</span> <span class="token string">'*.mp3'</span> <span class="token parameter variable">-exec</span> <span class="token function">mv</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> /tmp/music <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Find and move it to a specific directory</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Find and copy</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-name</span> <span class="token string">'*2020*.xml'</span> <span class="token parameter variable">-exec</span> <span class="token function">cp</span> <span class="token parameter variable">-r</span> <span class="token string">"{}"</span> /tmp/backup <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Find and copy it to a specific directory</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Find and concatenate</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> download <span class="token parameter variable">-type</span> f <span class="token parameter variable">-iname</span> <span class="token string">'*.csv'</span> <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">cat</span> <span class="token operator">></span> merged.csv
+</span><span class="code-line line-number" line="2">$ <span class="token function">find</span> download <span class="token parameter variable">-type</span> f <span class="token parameter variable">-name</span> <span class="token string">'*.gz'</span> <span class="token parameter variable">-exec</span> <span class="token function">cat</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span> <span class="token operator">></span> output
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Find and sort</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-printf</span> <span class="token string">"%T+<span class="token entity" title="\t">\t</span>%p<span class="token entity" title="\n">\n</span>"</span> <span class="token operator">|</span> <span class="token function">sort</span>
+</span><span class="code-line line-number" line="2">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-printf</span> <span class="token string">"%T+<span class="token entity" title="\t">\t</span>%p<span class="token entity" title="\n">\n</span>"</span> <span class="token operator">|</span> <span class="token function">sort</span> <span class="token parameter variable">-r</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Find and chmod {.row-span-2}</h3><div class="wrap-body">
+<p>Find files and set permissions to 644.</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-type</span> f <span class="token parameter variable">-perm</span> 0777 <span class="token parameter variable">-print</span> <span class="token parameter variable">-exec</span> <span class="token function">chmod</span> <span class="token number">644</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span></code></pre>
+<p>Find directories and set permissions to 755.</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> / <span class="token parameter variable">-type</span> d <span class="token parameter variable">-perm</span> <span class="token number">777</span> <span class="token parameter variable">-print</span> <span class="token parameter variable">-exec</span> <span class="token function">chmod</span> <span class="token number">755</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Find and tar</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-name</span> <span class="token string">"*.java"</span> <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">tar</span> cvf myfile.tar
+</span><span class="code-line line-number" line="2">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-name</span> <span class="token string">"*.java"</span> <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">tar</span> rvf myfile.tar
+</span></code></pre>
+
+</div></div></div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

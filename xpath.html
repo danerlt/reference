@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: XPath
+date: 2020-12-19 22:15:43
+icon: icon-xpath
+background: bg-[#77aeeb]
+tags:
+    - document
+    - expression
+    - select
+categories:
+    - Toolkit
+intro: |
+    This is an [XPath](https://en.wikipedia.org/wiki/XPath) selectors cheat sheet, which lists commonly used XPath positioning methods and CSS selectors
+---
+
+XPath Selectors {.cols-6}
+--------
+
+### Getting started {.col-span-2}
+
+- [Xpath test bed](http://www.whitebeam.org/library/guide/TechNotes/xpathtestbed.rhtm) _(whitebeam.org)_
+
+Test in Firefox or Chrome console:
+```console
+$x('/html/body')
+$x('//h1')
+$x('//h1')[0].innerText
+$x('//a[text() &#x26;  xpath cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,xpath">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/xpath.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>
+  title: XPath
+  date: 2020-12-19 22:15:43
+  icon: icon-xpath
+  background: bg-[#77aeeb]
+  tags:
+  - document
+  - expression
+  - select
+  categories:
+  - Toolkit
+  intro: |
+  This is an <a href="https://en.wikipedia.org/wiki/XPath">XPath</a> selectors cheat sheet, which lists commonly used XPath positioning methods and CSS selectors
+</h2><div class="wrap-body">
+</div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>XPath Selectors {.cols-6}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Getting started {.col-span-2}</h3><div class="wrap-body">
+<ul>
+  <li><a href="http://www.whitebeam.org/library/guide/TechNotes/xpathtestbed.rhtm">Xpath test bed</a> <em>(whitebeam.org)</em></li>
+</ul>
+<p>Test in Firefox or Chrome console:</p>
+<pre><code class="language-console code-highlight"><span class="code-line line-number" line="1">$x('/html/body')
+</span><span class="code-line line-number" line="2">$x('//h1')
+</span><span class="code-line line-number" line="3">$x('//h1')[0].innerText
+</span><span class="code-line line-number" line="4">$x('//a[text()="XPath"]')[0].click()
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Descendant selectors {.col-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Xpath</th>
+      <th>CSS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>//h1</code></td>
+      <td>h1</td>
+    </tr>
+    <tr>
+      <td><code>//div//p</code></td>
+      <td>div p</td>
+    </tr>
+    <tr>
+      <td><code>//ul/li</code></td>
+      <td>ul > li</td>
+    </tr>
+    <tr>
+      <td><code>//ul/li/a</code></td>
+      <td>ul > li > a</td>
+    </tr>
+    <tr>
+      <td><code>//div/*</code></td>
+      <td>div > *</td>
+    </tr>
+    <tr>
+      <td><code>/</code></td>
+      <td>:root</td>
+    </tr>
+    <tr>
+      <td><code>/html/body</code></td>
+      <td>:root > body</td>
+    </tr>
+    <tr>
+      <td>{.show-header}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Order selectors {.col-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Xpath</th>
+      <th>CSS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>//ul/li[1]</code></td>
+      <td>ul > li:first-child</td>
+    </tr>
+    <tr>
+      <td><code>//ul/li[2]</code></td>
+      <td>ul > li:nth-child(2)</td>
+    </tr>
+    <tr>
+      <td><code>//ul/li[last()]</code></td>
+      <td>ul > li:last-child</td>
+    </tr>
+    <tr>
+      <td><code>//li[@id="id"][1]</code></td>
+      <td>li#id:first-child</td>
+    </tr>
+    <tr>
+      <td><code>//a[1]</code></td>
+      <td>a:first-child</td>
+    </tr>
+    <tr>
+      <td><code>//a[last()]</code></td>
+      <td>a:last-child</td>
+    </tr>
+    <tr>
+      <td>{.show-header}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Attribute selectors {.col-span-3 .row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Xpath</th>
+      <th>CSS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>//*[@id="id"]</code></td>
+      <td>#id</td>
+    </tr>
+    <tr>
+      <td><code>//*[@class="class"]</code></td>
+      <td>.class</td>
+    </tr>
+    <tr>
+      <td><code>//input[@type="submit"]</code></td>
+      <td>input[type="submit"]</td>
+    </tr>
+    <tr>
+      <td><code>//a[@id="abc"][@for="xyz"]</code></td>
+      <td>a#abc[for="xyz"]</td>
+    </tr>
+    <tr>
+      <td><code>//a[@rel]</code></td>
+      <td>a[rel]</td>
+    </tr>
+    <tr>
+      <td><code>//a[starts-with(@href, '/')]</code></td>
+      <td>a[href^='/']</td>
+    </tr>
+    <tr>
+      <td><code>//a[ends-with(@href, '.pdf')]</code></td>
+      <td>a[href$='pdf']</td>
+    </tr>
+    <tr>
+      <td><code>//a[contains(@href, '://')]</code></td>
+      <td>a[href*='<code>:</code>//']</td>
+    </tr>
+    <tr>
+      <td><code>//a[contains(@rel, 'help')]</code></td>
+      <td>a[rel~='help']</td>
+    </tr>
+    <tr>
+      <td>{.show-header}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Siblings {.col-span-3}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Xpath</th>
+      <th>CSS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>//h1/following-sibling::ul</code></td>
+      <td>h1 ~ ul</td>
+    </tr>
+    <tr>
+      <td><code>//h1/following-sibling::ul[1]</code></td>
+      <td>h1 + ul</td>
+    </tr>
+    <tr>
+      <td><code>//h1/following-sibling::[@id="id"]</code></td>
+      <td>h1 ~ #id</td>
+    </tr>
+    <tr>
+      <td>{.show-header}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>jQuery {.col-span-3}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Xpath</th>
+      <th>CSS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>//ul/li/..</code></td>
+      <td>$('ul > li').parent()</td>
+    </tr>
+    <tr>
+      <td><code>//li/ancestor-or-self::section</code></td>
+      <td>$('li').closest('section')</td>
+    </tr>
+    <tr>
+      <td><code>//a/@href</code></td>
+      <td>$('a').attr('href')</td>
+    </tr>
+    <tr>
+      <td><code>//span/text()</code></td>
+      <td>$('span').text()</td>
+    </tr>
+    <tr>
+      <td>{.show-header}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Misc selectors {.col-span-3}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Xpath</th>
+      <th>CSS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>//h1[not(@id)]</code></td>
+      <td>h1:not([id])</td>
+    </tr>
+    <tr>
+      <td><code>//button[text()="Submit"]</code></td>
+      <td>Text match</td>
+    </tr>
+    <tr>
+      <td><code>//button[contains(text(),"Go")]</code></td>
+      <td>Text contains (substring)</td>
+    </tr>
+    <tr>
+      <td><code>//product[@price > 2.50]</code></td>
+      <td>Arithmetic</td>
+    </tr>
+    <tr>
+      <td><code>//ul[*]</code></td>
+      <td>Has children</td>
+    </tr>
+    <tr>
+      <td><code>//ul[li]</code></td>
+      <td>Has children (specific)</td>
+    </tr>
+    <tr>
+      <td><code>//a[@name or @href]</code></td>
+      <td>Or logic</td>
+    </tr>
+    <tr>
+      <td>`//a</td>
+      <td>//div`</td>
+    </tr>
+    <tr>
+      <td>{.show-header}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>XPath Expressions {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Steps and axes {.secondary}</h3><div class="wrap-body"><br>
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>//</code></td>
+      <td><code>ul</code></td>
+      <td><code>/</code></td>
+      <td><code>a[@id='link']</code></td>
+    </tr>
+    <tr>
+      <td>Axis</td>
+      <td>Step</td>
+      <td>Axis</td>
+      <td>Step</td>
+    </tr>
+    <tr>
+      <td>{.left-text}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Prefixes</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Prefix</th>
+      <th>Example</th>
+      <th>Means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>//</code></td>
+      <td><code>//hr[@class='edge']</code></td>
+      <td>Anywhere</td>
+    </tr>
+    <tr>
+      <td><code>/</code></td>
+      <td><code>/html/body/div</code></td>
+      <td>Root</td>
+    </tr>
+    <tr>
+      <td><code>./</code></td>
+      <td><code>./div/p</code></td>
+      <td>Relative</td>
+    </tr>
+    <tr>
+      <td>{.show-header}</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Axes</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Axis</th>
+      <th>Example</th>
+      <th>Means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>/</code></td>
+      <td><code>//ul/li/a</code></td>
+      <td>Child</td>
+    </tr>
+    <tr>
+      <td><code>//</code></td>
+      <td><code>//[@id="list"]//a</code></td>
+      <td>Descendant</td>
+    </tr>
+    <tr>
+      <td>{.show-header}</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>XPath Predicates {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Predicates</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">//div<span class="token punctuation">[</span>true<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="2">//div<span class="token punctuation">[</span>@class<span class="token operator">=</span><span class="token string">"head"</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="3">//div<span class="token punctuation">[</span>@class<span class="token operator">=</span><span class="token string">"head"</span><span class="token punctuation">]</span><span class="token punctuation">[</span>@id<span class="token operator">=</span><span class="token string">"top"</span><span class="token punctuation">]</span>
+</span></code></pre>
+<p>Restricts a nodeset only if some condition is true. They can be chained.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Operators</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># Comparison</span>
+</span><span class="code-line line-number" line="2">//a<span class="token punctuation">[</span>@id <span class="token operator">=</span> <span class="token string">"xyz"</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="3">//a<span class="token punctuation">[</span>@id <span class="token operator">!=</span> <span class="token string">"xyz"</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="4">//a<span class="token punctuation">[</span>@price <span class="token operator">></span> <span class="token number">25</span><span class="token punctuation">]</span>
+</span></code></pre>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># Logic (and/or)</span>
+</span><span class="code-line line-number" line="2">//div<span class="token punctuation">[</span>@id<span class="token operator">=</span><span class="token string">"head"</span> and position<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="3">//div<span class="token punctuation">[</span><span class="token punctuation">(</span>x and y<span class="token punctuation">)</span> or not<span class="token punctuation">(</span>z<span class="token punctuation">)</span><span class="token punctuation">]</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Using nodes</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># Use them inside functions</span>
+</span><span class="code-line line-number" line="2">//ul<span class="token punctuation">[</span>count<span class="token punctuation">(</span>li<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">2</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="3">//ul<span class="token punctuation">[</span>count<span class="token punctuation">(</span>li<span class="token punctuation">[</span>@class<span class="token operator">=</span><span class="token string">'hide'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">]</span>
+</span></code></pre>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># Returns `&#x3C;ul>` that has a `&#x3C;li>` child</span>
+</span><span class="code-line line-number" line="2">//ul<span class="token punctuation">[</span>li<span class="token punctuation">]</span>
+</span></code></pre>
+<p>You can use nodes inside predicates.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Indexing</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">//a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>                <span class="token comment"># first &#x3C;a></span>
+</span><span class="code-line line-number" line="2">//a<span class="token punctuation">[</span>last<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>           <span class="token comment"># last &#x3C;a></span>
+</span><span class="code-line line-number" line="3">//ol/li<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>            <span class="token comment"># second &#x3C;li></span>
+</span><span class="code-line line-number" line="4">//ol/li<span class="token punctuation">[</span>position<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token comment"># same as above</span>
+</span><span class="code-line line-number" line="5">//ol/li<span class="token punctuation">[</span>position<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token comment">#:not(:first-child)</span>
+</span></code></pre>
+<p>Use <code>[]</code> with a number, or <code>last()</code> or <code>position()</code>.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Chaining order</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>@href<span class="token operator">=</span><span class="token string">'/'</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="2">a<span class="token punctuation">[</span>@href<span class="token operator">=</span><span class="token string">'/'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+</span></code></pre>
+<p>Order is significant, these two are different.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Nesting predicates</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">//section[.//h1[@id='hi']]
+</span></code></pre>
+<p>This returns <code>&#x3C;section></code> if it has an <code>&#x3C;h1></code> descendant with <code>id='hi'</code>.</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>XPath Functions {.cols-2}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Node functions</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">name<span class="token punctuation">(</span><span class="token punctuation">)</span>            <span class="token comment"># //[starts-with(name(), 'h')]</span>
+</span><span class="code-line line-number" line="2">text<span class="token punctuation">(</span><span class="token punctuation">)</span>            <span class="token comment"># //button[text()="Submit"]</span>
+</span><span class="code-line line-number" line="3">                  <span class="token comment"># //button/text()</span>
+</span><span class="code-line line-number" line="4">lang<span class="token punctuation">(</span>str<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="5">namespace-uri<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span></code></pre>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">count<span class="token punctuation">(</span><span class="token punctuation">)</span>           <span class="token comment"># //table[count(tr)=1]</span>
+</span><span class="code-line line-number" line="2">position<span class="token punctuation">(</span><span class="token punctuation">)</span>        <span class="token comment"># //ol/li[position()=2]</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>String functions</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">contains<span class="token punctuation">(</span><span class="token punctuation">)</span>        <span class="token comment"># font[contains(@class,"head")]</span>
+</span><span class="code-line line-number" line="2">starts-with<span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token comment"># font[starts-with(@class,"head")]</span>
+</span><span class="code-line line-number" line="3">ends-with<span class="token punctuation">(</span><span class="token punctuation">)</span>       <span class="token comment"># font[ends-with(@class,"head")]</span>
+</span></code></pre>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">concat<span class="token punctuation">(</span>x,y<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="2">substring<span class="token punctuation">(</span>str, start, len<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3">substring-before<span class="token punctuation">(</span><span class="token string">"01/02"</span>, <span class="token string">"/"</span><span class="token punctuation">)</span>  <span class="token comment">#=> 01</span>
+</span><span class="code-line line-number" line="4">substring-after<span class="token punctuation">(</span><span class="token string">"01/02"</span>, <span class="token string">"/"</span><span class="token punctuation">)</span>   <span class="token comment">#=> 02</span>
+</span><span class="code-line line-number" line="5">translate<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="6">normalize-space<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="7">string-length<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Boolean functions</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">not<span class="token punctuation">(</span>expr<span class="token punctuation">)</span>         <span class="token comment"># button[not(starts-with(text(),"Submit"))]</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Type conversion</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">string<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="2">number<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3">boolean<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>XPath Axes {.cols-2}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Using axes</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">//ul/li                       <span class="token comment"># ul > li</span>
+</span><span class="code-line line-number" line="2">//ul/child::li                <span class="token comment"># ul > li (same)</span>
+</span><span class="code-line line-number" line="3">//ul/following-sibling::li    <span class="token comment"># ul ~ li</span>
+</span><span class="code-line line-number" line="4">//ul/descendant-or-self::li   <span class="token comment"># ul li</span>
+</span><span class="code-line line-number" line="5">//ul/ancestor-or-self::li     <span class="token comment"># $('ul').closest('li')</span>
+</span></code></pre>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>//</code></td>
+      <td><code>ul</code></td>
+      <td><code>/child::</code></td>
+      <td><code>li</code></td>
+    </tr>
+    <tr>
+      <td>Axis</td>
+      <td>Step</td>
+      <td>Axis</td>
+      <td>Step</td>
+    </tr>
+    <tr>
+      <td>{.left-text}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>Steps of an expression are separated by <code>/</code>, usually used to pick child nodes. That's not always true: you can specify a different "axis" with <code>::</code>.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Child axis</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># both the same</span>
+</span><span class="code-line line-number" line="2">//ul/li/a
+</span><span class="code-line line-number" line="3">//child::ul/child::li/child::a
+</span></code></pre>
+<p><code>child::</code> is the default axis. This makes <code>//a/b/c</code> work.</p>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># both the same</span>
+</span><span class="code-line line-number" line="2"><span class="token comment"># this works because `child::li` is truthy </span>
+</span><span class="code-line line-number" line="3">//ul<span class="token punctuation">[</span>li<span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="4">//ul<span class="token punctuation">[</span>child::li<span class="token punctuation">]</span>
+</span></code></pre>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># both the same</span>
+</span><span class="code-line line-number" line="2">//ul<span class="token punctuation">[</span>count<span class="token punctuation">(</span>li<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">2</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="3">//ul<span class="token punctuation">[</span>count<span class="token punctuation">(</span>child::li<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">2</span><span class="token punctuation">]</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Descendant-or-self axis</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># both the same</span>
+</span><span class="code-line line-number" line="2">//div//h4
+</span><span class="code-line line-number" line="3">//div/descendant-or-self::h4
+</span></code></pre>
+<p><code>//</code> is short for the <code>descendant-or-self::</code> axis.</p>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># both the same</span>
+</span><span class="code-line line-number" line="2">//ul//<span class="token punctuation">[</span>last<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="3">//ul/descendant-or-self::<span class="token punctuation">[</span>last<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Other axes {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Axis</th>
+      <th>Abbrev</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ancestor</code></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>ancestor-or-self</code></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  | <code>attribute</code> | <code>@</code> | <code>@href</code> is short for <code>attribute::href</code> |
+  | <code>child</code> | | <code>div</code> is short for <code>child::div</code> |
+  | <code>descendant</code> | | |
+  | <code>descendant-or-self</code> | <code>//</code> | <code>//</code> is short for <code>/descendant-or-self::node()/</code> |
+  | <code>namespace</code> | | |
+</p>
+<p>
+  | <code>self</code> | <code>.</code> | <code>.</code> is short for <code>self::node()</code> |
+  | <code>parent</code> | <code>..</code> | <code>..</code> is short for <code>parent::node()</code> |
+</p>
+<p>
+  | <code>following</code> | | |
+  | <code>following-sibling</code> | | |
+  | <code>preceding</code> | | |
+  | <code>preceding-sibling</code> | | |
+  {.headers}
+</p>
+<p>There are other axes you can use.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Unions</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">//a <span class="token operator">|</span> //span
+</span></code></pre>
+<p>Use <code>|</code> to join two expressions.</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>XPath More examples {.cols-2}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Examples</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">//*                 <span class="token comment"># all elements</span>
+</span><span class="code-line line-number" line="2">count<span class="token punctuation">(</span>//*<span class="token punctuation">)</span>          <span class="token comment"># count all elements</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">(</span>//h1<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>/text<span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment"># text of the first h1 heading</span>
+</span><span class="code-line line-number" line="4">//li<span class="token punctuation">[</span>span<span class="token punctuation">]</span>          <span class="token comment"># find a &#x3C;li> with an &#x3C;span> inside it</span>
+</span><span class="code-line line-number" line="5">                    <span class="token comment"># ...expands to //li[child::span]</span>
+</span><span class="code-line line-number" line="6">//ul/li/<span class="token punctuation">..</span>          <span class="token comment"># use .. to select a parent</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Find a parent</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">//section<span class="token punctuation">[</span>h1<span class="token punctuation">[</span>@id<span class="token operator">=</span><span class="token string">'section-name'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+</span></code></pre>
+<p>Finds a <code>&#x3C;section></code> that directly contains <code>h1#section-name</code></p>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">//section<span class="token punctuation">[</span>//h1<span class="token punctuation">[</span>@id<span class="token operator">=</span><span class="token string">'section-name'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+</span></code></pre>
+<p>
+  Finds a <code>&#x3C;section></code> that contains <code>h1#section-name</code>.
+  (Same as above, but uses descendant-or-self instead of child)
+</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Closest</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">./ancestor-or-self::<span class="token punctuation">[</span>@class<span class="token operator">=</span><span class="token string">"box"</span><span class="token punctuation">]</span>
+</span></code></pre>
+<p>Works like jQuery's <code>$().closest('.box')</code>.</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Attributes</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">//item<span class="token punctuation">[</span>@price <span class="token operator">></span> <span class="token number">2</span>*@discount<span class="token punctuation">]</span>
+</span></code></pre>
+<p>Finds <code>&#x3C;item></code> and check its attributes</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Also see</h2><div class="wrap-body">
+<ul>
+  <li><a href="https://devhints.io/xpath">Devhints</a> <em>(devhints.io)</em></li>
+  <li><a href="http://www.whitebeam.org/library/guide/TechNotes/xpathtestbed.rhtm">Xpath test bed</a> <em>(whitebeam.org)</em></li>
+</ul>
+
+</div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

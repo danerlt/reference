@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: JSON
+date: 2021-09-14 18:26:55
+icon: icon-json
+background: bg-[#646464]
+tags:
+   - config
+   - format
+categories:
+   - Programming
+intro: |
+    This is a quick reference cheat sheet for understanding and writing JSON format configuration files.
+---
+
+Getting started {.cols-3}
+---------------
+
+
+### Introduction
+
+[JSON](https://json.org/) is a lightweight text-based open standard designed for human-readable data interchange.
+
+- JSON stands for JavaScript Object Notation
+- JSON is easy to read and write.
+- JSON is language agnostic data-interchange format
+- JSON filename extension is `.json`
+- JSON Internet Media type is `application/json`
+{.style-round}
+
+
+
+### Examples
+
+```json
+{
+  "name": "Jason",
+  "age": 39,
+  "height": 1.92,
+  "gender": "M",
+  "salary": 70000,
+  "married": true,
+  "children": [
+    {"name": "Tom", "age": 9, "gender":"M"},
+    {"name": "Ava", "age": 7, "gender":"F"}
+  ]
+}
+```
+
+
+### Types
+
+| Type      | Description                             |
+|-----------|-----------------------------------------|
+| `Number`  | Double precision floating-point         |
+| `String`  | Series of characters                    |
+| `Boolean` | `true` or `false`                       |
+| `Array`   | Ordered sequence of values              |
+| `Value`   | String, Number, Boolean, null etc       |
+| `Object`  | Unordered collection of key/value pairs |
+| `null`    | Null or Empty                           |
+
+
+
+
+### String {.row-span-3}
+|      |                            |
+|------|----------------------------|
+| `\"` | Double quote               |
+| `\\` | Backslash                  |
+| `\/` | Forward slash              |
+| `\b` | Backspace                  |
+| `\f` | Form feed                  |
+| `\n` | Newline                    |
+| `\r` | Carriage return            |
+| `\t` | Tab                        |
+| `\u` | Trailed by four hex digits |
+
+#### Examples
+```json {.wrap}
+{
+  "url": "https://quickref.me",
+  "msg" : "Hi,\n\"QuickRef.ME\"",
+  "intro": "Share quick reference and cheat sheet for developers."
+}
+```
+#### Invalid String
+```json
+{ "foo": 'bar' }
+```
+Have to be delimited by double quotes
+
+
+
+### Number {.row-span-2}
+
+| Type       | Description                            |
+|------------|----------------------------------------|
+| `Integer`  | Digits 1-9, 0 and positive or negative |
+| `Fraction` | Fractions like 0.3, 3.9                |
+| `Exponent` | Exponent like e, e+, e-, E, E+, E      |
+
+#### Examples
+```json
+{
+  "positive" : 12,
+  "negative" : -1,
+  "fraction" : 10.25,
+  "exponent" : 1.0E+2,
+  "zero" : 0
+}
+```
+#### Invalid Number
+```json
+{ "foo": 0xFF }
+```
+In JSON you can use only Decimal Literals
+
+
+
+### Objects
+
+```json
+{
+  "color": "Purple",
+  "id": "210",
+  "composition": {
+    "R": 70,
+    "G": 39,
+    "B": 89
+  },
+  "empty_object": {}
+}
+```
+
+Multiple key/value pairs separated by a comma
+
+
+
+### Arrays
+```json
+[1, 2, 3, 4, 5]
+```
+Begins with `[` and ends with `]`
+
+
+
+### Array of objects
+```json
+{
+  "children": [
+    {"name": "Jimmy Smith", "age": 15},
+    {"name": "Sammy Sosa", "age": 12}
+  ]
+}
+```
+
+
+### Object of arrays
+```json
+{
+  "attributes": ["a1", "a2"],
+  "methods": ["getter", "setter"],
+  "empty_array": []
+}
+```
+
+
+### 2D Array
+```json
+{
+  "my_sequences": [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9, 0],
+    [10, 11]
+  ]
+}
+```
+
+
+### Object of objects
+
+```json
+{
+  "Mark McGwire": {
+    "hr": 65,
+    "avg": 0.278
+  },
+  "Sammy Sosa": {
+    "hr": 63,
+    "avg": 0.288
+  }
+}
+```
+
+### Nested
+```json
+{
+  "Jack": {
+    "id": 1,
+    "name": "Franc",
+    "salary": 25000,
+    "hobby": ["a", "b"],
+    "location": {
+        "country": "A", "city": "A-A"
+    }
+  }
+}
+```
+
+
+
+Access JSON in JavaScript  {.cols-3}
+-------------------------
+
+### Access Object
+
+```javascript
+let myObject  &#x26;  json cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,json">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/json.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>Getting started {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Introduction</h3><div class="wrap-body">
+<p><a href="https://json.org/">JSON</a> is a lightweight text-based open standard designed for human-readable data interchange.</p>
+<ul>
+  <li>JSON stands for JavaScript Object Notation</li>
+  <li>JSON is easy to read and write.</li>
+  <li>JSON is language agnostic data-interchange format</li>
+  <li>JSON filename extension is <code>.json</code></li>
+  <li>
+    JSON Internet Media type is <code>application/json</code>
+    {.style-round}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Examples</h3><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Jason"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">39</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"height"</span><span class="token operator">:</span> <span class="token number">1.92</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">  <span class="token property">"gender"</span><span class="token operator">:</span> <span class="token string">"M"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">  <span class="token property">"salary"</span><span class="token operator">:</span> <span class="token number">70000</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">  <span class="token property">"married"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="8">  <span class="token property">"children"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="9">    <span class="token punctuation">{</span><span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Tom"</span><span class="token punctuation">,</span> <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token property">"gender"</span><span class="token operator">:</span><span class="token string">"M"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="10">    <span class="token punctuation">{</span><span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Ava"</span><span class="token punctuation">,</span> <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token property">"gender"</span><span class="token operator">:</span><span class="token string">"F"</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="11">  <span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="12"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Types</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Number</code></td>
+      <td>Double precision floating-point</td>
+    </tr>
+    <tr>
+      <td><code>String</code></td>
+      <td>Series of characters</td>
+    </tr>
+    <tr>
+      <td><code>Boolean</code></td>
+      <td><code>true</code> or <code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>Array</code></td>
+      <td>Ordered sequence of values</td>
+    </tr>
+    <tr>
+      <td><code>Value</code></td>
+      <td>String, Number, Boolean, null etc</td>
+    </tr>
+    <tr>
+      <td><code>Object</code></td>
+      <td>Unordered collection of key/value pairs</td>
+    </tr>
+    <tr>
+      <td><code>null</code></td>
+      <td>Null or Empty</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>String {.row-span-3}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>\"</code></td>
+      <td>Double quote</td>
+    </tr>
+    <tr>
+      <td><code>\\</code></td>
+      <td>Backslash</td>
+    </tr>
+    <tr>
+      <td><code>\/</code></td>
+      <td>Forward slash</td>
+    </tr>
+    <tr>
+      <td><code>\b</code></td>
+      <td>Backspace</td>
+    </tr>
+    <tr>
+      <td><code>\f</code></td>
+      <td>Form feed</td>
+    </tr>
+    <tr>
+      <td><code>\n</code></td>
+      <td>Newline</td>
+    </tr>
+    <tr>
+      <td><code>\r</code></td>
+      <td>Carriage return</td>
+    </tr>
+    <tr>
+      <td><code>\t</code></td>
+      <td>Tab</td>
+    </tr>
+    <tr>
+      <td><code>\u</code></td>
+      <td>Trailed by four hex digits</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Examples</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"https://quickref.me"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"msg"</span> <span class="token operator">:</span> <span class="token string">"Hi,\n\"QuickRef.ME\""</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"intro"</span><span class="token operator">:</span> <span class="token string">"Share quick reference and cheat sheet for developers."</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Invalid String</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span> <span class="token property">"foo"</span><span class="token operator">:</span> 'bar' <span class="token punctuation">}</span>
+</span></code></pre>
+<p>Have to be delimited by double quotes</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Number {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Integer</code></td>
+      <td>Digits 1-9, 0 and positive or negative</td>
+    </tr>
+    <tr>
+      <td><code>Fraction</code></td>
+      <td>Fractions like 0.3, 3.9</td>
+    </tr>
+    <tr>
+      <td><code>Exponent</code></td>
+      <td>Exponent like e, e+, e-, E, E+, E</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Examples</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"positive"</span> <span class="token operator">:</span> <span class="token number">12</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"negative"</span> <span class="token operator">:</span> <span class="token number">-1</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"fraction"</span> <span class="token operator">:</span> <span class="token number">10.25</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">  <span class="token property">"exponent"</span> <span class="token operator">:</span> <span class="token number">1.0E+2</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">  <span class="token property">"zero"</span> <span class="token operator">:</span> <span class="token number">0</span>
+</span><span class="code-line line-number" line="7"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Invalid Number</h4><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span> <span class="token property">"foo"</span><span class="token operator">:</span> 0xFF <span class="token punctuation">}</span>
+</span></code></pre>
+<p>In JSON you can use only Decimal Literals</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Objects</h3><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"color"</span><span class="token operator">:</span> <span class="token string">"Purple"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"210"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"composition"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="5">    <span class="token property">"R"</span><span class="token operator">:</span> <span class="token number">70</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">    <span class="token property">"G"</span><span class="token operator">:</span> <span class="token number">39</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">    <span class="token property">"B"</span><span class="token operator">:</span> <span class="token number">89</span>
+</span><span class="code-line line-number" line="8">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="9">  <span class="token property">"empty_object"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="10"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>Multiple key/value pairs separated by a comma</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Arrays</h3><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+</span></code></pre>
+<p>Begins with <code>[</code> and ends with <code>]</code></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Array of objects</h3><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"children"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="3">    <span class="token punctuation">{</span><span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Jimmy Smith"</span><span class="token punctuation">,</span> <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">15</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token punctuation">{</span><span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Sammy Sosa"</span><span class="token punctuation">,</span> <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">12</span><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="5">  <span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Object of arrays</h3><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"attributes"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"a1"</span><span class="token punctuation">,</span> <span class="token string">"a2"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"methods"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"getter"</span><span class="token punctuation">,</span> <span class="token string">"setter"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"empty_array"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>2D Array</h3><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"my_sequences"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="3">    <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">    <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">    <span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="7">  <span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="8"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Object of objects</h3><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"Mark McGwire"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    <span class="token property">"hr"</span><span class="token operator">:</span> <span class="token number">65</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token property">"avg"</span><span class="token operator">:</span> <span class="token number">0.278</span>
+</span><span class="code-line line-number" line="5">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">  <span class="token property">"Sammy Sosa"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="7">    <span class="token property">"hr"</span><span class="token operator">:</span> <span class="token number">63</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="8">    <span class="token property">"avg"</span><span class="token operator">:</span> <span class="token number">0.288</span>
+</span><span class="code-line line-number" line="9">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="10"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Nested</h3><div class="wrap-body">
+<pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"Jack"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Franc"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">    <span class="token property">"salary"</span><span class="token operator">:</span> <span class="token number">25000</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">    <span class="token property">"hobby"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">    <span class="token property">"location"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="8">        <span class="token property">"country"</span><span class="token operator">:</span> <span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token property">"city"</span><span class="token operator">:</span> <span class="token string">"A-A"</span>
+</span><span class="code-line line-number" line="9">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="10">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="11"><span class="token punctuation">}</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Access JSON in JavaScript {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Access Object</h3><div class="wrap-body">
+<pre class="language-javascript"><code class="language-javascript code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">let</span> myObject <span class="token operator">=</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Jason"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token string-property property">"last"</span><span class="token operator">:</span> <span class="token string">"Doe"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token string-property property">"age"</span><span class="token operator">:</span> <span class="token number">39</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">  <span class="token string-property property">"gender"</span><span class="token operator">:</span> <span class="token string">"M"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">  <span class="token string-property property">"salary"</span><span class="token operator">:</span> <span class="token number">70000</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">  <span class="token string-property property">"married"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+</span><span class="code-line line-number" line="8"><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span></code></pre>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>myObject.name</code></td>
+      <td>"Jason"</td>
+    </tr>
+    <tr>
+      <td><code>myObject["name"]</code></td>
+      <td>"Jason"</td>
+    </tr>
+    <tr>
+      <td><code>myObject.age</code></td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <td><code>myObject.other</code></td>
+      <td>undefined</td>
+    </tr>
+    <tr>
+      <td><code>myObject[0]</code></td>
+      <td>undefined</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Access Nested {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-javascript"><code class="language-javascript code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">let</span> myObject <span class="token operator">=</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token string-property property">"ref"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    <span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token string-property property">"last"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">    <span class="token string-property property">"age"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">    <span class="token string-property property">"gender"</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">    <span class="token string-property property">"salary"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="8">    <span class="token string-property property">"married"</span><span class="token operator">:</span> <span class="token number">5</span>
+</span><span class="code-line line-number" line="9">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="10">  <span class="token string-property property">"jdoe"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="11">    <span class="token string">"Jason"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="12">    <span class="token string">"Doe"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="13">    <span class="token number">39</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="14">    <span class="token string">"M"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="15">    <span class="token number">70000</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="16">    <span class="token boolean">true</span>
+</span><span class="code-line line-number" line="17">  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="18">  <span class="token string-property property">"jsmith"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="19">    <span class="token string">"Tom"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="20">    <span class="token string">"Smith"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="21">    <span class="token number">42</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="22">    <span class="token string">"F"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="23">    <span class="token number">80000</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="24">    <span class="token boolean">true</span>
+</span><span class="code-line line-number" line="25">  <span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="26"><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span></code></pre>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>myObject.ref.age</code></td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td><code>myObject["ref"]["age"]</code></td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td><code>myObject.jdoe</code></td>
+      <td>["Jason", "Doe", 39 ...]</td>
+    </tr>
+    <tr>
+      <td><code>myObject.jsmith[3]</code></td>
+      <td>"F"</td>
+    </tr>
+    <tr>
+      <td><code>myObject[1]</code></td>
+      <td>undefined</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Access Array of Objects {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-javascript"><code class="language-javascript code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">let</span> myArray <span class="token operator">=</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="2">  <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">    <span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Jason"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">    <span class="token string-property property">"last"</span><span class="token operator">:</span> <span class="token string">"Doe"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">    <span class="token string-property property">"age"</span><span class="token operator">:</span> <span class="token number">39</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">    <span class="token string-property property">"gender"</span><span class="token operator">:</span> <span class="token string">"M"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">    <span class="token string-property property">"salary"</span><span class="token operator">:</span> <span class="token number">70000</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="8">    <span class="token string-property property">"married"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+</span><span class="code-line line-number" line="9">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="10">  <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="11">    <span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Tom"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="12">    <span class="token string-property property">"last"</span><span class="token operator">:</span> <span class="token string">"Smith"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="13">    <span class="token string-property property">"age"</span><span class="token operator">:</span> <span class="token number">42</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="14">    <span class="token string-property property">"gender"</span><span class="token operator">:</span> <span class="token string">"F"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="15">    <span class="token string-property property">"salary"</span><span class="token operator">:</span> <span class="token number">80000</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="16">    <span class="token string-property property">"married"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+</span><span class="code-line line-number" line="17">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="18">  <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="19">    <span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Amy"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="20">    <span class="token string-property property">"last"</span><span class="token operator">:</span> <span class="token string">"Burnquist"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="21">    <span class="token string-property property">"age"</span><span class="token operator">:</span> <span class="token number">29</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="22">    <span class="token string-property property">"gender"</span><span class="token operator">:</span> <span class="token string">"F"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="23">    <span class="token string-property property">"salary"</span><span class="token operator">:</span> <span class="token number">60000</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="24">    <span class="token string-property property">"married"</span><span class="token operator">:</span> <span class="token boolean">false</span>
+</span><span class="code-line line-number" line="25">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="26"><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</span></code></pre>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>myArray[0]</code></td>
+      <td><code>{</code>"name": "Jason", ...<code>}</code></td>
+    </tr>
+    <tr>
+      <td><code>myArray[1].name</code></td>
+      <td>"Tom"</td>
+    </tr>
+    <tr>
+      <td><code>myArray[1][2]</code></td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <td><code>myArray[3]</code></td>
+      <td>undefined</td>
+    </tr>
+    <tr>
+      <td><code>myArray[3].gender</code></td>
+      <td>TypeError: Cannot read...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Access Array</h3><div class="wrap-body">
+<pre class="language-javascript"><code class="language-javascript code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">let</span> myArray <span class="token operator">=</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="2">  <span class="token string">"Jason"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token string">"Doe"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token number">39</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">  <span class="token string">"M"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">  <span class="token number">70000</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">  <span class="token boolean">true</span>
+</span><span class="code-line line-number" line="8"><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</span></code></pre>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>myArray[1]</code></td>
+      <td>"Doe"</td>
+    </tr>
+    <tr>
+      <td><code>myArray[5]</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>myArray[6]</code></td>
+      <td>undefined</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Also see</h2><div class="wrap-body">
+<ul>
+  <li><a href="https://www.json.org/json-en.html">JSON</a> <em>(json.org)</em></li>
+  <li><a href="http://jsoneditoronline.org/">JSON Editor Online</a> <em>(jsoneditoronline.org)</em></li>
+  <li><a href="https://tableconvert.com/json-to-markdown">Convert JSON Array to Markdown Table, CSV and more</a> <em>(tableconvert.com)</em></li>
+</ul>
+
+</div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

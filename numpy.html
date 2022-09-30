@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: Numpy
+date: 2020-12-14 18:28:43
+icon: icon-numpy
+background: bg-[#4f6fc3]
+tags:
+    - scientific
+    - computing
+categories:
+    - Python
+intro: |
+    [NumPy](https://numpy.org/) is the fundamental package for scientific computing with Python. This cheat sheet is a quick reference for NumPy beginners.
+---
+
+Getting started {.cols-2}
+---------------
+
+### Introduction
+
+You’ll also need to import numpy to get started:
+
+```python
+import numpy as np
+```
+
+
+### Importing/exporting
+
+
+| -                                          | -                     |
+|--------------------------------------------|-----------------------|
+| `np.loadtxt('file.txt')`                   | From a text file      |
+| `np.genfromtxt('file.csv',delimiter &#x26;  numpy cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,numpy">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/numpy.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>
+  title: Numpy
+  date: 2020-12-14 18:28:43
+  icon: icon-numpy
+  background: bg-[#4f6fc3]
+  tags:
+  - scientific
+  - computing
+  categories:
+  - Python
+  intro: |
+  <a href="https://numpy.org/">NumPy</a> is the fundamental package for scientific computing with Python. This cheat sheet is a quick reference for NumPy beginners.
+</h2><div class="wrap-body">
+</div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Getting started {.cols-2}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Introduction</h3><div class="wrap-body">
+<p>You’ll also need to import numpy to get started:</p>
+<pre class="language-python"><code class="language-python code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Importing/exporting</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>np.loadtxt('file.txt')</code></td>
+      <td>From a text file</td>
+    </tr>
+    <tr>
+      <td><code>np.genfromtxt('file.csv',delimiter=',')</code></td>
+      <td>From a CSV file</td>
+    </tr>
+    <tr>
+      <td><code>np.savetxt('file.txt',arr,delimiter=' ')</code></td>
+      <td>Writes to a text file</td>
+    </tr>
+    <tr>
+      <td><code>np.savetxt('file.csv',arr,delimiter=',')</code></td>
+      <td>Writes to a CSV file</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Creating Arrays {.row-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>np.array([1,2,3])</code></td>
+      <td>One dimensional array</td>
+    </tr>
+    <tr>
+      <td><code>np.array([(1,2,3),(4,5,6)])</code></td>
+      <td>Two dimensional array</td>
+    </tr>
+    <tr>
+      <td><code>np.zeros(3)</code></td>
+      <td>1D array of length 3 all values 0</td>
+    </tr>
+    <tr>
+      <td><code>np.ones((3,4))</code></td>
+      <td>3x4 array with all values 1</td>
+    </tr>
+    <tr>
+      <td><code>np.eye(5)</code></td>
+      <td>5x5 array of 0 with 1 on diagonal (Identity matrix)</td>
+    </tr>
+    <tr>
+      <td><code>np.linspace(0,100,6)</code></td>
+      <td>Array of 6 evenly divided values from 0 to 100</td>
+    </tr>
+    <tr>
+      <td><code>np.arange(0,10,3)</code></td>
+      <td>Array of values from 0 to less than 10 with step 3 (eg [0,3,6,9])</td>
+    </tr>
+    <tr>
+      <td><code>np.full((2,3),8)</code></td>
+      <td>2x3 array with all values 8</td>
+    </tr>
+    <tr>
+      <td><code>np.random.rand(4,5)</code></td>
+      <td>4x5 array of random floats between 0–1</td>
+    </tr>
+    <tr>
+      <td><code>np.random.rand(6,7)*100</code></td>
+      <td>6x7 array of random floats between 0–100</td>
+    </tr>
+    <tr>
+      <td><code>np.random.randint(5,size=(2,3))</code></td>
+      <td>2x3 array with random ints between 0–4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Inspecting Properties</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>arr.size</code></td>
+      <td>Returns number of elements in arr</td>
+    </tr>
+    <tr>
+      <td><code>arr.shape</code></td>
+      <td>Returns dimensions of arr (rows,columns)</td>
+    </tr>
+    <tr>
+      <td><code>arr.dtype</code></td>
+      <td>Returns type of elements in arr</td>
+    </tr>
+    <tr>
+      <td><code>arr.astype(dtype)</code></td>
+      <td>Convert arr elements to type dtype</td>
+    </tr>
+    <tr>
+      <td><code>arr.tolist()</code></td>
+      <td>Convert arr to a Python list</td>
+    </tr>
+    <tr>
+      <td><code>np.info(np.eye)</code></td>
+      <td>View documentation for np.eye</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Copying/sorting/reshaping</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>np.copy(arr)</code></td>
+      <td>Copies arr to new memory</td>
+    </tr>
+    <tr>
+      <td><code>arr.view(dtype)</code></td>
+      <td>Creates view of arr elements with type dtype</td>
+    </tr>
+    <tr>
+      <td><code>arr.sort()</code></td>
+      <td>Sorts arr</td>
+    </tr>
+    <tr>
+      <td><code>arr.sort(axis=0)</code></td>
+      <td>Sorts specific axis of arr</td>
+    </tr>
+    <tr>
+      <td><code>two_d_arr.flatten()</code></td>
+      <td>Flattens 2D array two_d_arr to 1D</td>
+    </tr>
+    <tr>
+      <td><code>arr.T</code></td>
+      <td>Transposes arr (rows become columns and vice versa)</td>
+    </tr>
+    <tr>
+      <td><code>arr.reshape(3,4)</code></td>
+      <td>Reshapes arr to 3 rows, 4 columns without changing data</td>
+    </tr>
+    <tr>
+      <td><code>arr.resize((5,6))</code></td>
+      <td>Changes arr shape to 5x6 and fills new values with 0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Adding/removing Elements</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>np.append(arr,values)</code></td>
+      <td>Appends values to end of arr</td>
+    </tr>
+    <tr>
+      <td><code>np.insert(arr,2,values)</code></td>
+      <td>Inserts values into arr before index 2</td>
+    </tr>
+    <tr>
+      <td><code>np.delete(arr,3,axis=0)</code></td>
+      <td>Deletes row on index 3 of arr</td>
+    </tr>
+    <tr>
+      <td><code>np.delete(arr,4,axis=1)</code></td>
+      <td>Deletes column on index 4 of arr</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Combining/splitting</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>np.concatenate((arr1,arr2),axis=0)</code></td>
+      <td>Adds arr2 as rows to the end of arr1</td>
+    </tr>
+    <tr>
+      <td><code>np.concatenate((arr1,arr2),axis=1)</code></td>
+      <td>Adds arr2 as columns to end of arr1</td>
+    </tr>
+    <tr>
+      <td><code>np.split(arr,3)</code></td>
+      <td>Splits arr into 3 sub-arrays</td>
+    </tr>
+    <tr>
+      <td><code>np.hsplit(arr,5)</code></td>
+      <td>Splits arr horizontally on the 5th index</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Indexing/slicing/subsetting</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>arr[5]</code></td>
+      <td>Returns the element at index 5</td>
+    </tr>
+    <tr>
+      <td><code>arr[2,5]</code></td>
+      <td>Returns the 2D array element on index [2][5]</td>
+    </tr>
+    <tr>
+      <td><code>arr[1]=4</code></td>
+      <td>Assigns array element on index 1 the value 4</td>
+    </tr>
+    <tr>
+      <td><code>arr[1,3]=10</code></td>
+      <td>Assigns array element on index [1][3] the value 10</td>
+    </tr>
+    <tr>
+      <td><code>arr[0:3]</code></td>
+      <td>Returns the elements at indices 0,1,2 (On a 2D array: returns rows 0,1,2)</td>
+    </tr>
+    <tr>
+      <td><code>arr[0:3,4]</code></td>
+      <td>Returns the elements on rows 0,1,2 at column 4</td>
+    </tr>
+    <tr>
+      <td><code>arr[:2]</code></td>
+      <td>Returns the elements at indices 0,1 (On a 2D array: returns rows 0,1)</td>
+    </tr>
+    <tr>
+      <td><code>arr[:,1]</code></td>
+      <td>Returns the elements at index 1 on all rows</td>
+    </tr>
+    <tr>
+      <td><code>arr&#x3C;5</code></td>
+      <td>Returns an array with boolean values</td>
+    </tr>
+    <tr>
+      <td><code>(arr1&#x3C;3) &#x26; (arr2>5)</code></td>
+      <td>Returns an array with boolean values</td>
+    </tr>
+    <tr>
+      <td><code>~arr</code></td>
+      <td>Inverts a boolean array</td>
+    </tr>
+    <tr>
+      <td><code>arr[arr&#x3C;5]</code></td>
+      <td>Returns array elements smaller than 5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Vector Math</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>np.add(arr1,arr2)</code></td>
+      <td>Elementwise add arr2 to arr1</td>
+    </tr>
+    <tr>
+      <td><code>np.subtract(arr1,arr2)</code></td>
+      <td>Elementwise subtract arr2 from arr1</td>
+    </tr>
+    <tr>
+      <td><code>np.multiply(arr1,arr2)</code></td>
+      <td>Elementwise multiply arr1 by arr2</td>
+    </tr>
+    <tr>
+      <td><code>np.divide(arr1,arr2)</code></td>
+      <td>Elementwise divide arr1 by arr2</td>
+    </tr>
+    <tr>
+      <td><code>np.power(arr1,arr2)</code></td>
+      <td>Elementwise raise arr1 raised to the power of arr2</td>
+    </tr>
+    <tr>
+      <td><code>np.array_equal(arr1,arr2)</code></td>
+      <td>Returns True if the arrays have the same elements and shape</td>
+    </tr>
+    <tr>
+      <td><code>np.sqrt(arr)</code></td>
+      <td>Square root of each element in the array</td>
+    </tr>
+    <tr>
+      <td><code>np.sin(arr)</code></td>
+      <td>Sine of each element in the array</td>
+    </tr>
+    <tr>
+      <td><code>np.log(arr)</code></td>
+      <td>Natural log of each element in the array</td>
+    </tr>
+    <tr>
+      <td><code>np.abs(arr)</code></td>
+      <td>Absolute value of each element in the array</td>
+    </tr>
+    <tr>
+      <td><code>np.ceil(arr)</code></td>
+      <td>Rounds up to the nearest int</td>
+    </tr>
+    <tr>
+      <td><code>np.floor(arr)</code></td>
+      <td>Rounds down to the nearest int</td>
+    </tr>
+    <tr>
+      <td><code>np.round(arr)</code></td>
+      <td>Rounds to the nearest int</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Scalar Math</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>np.add(arr,1)</code></td>
+      <td>Add 1 to each array element</td>
+    </tr>
+    <tr>
+      <td><code>np.subtract(arr,2)</code></td>
+      <td>Subtract 2 from each array element</td>
+    </tr>
+    <tr>
+      <td><code>np.multiply(arr,3)</code></td>
+      <td>Multiply each array element by 3</td>
+    </tr>
+    <tr>
+      <td><code>np.divide(arr,4)</code></td>
+      <td>Divide each array element by 4 (returns np.nan for division by zero)</td>
+    </tr>
+    <tr>
+      <td><code>np.power(arr,5)</code></td>
+      <td>Raise each array element to the 5th power</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Statistics</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>np.mean(arr,axis=0)</code></td>
+      <td>Returns mean along specific axis</td>
+    </tr>
+    <tr>
+      <td><code>arr.sum()</code></td>
+      <td>Returns sum of arr</td>
+    </tr>
+    <tr>
+      <td><code>arr.min()</code></td>
+      <td>Returns minimum value of arr</td>
+    </tr>
+    <tr>
+      <td><code>arr.max(axis=0)</code></td>
+      <td>Returns maximum value of specific axis</td>
+    </tr>
+    <tr>
+      <td><code>np.var(arr)</code></td>
+      <td>Returns the variance of array</td>
+    </tr>
+    <tr>
+      <td><code>np.std(arr,axis=1)</code></td>
+      <td>Returns the standard deviation of specific axis</td>
+    </tr>
+    <tr>
+      <td><code>arr.corrcoef()</code></td>
+      <td>Returns correlation coefficient of array</td>
+    </tr>
+  </tbody>
+</table>
+
+</div></div></div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

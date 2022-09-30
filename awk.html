@@ -1,0 +1,1031 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: Awk
+date: 2020-12-31 15:18:34
+icon: icon-style
+background: bg-slate-600
+tags:
+    - bash
+    - text
+    - script
+categories:
+    - Linux Command
+intro: |
+    This is a one page quick reference cheat sheet to the [GNU awk](https://www.gnu.org/software/gawk/manual/gawk.html), which covers commonly used awk expressions and commands.
+---
+
+Getting started {.cols-3}
+---------------
+
+### Have a try
+```shell script {.wrap}
+$ awk -F: '{print $1, $NF}' /etc/passwd
+```
+----
+| - | -             | -                         |
+|---|---------------|---------------------------|
+|   | `-F:`         | Colon as a separator      |
+|   | `{...}`       | Awk program               |
+|   | `print`       | Prints the current record |
+|   | `$1`          | First field               |
+|   | `$NF`         | Last field                |
+|   | `/etc/passwd` | Input data file           |
+{.left-text}
+
+
+
+### Awk program 
+```
+BEGIN          {&#x3C;initializations>} 
+   &#x3C;pattern 1> {&#x3C;program actions>} 
+   &#x3C;pattern 2> {&#x3C;program actions>} 
+   ...
+END            {&#x3C; final actions >}
+```
+#### Example
+```
+awk '
+    BEGIN { print "\n>>>Start" }
+    !/(login|shutdown)/ { print NR, $0 }
+    END { print "&#x3C;&#x3C;&#x3C;END\n" }
+' /etc/passwd
+```
+
+
+### Variables {.row-span-2}
+```bash
+          $1      $2/$(NF-1)    $3/$NF
+           ▼          ▼           ▼ 
+        ┌──────┬──────────────┬───────┐
+$0/NR ▶ │  ID  │  WEBSITE     │  URI  │
+        ├──────┼──────────────┼───────┤
+$0/NR ▶ │  1   │  quickref.me │  awk  │
+        ├──────┼──────────────┼───────┤
+$0/NR ▶ │  2   │  google.com  │  25   │
+        └──────┴──────────────┴───────┘
+```
+---
+
+```
+# First and last field
+awk -F: '{print $1,$NF}' /etc/passwd
+
+# With line number
+awk -F: '{print NR, $0}' /etc/passwd
+
+# Second last field
+awk -F: '{print $(NF-1)}' /etc/passwd
+
+# Custom string 
+awk -F: '{print $1 " &#x26;  awk cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,awk">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/awk.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>
+  title: Awk
+  date: 2020-12-31 15:18:34
+  icon: icon-style
+  background: bg-slate-600
+  tags:
+  - bash
+  - text
+  - script
+  categories:
+  - Linux Command
+  intro: |
+  This is a one page quick reference cheat sheet to the <a href="https://www.gnu.org/software/gawk/manual/gawk.html">GNU awk</a>, which covers commonly used awk expressions and commands.
+</h2><div class="wrap-body">
+</div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Getting started {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Have a try</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">awk</span> -F: <span class="token string">'{print $1, $NF}'</span> /etc/passwd
+</span></code></pre>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td><code>-F:</code></td>
+      <td>Colon as a separator</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><code>{...}</code></td>
+      <td>Awk program</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><code>print</code></td>
+      <td>Prints the current record</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><code>$1</code></td>
+      <td>First field</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><code>$NF</code></td>
+      <td>Last field</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><code>/etc/passwd</code></td>
+      <td>Input data file</td>
+    </tr>
+    <tr>
+      <td>{.left-text}</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Awk program</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">BEGIN          {&#x3C;initializations>} 
+</span><span class="code-line line-number" line="2">   &#x3C;pattern 1> {&#x3C;program actions>} 
+</span><span class="code-line line-number" line="3">   &#x3C;pattern 2> {&#x3C;program actions>} 
+</span><span class="code-line line-number" line="4">   ...
+</span><span class="code-line line-number" line="5">END            {&#x3C; final actions >}
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Example</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk '
+</span><span class="code-line line-number" line="2">    BEGIN { print "\n>>>Start" }
+</span><span class="code-line line-number" line="3">    !/(login|shutdown)/ { print NR, $0 }
+</span><span class="code-line line-number" line="4">    END { print "&#x3C;&#x3C;&#x3C;END\n" }
+</span><span class="code-line line-number" line="5">' /etc/passwd
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Variables {.row-span-2}</h3><div class="wrap-body">
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">          <span class="token variable">$1</span>      <span class="token variable">$2</span>/<span class="token variable"><span class="token variable">$(</span>NF-1<span class="token variable">)</span></span>    <span class="token variable">$3</span>/<span class="token variable">$NF</span>
+</span><span class="code-line line-number" line="2">           ▼          ▼           ▼ 
+</span><span class="code-line line-number" line="3">        ┌──────┬──────────────┬───────┐
+</span><span class="code-line line-number" line="4"><span class="token variable">$0</span>/NR ▶ │  ID  │  WEBSITE     │  URI  │
+</span><span class="code-line line-number" line="5">        ├──────┼──────────────┼───────┤
+</span><span class="code-line line-number" line="6"><span class="token variable">$0</span>/NR ▶ │  <span class="token number">1</span>   │  quickref.me │  <span class="token function">awk</span>  │
+</span><span class="code-line line-number" line="7">        ├──────┼──────────────┼───────┤
+</span><span class="code-line line-number" line="8"><span class="token variable">$0</span>/NR ▶ │  <span class="token number">2</span>   │  google.com  │  <span class="token number">25</span>   │
+</span><span class="code-line line-number" line="9">        └──────┴──────────────┴───────┘
+</span></code></pre>
+<hr>
+<pre><code class="code-highlight"><span class="code-line line-number" line="1"># First and last field
+</span><span class="code-line line-number" line="2">awk -F: '{print $1,$NF}' /etc/passwd
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4"># With line number
+</span><span class="code-line line-number" line="5">awk -F: '{print NR, $0}' /etc/passwd
+</span><span class="code-line line-number" line="6">
+</span><span class="code-line line-number" line="7"># Second last field
+</span><span class="code-line line-number" line="8">awk -F: '{print $(NF-1)}' /etc/passwd
+</span><span class="code-line line-number" line="9">
+</span><span class="code-line line-number" line="10"># Custom string 
+</span><span class="code-line line-number" line="11">awk -F: '{print $1 "=" $6}' /etc/passwd
+</span></code></pre>
+<p>See: <a href="#awk-variables">Variables</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Awk program examples {.col-span-2 .row-span-2}</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {print "hello world"}'        # Prints "hello world"
+</span><span class="code-line line-number" line="2">awk -F: '{print $1}' /etc/passwd         # -F: Specify field separator
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4"># /pattern/ Execute actions only for matched pattern
+</span><span class="code-line line-number" line="5">awk -F: '/root/ {print $1}' /etc/passwd                     
+</span><span class="code-line line-number" line="6">
+</span><span class="code-line line-number" line="7"># BEGIN block is executed once at the start
+</span><span class="code-line line-number" line="8">awk -F: 'BEGIN { print "uid"} { print $1 }' /etc/passwd     
+</span><span class="code-line line-number" line="9">
+</span><span class="code-line line-number" line="10"># END block is executed once at the end
+</span><span class="code-line line-number" line="11">awk -F: '{print $1} END { print "-done-"}' /etc/passwd
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Conditions</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk -F: '$3>30 {print $1}' /etc/passwd
+</span></code></pre>
+<p>See: <a href="#awk-conditions">Conditions</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Generate 1000 spaces</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN{
+</span><span class="code-line line-number" line="2">    while (a++ &#x3C; 1000)
+</span><span class="code-line line-number" line="3">        s=s " ";
+</span><span class="code-line line-number" line="4">    print s
+</span><span class="code-line line-number" line="5">}'
+</span></code></pre>
+<p>See: <a href="#awk-loops">Loops</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Arrays</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">   fruits["mango"] = "yellow";
+</span><span class="code-line line-number" line="3">   fruits["orange"] = "orange"
+</span><span class="code-line line-number" line="4">   for(fruit in fruits) {
+</span><span class="code-line line-number" line="5">     print "The color of " fruit " is " fruits[fruit]
+</span><span class="code-line line-number" line="6">   }
+</span><span class="code-line line-number" line="7">}'
+</span></code></pre>
+<p>See: <a href="#awk-arrays">Arrays</a></p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Functions</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1"># => 5
+</span><span class="code-line line-number" line="2">awk 'BEGIN{print length("hello")}'
+</span><span class="code-line line-number" line="3"># => HELLO
+</span><span class="code-line line-number" line="4">awk 'BEGIN{print toupper("hello")}'
+</span><span class="code-line line-number" line="5"># => hel
+</span><span class="code-line line-number" line="6">awk 'BEGIN{print substr("hello", 1, 3)}'
+</span></code></pre>
+<p>See: <a href="#awk-functions">Functions</a></p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Awk Variables {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Build-in variables</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>$0</code></td>
+      <td>Whole line</td>
+    </tr>
+    <tr>
+      <td><code>$1, $2...$NF</code></td>
+      <td>First, second… last field</td>
+    </tr>
+    <tr>
+      <td><code>NR</code></td>
+      <td>Total <code>N</code>umber of <code>R</code>ecords</td>
+    </tr>
+    <tr>
+      <td><code>NF</code></td>
+      <td><code>N</code>number of <code>F</code>ields</td>
+    </tr>
+    <tr>
+      <td><code>OFS</code></td>
+      <td><code>O</code>utput <code>F</code>ield <code>S</code>eparator<br><em>(default " ")</em></td>
+    </tr>
+    <tr>
+      <td><code>FS</code></td>
+      <td>input <code>F</code>ield <code>S</code>eparator<br><em>(default " ")</em></td>
+    </tr>
+    <tr>
+      <td><code>ORS</code></td>
+      <td><code>O</code>utput <code>R</code>ecord <code>S</code>eparator<br><em>(default "\n")</em></td>
+    </tr>
+    <tr>
+      <td><code>RS</code></td>
+      <td>input <code>R</code>ecord <code>S</code>eparator<br><em>(default "\n")</em></td>
+    </tr>
+    <tr>
+      <td><code>FILENAME</code></td>
+      <td>Name of the file</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Expressions</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>$1 == "root"</code></td>
+      <td>First field equals root</td>
+    </tr>
+    <tr>
+      <td><code>{print $(NF-1)}</code></td>
+      <td>Second last field</td>
+    </tr>
+    <tr>
+      <td><code>NR!=1{print $0}</code></td>
+      <td>From 2th record</td>
+    </tr>
+    <tr>
+      <td><code>NR > 3</code></td>
+      <td>From 4th record</td>
+    </tr>
+    <tr>
+      <td><code>NR == 1</code></td>
+      <td>First record</td>
+    </tr>
+    <tr>
+      <td><code>END{print NR}</code></td>
+      <td>Total records</td>
+    </tr>
+    <tr>
+      <td><code>BEGIN{print OFMT}</code></td>
+      <td>Output format</td>
+    </tr>
+    <tr>
+      <td><code>{print NR, $0}</code></td>
+      <td>Line number</td>
+    </tr>
+    <tr>
+      <td><code>{print NR " " $0}</code></td>
+      <td>Line number (tab)</td>
+    </tr>
+    <tr>
+      <td><code>{$1 = NR; print}</code></td>
+      <td>Replace 1th field with line number</td>
+    </tr>
+    <tr>
+      <td><code>$NF > 4</code></td>
+      <td>Last field > 4</td>
+    </tr>
+    <tr>
+      <td><code>NR % 2 == 0</code></td>
+      <td>Even records</td>
+    </tr>
+    <tr>
+      <td><code>NR==10, NR==20</code></td>
+      <td>Records 10 to 20</td>
+    </tr>
+    <tr>
+      <td><code>BEGIN{print ARGC}</code></td>
+      <td>Total arguments</td>
+    </tr>
+    <tr>
+      <td><code>ORS=NR%5?",":"\n"</code></td>
+      <td>Concatenate records</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Examples</h3><div class="wrap-body">
+<p>Print sum and average</p>
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk -F: '{sum += $3}
+</span><span class="code-line line-number" line="2">     END { print sum, sum/NR }
+</span><span class="code-line line-number" line="3">' /etc/passwd
+</span></code></pre>
+<p>Printing parameters</p>
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    for (i = 1; i &#x3C; ARGC; i++)
+</span><span class="code-line line-number" line="3">        print ARGV[i] }' a b c
+</span></code></pre>
+<p>Output field separator as a comma</p>
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN { FS=":";OFS=","}
+</span><span class="code-line line-number" line="2">    {print $1,$2,$3,$4}' /etc/passwd
+</span></code></pre>
+<p>Position of match</p>
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    if (match("One Two Three", "Tw"))
+</span><span class="code-line line-number" line="3">        print RSTART }'
+</span></code></pre>
+<p>Length of match</p>
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    if (match("One Two Three", "re"))
+</span><span class="code-line line-number" line="3">        print RLENGTH }'
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Environment Variables</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ARGC</code></td>
+      <td>Number or arguments</td>
+    </tr>
+    <tr>
+      <td><code>ARGV</code></td>
+      <td>Array of arguments</td>
+    </tr>
+    <tr>
+      <td><code>FNR</code></td>
+      <td><code>F</code>ile <code>N</code>umber of <code>R</code>ecords</td>
+    </tr>
+    <tr>
+      <td><code>OFMT</code></td>
+      <td>Format for numbers<br><em>(default "%.6g")</em></td>
+    </tr>
+    <tr>
+      <td><code>RSTART</code></td>
+      <td>Location in the string</td>
+    </tr>
+    <tr>
+      <td><code>RLENGTH</code></td>
+      <td>Length of match</td>
+    </tr>
+    <tr>
+      <td><code>SUBSEP</code></td>
+      <td>Multi-dimensional array separator<br><em>(default "\034")</em></td>
+    </tr>
+    <tr>
+      <td><code>ARGIND</code></td>
+      <td>Argument Index</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>GNU awk only</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ENVIRON</code></td>
+      <td>Environment variables</td>
+    </tr>
+    <tr>
+      <td><code>IGNORECASE</code></td>
+      <td>Ignore case</td>
+    </tr>
+    <tr>
+      <td><code>CONVFMT</code></td>
+      <td>Conversion format</td>
+    </tr>
+    <tr>
+      <td><code>ERRNO</code></td>
+      <td>System errors</td>
+    </tr>
+    <tr>
+      <td><code>FIELDWIDTHS</code></td>
+      <td>Fixed width fields</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Defining variable</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk -v var1="Hello" -v var2="Wold" '
+</span><span class="code-line line-number" line="2">    END {print var1, var2}
+</span><span class="code-line line-number" line="3">' &#x3C;/dev/null
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Use shell variables</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk -v varName="$PWD" '
+</span><span class="code-line line-number" line="2">    END {print varName}' &#x3C;/dev/null
+</span></code></pre>
+</div></div></div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Awk Operators {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Operators</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>{print $1}</code></td>
+      <td>First field</td>
+    </tr>
+    <tr>
+      <td><code>$2 == "foo"</code></td>
+      <td>Equals</td>
+    </tr>
+    <tr>
+      <td><code>$2 != "foo"</code></td>
+      <td>Not equals</td>
+    </tr>
+    <tr>
+      <td><code>"foo" in array</code></td>
+      <td>In array</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Regular expression</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>/regex/</code></td>
+      <td>Line matches</td>
+    </tr>
+    <tr>
+      <td><code>!/regex/</code></td>
+      <td>Line not matches</td>
+    </tr>
+    <tr>
+      <td><code>$1 ~ /regex/</code></td>
+      <td>Field matches</td>
+    </tr>
+    <tr>
+      <td><code>$1 !~ /regex/</code></td>
+      <td>Field not matches</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>More conditions</h4><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`($2 &#x3C;= 4</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>($1 == 4 &#x26;&#x26; $3 &#x3C; 20)</code></td>
+      <td>And</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Operations</h3><div class="wrap-body">
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Arithmetic operations</h4><div class="wrap-body">
+<ul>
+  <li><code>+</code></li>
+  <li><code>-</code></li>
+  <li><code>*</code></li>
+  <li><code>/</code></li>
+  <li><code>%</code></li>
+  <li><code>++</code></li>
+  <li>
+    <code>--</code>
+    {.cols-3 .style-none}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Shorthand assignments</h4><div class="wrap-body">
+<ul>
+  <li><code>+=</code></li>
+  <li><code>-=</code></li>
+  <li><code>*=</code></li>
+  <li><code>/=</code></li>
+  <li>
+    <code>%=</code>
+    {.cols-3 .style-none}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Comparison operators</h4><div class="wrap-body">
+<ul>
+  <li><code>==</code></li>
+  <li><code>!=</code></li>
+  <li><code>&#x3C;</code></li>
+  <li><code>></code></li>
+  <li><code>&#x3C;=</code></li>
+  <li>
+    <code>>=</code>
+    {.cols-3 .style-none}
+  </li>
+</ul>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Examples</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    if ("foo" ~ "^fo+$")
+</span><span class="code-line line-number" line="3">        print "Fooey!";
+</span><span class="code-line line-number" line="4">}'
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Not match</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    if ("boo" !~ "^fo+$")
+</span><span class="code-line line-number" line="3">        print "Boo!";
+</span><span class="code-line line-number" line="4">}'
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>if in array</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    assoc["foo"] = "bar";
+</span><span class="code-line line-number" line="3">    assoc["bar"] = "baz";
+</span><span class="code-line line-number" line="4">    if ("foo" in assoc)
+</span><span class="code-line line-number" line="5">        print "Fooey!";
+</span><span class="code-line line-number" line="6">}'
+</span></code></pre>
+</div></div></div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Awk Functions {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Common functions {.col-span-2}</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>index(s,t)</code></td>
+      <td>Position in string s where string t occurs, 0 if not found</td>
+    </tr>
+    <tr>
+      <td><code>length(s)</code></td>
+      <td>Length of string s (or $0 if no arg)</td>
+    </tr>
+    <tr>
+      <td><code>rand</code></td>
+      <td>Random number between 0 and 1</td>
+    </tr>
+    <tr>
+      <td><code>substr(s,index,len)</code></td>
+      <td>Return len-char substring of s that begins at index (counted from 1)</td>
+    </tr>
+    <tr>
+      <td><code>srand</code></td>
+      <td>Set seed for rand and return previous seed</td>
+    </tr>
+    <tr>
+      <td><code>int(x)</code></td>
+      <td>Truncate x to integer value</td>
+    </tr>
+    <tr>
+      <td><code>split(s,a,fs)</code></td>
+      <td>Split string s into array a split by fs, returning length of a</td>
+    </tr>
+    <tr>
+      <td><code>match(s,r)</code></td>
+      <td>Position in string s where regex r occurs, or 0 if not found</td>
+    </tr>
+    <tr>
+      <td><code>sub(r,t,s)</code></td>
+      <td>Substitute t for first occurrence of regex r in string s (or $0 if s not given)</td>
+    </tr>
+    <tr>
+      <td><code>gsub(r,t,s)</code></td>
+      <td>Substitute t for all occurrences of regex r in string s</td>
+    </tr>
+    <tr>
+      <td><code>system(cmd)</code></td>
+      <td>Execute cmd and return exit status</td>
+    </tr>
+    <tr>
+      <td><code>tolower(s)</code></td>
+      <td>String s to lowercase</td>
+    </tr>
+    <tr>
+      <td><code>toupper(s)</code></td>
+      <td>String s to uppercase</td>
+    </tr>
+    <tr>
+      <td><code>getline</code></td>
+      <td>Set $0 to next input record from current input file.</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>User defined function</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk '
+</span><span class="code-line line-number" line="2">    # Returns minimum number
+</span><span class="code-line line-number" line="3">    function find_min(num1, num2){
+</span><span class="code-line line-number" line="4">       if (num1 &#x3C; num2)
+</span><span class="code-line line-number" line="5">       return num1
+</span><span class="code-line line-number" line="6">       return num2
+</span><span class="code-line line-number" line="7">    }
+</span><span class="code-line line-number" line="8">    # Returns maximum number
+</span><span class="code-line line-number" line="9">    function find_max(num1, num2){
+</span><span class="code-line line-number" line="10">       if (num1 > num2)
+</span><span class="code-line line-number" line="11">       return num1
+</span><span class="code-line line-number" line="12">       return num2
+</span><span class="code-line line-number" line="13">    }
+</span><span class="code-line line-number" line="14">    # Main function
+</span><span class="code-line line-number" line="15">    function main(num1, num2){
+</span><span class="code-line line-number" line="16">       result = find_min(num1, num2)
+</span><span class="code-line line-number" line="17">       print "Minimum =", result
+</span><span class="code-line line-number" line="18">      
+</span><span class="code-line line-number" line="19">       result = find_max(num1, num2)
+</span><span class="code-line line-number" line="20">       print "Maximum =", result
+</span><span class="code-line line-number" line="21">    }
+</span><span class="code-line line-number" line="22">    # Script execution starts here
+</span><span class="code-line line-number" line="23">    BEGIN {
+</span><span class="code-line line-number" line="24">       main(10, 60)
+</span><span class="code-line line-number" line="25">    }
+</span><span class="code-line line-number" line="26">'
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Awk Arrays {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Array with index</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    arr[0] = "foo";
+</span><span class="code-line line-number" line="3">    arr[1] = "bar";
+</span><span class="code-line line-number" line="4">    print(arr[0]); # => foo
+</span><span class="code-line line-number" line="5">    delete arr[0];
+</span><span class="code-line line-number" line="6">    print(arr[0]); # => ""
+</span><span class="code-line line-number" line="7">}'
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Array with key</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    assoc["foo"] = "bar";
+</span><span class="code-line line-number" line="3">    assoc["bar"] = "baz";
+</span><span class="code-line line-number" line="4">    print("baz" in assoc); # => 0
+</span><span class="code-line line-number" line="5">    print("foo" in assoc); # => 1
+</span><span class="code-line line-number" line="6">}'
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Array with split</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    split("foo:bar:baz", arr, ":");
+</span><span class="code-line line-number" line="3">    for (key in arr)
+</span><span class="code-line line-number" line="4">        print arr[key];
+</span><span class="code-line line-number" line="5">}'
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Array with asort</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    arr[0] = 3
+</span><span class="code-line line-number" line="3">    arr[1] = 2
+</span><span class="code-line line-number" line="4">    arr[2] = 4
+</span><span class="code-line line-number" line="5">    n = asort(arr)
+</span><span class="code-line line-number" line="6">    for (i = 1; i &#x3C;= n ; i++)
+</span><span class="code-line line-number" line="7">        print(arr[i])
+</span><span class="code-line line-number" line="8">}'
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Multi-dimensional</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    multidim[0,0] = "foo";
+</span><span class="code-line line-number" line="3">    multidim[0,1] = "bar";
+</span><span class="code-line line-number" line="4">    multidim[1,0] = "baz";
+</span><span class="code-line line-number" line="5">    multidim[1,1] = "boo";
+</span><span class="code-line line-number" line="6">}'
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Multi-dimensional iteration</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    array[1,2]=3;
+</span><span class="code-line line-number" line="3">    array[2,3]=5;
+</span><span class="code-line line-number" line="4">    for (comb in array) {
+</span><span class="code-line line-number" line="5">        split(comb,sep,SUBSEP);
+</span><span class="code-line line-number" line="6">        print sep[1], sep[2], 
+</span><span class="code-line line-number" line="7">        array[sep[1],sep[2]]
+</span><span class="code-line line-number" line="8">    }
+</span><span class="code-line line-number" line="9">}'
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Awk Conditions {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>if-else statement</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk -v count=2 'BEGIN {
+</span><span class="code-line line-number" line="2">    if (count == 1)
+</span><span class="code-line line-number" line="3">        print "Yes";
+</span><span class="code-line line-number" line="4">    else
+</span><span class="code-line line-number" line="5">        print "Huh?";
+</span><span class="code-line line-number" line="6">}'
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Ternary operator</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk -v count=2 'BEGIN {
+</span><span class="code-line line-number" line="2">    print (count==1) ? "Yes" : "Huh?";
+</span><span class="code-line line-number" line="3">}'
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Exists</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    assoc["foo"] = "bar";
+</span><span class="code-line line-number" line="3">    assoc["bar"] = "baz";
+</span><span class="code-line line-number" line="4">    if ("foo" in assoc)
+</span><span class="code-line line-number" line="5">        print "Fooey!";
+</span><span class="code-line line-number" line="6">}'
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Not exists</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    assoc["foo"] = "bar";
+</span><span class="code-line line-number" line="3">    assoc["bar"] = "baz";
+</span><span class="code-line line-number" line="4">    if ("Huh" in assoc == 0 )
+</span><span class="code-line line-number" line="5">        print "Huh!";
+</span><span class="code-line line-number" line="6">}'
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>switch</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk -F: '{
+</span><span class="code-line line-number" line="2">    switch (NR * 2 + 1) {
+</span><span class="code-line line-number" line="3">        case 3:
+</span><span class="code-line line-number" line="4">        case "11":
+</span><span class="code-line line-number" line="5">            print NR - 1
+</span><span class="code-line line-number" line="6">            break
+</span><span class="code-line line-number" line="7">        
+</span><span class="code-line line-number" line="8">        case /2[[:digit:]]+/:
+</span><span class="code-line line-number" line="9">            print NR
+</span><span class="code-line line-number" line="10">        
+</span><span class="code-line line-number" line="11">        default:
+</span><span class="code-line line-number" line="12">            print NR + 1
+</span><span class="code-line line-number" line="13">        
+</span><span class="code-line line-number" line="14">        case -1:
+</span><span class="code-line line-number" line="15">            print NR * -1
+</span><span class="code-line line-number" line="16">    }
+</span><span class="code-line line-number" line="17">}' /etc/passwd
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Awk Loops {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>for...i</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    for (i = 0; i &#x3C; 10; i++)
+</span><span class="code-line line-number" line="3">        print "i=" i;
+</span><span class="code-line line-number" line="4">}'
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Powers of two between 1 and 100</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    for (i = 1; i &#x3C;= 100; i *= 2)
+</span><span class="code-line line-number" line="3">        print i
+</span><span class="code-line line-number" line="4">}'
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>for...in</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    assoc["key1"] = "val1"
+</span><span class="code-line line-number" line="3">    assoc["key2"] = "val2"
+</span><span class="code-line line-number" line="4">    for (key in assoc)
+</span><span class="code-line line-number" line="5">        print assoc[key];
+</span><span class="code-line line-number" line="6">}'
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Arguments</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    for (argnum in ARGV)
+</span><span class="code-line line-number" line="3">        print ARGV[argnum];
+</span><span class="code-line line-number" line="4">}' a b c
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Examples {.row-span-3}</h3><div class="wrap-body">
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Reverse records</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk -F: '{ x[NR] = $0 }
+</span><span class="code-line line-number" line="2">    END {
+</span><span class="code-line line-number" line="3">        for (i = NR; i > 0; i--)
+</span><span class="code-line line-number" line="4">        print x[i]
+</span><span class="code-line line-number" line="5">    }
+</span><span class="code-line line-number" line="6">' /etc/passwd
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Reverse fields</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk -F: '{
+</span><span class="code-line line-number" line="2">    for (i = NF; i > 0; i--)
+</span><span class="code-line line-number" line="3">        printf("%s ",$i);
+</span><span class="code-line line-number" line="4">    print ""
+</span><span class="code-line line-number" line="5">}' /etc/passwd
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Sum by record</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk -F: '{
+</span><span class="code-line line-number" line="2">    s=0;
+</span><span class="code-line line-number" line="3">    for (i = 1; i &#x3C;= NF; i++)
+</span><span class="code-line line-number" line="4">        s += $i;
+</span><span class="code-line line-number" line="5">    print s
+</span><span class="code-line line-number" line="6">}' /etc/passwd
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Sum whole file</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk -F: '
+</span><span class="code-line line-number" line="2">    {for (i = 1; i &#x3C;= NF; i++)
+</span><span class="code-line line-number" line="3">        s += $i;
+</span><span class="code-line line-number" line="4">    };
+</span><span class="code-line line-number" line="5">    END{print s}
+</span><span class="code-line line-number" line="6">' /etc/passwd
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>while {.row-span-2}</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    while (a &#x3C; 10) {
+</span><span class="code-line line-number" line="3">        print "- " " concatenation: " a
+</span><span class="code-line line-number" line="4">        a++;
+</span><span class="code-line line-number" line="5">    }
+</span><span class="code-line line-number" line="6">}'
+</span></code></pre>
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>do...while</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk '{
+</span><span class="code-line line-number" line="2">    i = 1
+</span><span class="code-line line-number" line="3">    do {
+</span><span class="code-line line-number" line="4">        print $0
+</span><span class="code-line line-number" line="5">        i++
+</span><span class="code-line line-number" line="6">    } while (i &#x3C;= 5)
+</span><span class="code-line line-number" line="7">}' /etc/passwd
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Break</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    break_num = 5
+</span><span class="code-line line-number" line="3">    for (i = 0; i &#x3C; 10; i++) {
+</span><span class="code-line line-number" line="4">        print i
+</span><span class="code-line line-number" line="5">        if (i == break_num)
+</span><span class="code-line line-number" line="6">            break
+</span><span class="code-line line-number" line="7">    }
+</span><span class="code-line line-number" line="8">}'
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Continue</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN {
+</span><span class="code-line line-number" line="2">    for (x = 0; x &#x3C;= 10; x++) {
+</span><span class="code-line line-number" line="3">        if (x == 5 || x == 6)
+</span><span class="code-line line-number" line="4">            continue
+</span><span class="code-line line-number" line="5">        printf "%d ", x
+</span><span class="code-line line-number" line="6">    }
+</span><span class="code-line line-number" line="7">    print ""
+</span><span class="code-line line-number" line="8">}'
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Awk Formatted Printing {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Usage</h3><div class="wrap-body">
+</div></div><div class="h3wrap-body"><div class="wrap"><div class="wrap-header h4wrap"><h4>Right align</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN{printf "|%10s|\n", "hello"}'
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3">|     hello|
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h4wrap"><h4>Left align</h4><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk 'BEGIN{printf "|%-10s|\n", "hello"}'
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3">|hello     |
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Common specifiers</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>Character</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>c</code></td>
+      <td>ASCII character</td>
+    </tr>
+    <tr>
+      <td><code>d</code></td>
+      <td>Decimal integer</td>
+    </tr>
+    <tr>
+      <td><code>e</code>, <code>E</code>, <code>f</code></td>
+      <td>Floating-point format</td>
+    </tr>
+    <tr>
+      <td><code>o</code></td>
+      <td>Unsigned octal value</td>
+    </tr>
+    <tr>
+      <td><code>s</code></td>
+      <td>String</td>
+    </tr>
+    <tr>
+      <td><code>%</code></td>
+      <td>Literal %</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Space</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk -F: '{
+</span><span class="code-line line-number" line="2">    printf "%-10s %s\n", $1, $(NF-1)
+</span><span class="code-line line-number" line="3">}' /etc/passwd | head -n 3
+</span></code></pre>
+<p>Outputs</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">root       /root
+</span><span class="code-line line-number" line="2">bin        /bin
+</span><span class="code-line line-number" line="3">daemon     /sbin
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Header</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">awk -F: 'BEGIN {
+</span><span class="code-line line-number" line="2">    printf "%-10s %s\n", "User", "Home"
+</span><span class="code-line line-number" line="3">    printf "%-10s %s\n", "----","----"}
+</span><span class="code-line line-number" line="4">    { printf "%-10s %s\n", $1, $(NF-1) }
+</span><span class="code-line line-number" line="5">' /etc/passwd | head -n 5
+</span></code></pre>
+<p>Outputs</p>
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">User       Home
+</span><span class="code-line line-number" line="2">----       ----
+</span><span class="code-line line-number" line="3">root       /root
+</span><span class="code-line line-number" line="4">bin        /bin
+</span><span class="code-line line-number" line="5">daemon     /sbin
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Miscellaneous {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Regex Metacharacters</h3><div class="wrap-body">
+<ul>
+  <li><code>\</code></li>
+  <li><code>^</code></li>
+  <li><code>$</code></li>
+  <li><code>.</code></li>
+  <li><code>[</code></li>
+  <li><code>]</code></li>
+  <li><code>|</code></li>
+  <li><code>(</code></li>
+  <li><code>)</code></li>
+  <li><code>*</code></li>
+  <li><code>+</code></li>
+  <li>
+    <code>?</code>
+    {.cols-3 .style-none}
+  </li>
+</ul>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Escape Sequences</h3><div class="wrap-body">
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>\b</code></td>
+      <td>Backspace</td>
+    </tr>
+    <tr>
+      <td><code>\f</code></td>
+      <td>Form feed</td>
+    </tr>
+    <tr>
+      <td><code>\n</code></td>
+      <td>Newline (line feed)</td>
+    </tr>
+    <tr>
+      <td><code>\r</code></td>
+      <td>Carriage return</td>
+    </tr>
+    <tr>
+      <td><code>\t</code></td>
+      <td>Horizontal tab</td>
+    </tr>
+    <tr>
+      <td><code>\v</code></td>
+      <td>Vertical tab</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Run script</h3><div class="wrap-body">
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">cat</span> demo.awk
+</span><span class="code-line line-number" line="2"><span class="token comment">#!/usr/bin/awk -f</span>
+</span><span class="code-line line-number" line="3">BEGIN <span class="token punctuation">{</span> x <span class="token operator">=</span> <span class="token number">23</span> <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="4">      <span class="token punctuation">{</span> x <span class="token operator">+=</span> <span class="token number">2</span> <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="5">END   <span class="token punctuation">{</span> print x <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="6">$ <span class="token function">awk</span> <span class="token parameter variable">-f</span> demo.awk /etc/passwd
+</span><span class="code-line line-number" line="7"><span class="token number">69</span>
+</span></code></pre>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Also see</h2><div class="wrap-body">
+<ul>
+  <li><a href="https://www-zeuthen.desy.de/dv/documentation/unixguide/infohtml/gawk/gawk.html">The GNU Awk User's Guide</a> <em>(www-zeuthen.desy.de)</em></li>
+  <li><a href="https://gist.github.com/Rafe/3102414">AWK cheatsheet</a> <em>(gist.github.com)</em></li>
+</ul>
+
+</div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>

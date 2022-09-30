@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en" data-color-mode="dark">
+<head>
+<meta charset="utf-8">
+<title>---
+title: Git
+date: 2020-11-25 18:28:43
+icon: icon-git
+background: bg-[#d7593e]
+tags:
+    - github
+    - gitlab
+    - version
+    - VCS
+categories:
+    - Linux Command
+intro: This cheat sheet summarizes commonly used Git command line instructions for quick reference.
+---
+
+Getting started {.cols-3}
+---------------
+
+### Create a Repository
+Create a new local repository
+``` shell script
+$ git init [project name]
+```
+
+Clone a repository 
+``` shell script
+$ git clone git_url
+```
+
+Clone a repository into a specified directory
+``` shell script
+$ git clone git_url my_directory
+```
+
+
+
+
+### Make a change {.row-span-2}
+Show modified files in working directory, staged for your next commit
+``` shell script
+$ git status
+```
+
+Stages the file, ready for commit
+``` shell script
+$ git add [file]
+```
+
+Stage all changed files, ready for commit
+``` shell script
+$ git add .
+```
+
+Commit all staged files to versioned history
+``` shell script
+$ git commit -m "commit message"
+```
+
+Commit all your tracked files to versioned history
+``` shell script
+$ git commit -am "commit message"
+```
+
+Unstages file, keeping the file changes
+``` shell script
+$ git reset [file]
+```
+
+Revert everything to the last commit
+``` shell script
+$ git reset --hard
+```
+
+Diff of what is changed but not staged
+``` shell script
+$ git diff
+```
+
+Diff of what is staged but not yet commited
+``` shell script
+$ git diff --staged
+```
+
+Apply any commits of current branch ahead of specified one
+``` shell script
+$ git rebase [branch]
+```
+
+
+### Configuration
+
+Set the name that will be attached to your commits and tags
+``` shell script
+$ git config --global user.name "name"
+```
+
+Set an email address that will be attached to your commits and tags
+``` shell script
+$ git config --global user.email "email"
+```
+
+Enable some colorization of Git output
+``` shell script
+$ git config --global color.ui auto
+```
+
+Edit the global configuration file in a text editor
+``` shell script
+$ git config --global --edit
+```
+
+
+
+### Working with Branches
+
+List all local branches
+``` shell script
+$ git branch
+```
+
+List all branches, local and remote
+``` shell script
+$ git branch -av
+```
+
+Switch to my_branch, and update working directory
+``` shell script
+$ git checkout my_branch
+```
+
+Create a new branch called new_branch
+``` shell script
+$ git checkout -b new_branch
+```
+
+Delete the branch called my_branch
+``` shell script
+$ git branch -d my_branch
+```
+
+Merge branchA into branchB
+``` shell script
+$ git checkout branchB
+$ git merge branchA
+```
+
+Tag the current commit
+``` shell script
+$ git tag my_tag
+```
+
+
+
+### Observe your Repository
+Show the commit history for the currently active branch
+``` shell script
+$ git log
+```
+Show the commits on branchA that are not on branchB
+``` shell script
+$ git log branchB..branchA
+```
+Show the commits that changed file, even across renames
+``` shell script
+$ git log --follow [file]
+```
+Show the diff of what is in branchA that is not in branchB
+``` shell script
+$ git diff branchB...branchA
+```
+Show any object in Git in human-readable format
+``` shell script
+$ git show [SHA]
+```
+
+
+
+### Synchronize
+
+Fetch down all the branches from that Git remote
+``` shell script
+$ git fetch [alias]
+```
+
+Merge a remote branch into your current branch to bring it up to date
+``` shell script
+$ git merge [alias]/[branch]
+# No fast-forward
+$ git merge --no-ff [alias]/[branch]
+# Only fast-forward
+$ git merge --ff-only [alias]/[branch]
+```
+
+Transmit local branch commits to the remote repository branch
+``` shell script
+$ git push [alias] [branch]
+```
+
+Fetch and merge any commits from the tracking remote branch
+``` shell script
+$ git pull
+```
+
+Merge just one specific commit from another branch to your current branch
+``` shell script
+$ git cherry-pick [commit_id]
+```
+
+
+
+
+### Remote
+Add a git URL as an alias
+``` shell script
+$ git remote add [alias] [url]
+```
+
+Show the names of the remote repositories you've set up
+``` shell script
+$ git remote
+```
+
+Show the names and URLs of the remote repositories
+``` shell script
+$ git remote -v
+```
+
+Remove a remote repository
+``` shell script
+$ git remote rm [remote repo name]
+```
+
+Change the URL of the git repo
+``` shell script
+$ git remote set-url origin [git_url]
+```
+
+
+
+
+
+
+### Temporary Commits
+
+Save modified and staged changes
+``` shell script
+$ git stash
+```
+
+List stack-order of stashed file changes
+``` shell script
+$ git stash list
+```
+
+Write working from top of stash stack
+``` shell script
+$ git stash pop
+```
+
+Discard the changes from top of stash stack
+``` shell script
+$ git stash drop
+```
+
+
+
+
+### Tracking path Changes
+Delete the file from project and stage the removal for commit
+``` shell script
+$ git rm [file]
+```
+
+Change an existing file path and stage the move
+``` shell script
+$ git mv [existing-path] [new-path]
+```
+
+Show all commit logs with indication of any paths that moved
+``` shell script
+$ git log --stat -M
+```
+
+
+### Ignoring Files
+
+```
+/logs/*
+
+# "!" means don't ignore 
+!logs/.gitkeep
+
+/# Ignore Mac system files
+.DS_store
+
+# Ignore node_modules folder
+node_modules
+
+# Ignore SASS config files
+.sass-cache
+```
+A `.gitignore` file specifies intentionally untracked files that Git should ignore
+
+
+
+Git Tricks {.cols-3}
+------
+
+### Rename branch 
+- #### **Renamed** to `new_name`
+    ```shell script
+    $ git branch -m &#x3C;new_name>
+    ```
+- #### **Push** and reset
+    ```shell script
+    $ git push origin -u &#x3C;new_name>
+    ```
+- #### **Delete** remote branch
+    ```shell script
+    $ git push origin --delete &#x3C;old>
+    ```
+{.style-timeline}
+
+
+### Log
+Search change by content
+```shell script
+$ git log -S'&#x3C;a term in the source>'
+```
+Show changes over time for specific file
+```shell script
+$ git log -p &#x3C;file_name>
+```
+Print out a cool visualization of your log
+```shell script {.wrap}
+$ git log --pretty &#x26;  git cheatsheet &#x26;  Quick Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta description="为开发人员分享快速参考备忘单。">
+<meta keywords="Quick,Reference,cheatsheet,git">
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body><nav class="header-nav"><div class="max-container"><a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em"><path opacity=".5" d="m21.66 10.44-.98 4.18c-.84 3.61-2.5 5.07-5.62 4.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2 1.17-2.42 3.16-3.07 6.5-2.28l1.67.39c4.19.98 5.47 3.05 4.49 7.23Z" fill="white"></path><path d="M15.06 19.39c-.62.42-1.4.77-2.35 1.08l-1.58.52c-3.97 1.28-6.06.21-7.35-3.76L2.5 13.28c-1.28-3.97-.22-6.07 3.75-7.35l1.58-.52c.41-.13.8-.24 1.17-.31-.3.61-.54 1.35-.74 2.2l-.98 4.19c-.98 4.18.31 6.24 4.48 7.23l1.68.4c.58.14 1.12.23 1.62.27Zm2.43-8.88c-.06 0-.12-.01-.19-.02l-4.85-1.23a.75.75 0 0 1 .37-1.45l4.85 1.23a.748.748 0 0 1-.18 1.47Z" fill="#cbd5e1"></path><path d="M14.56 13.89c-.06 0-.12-.01-.19-.02l-2.91-.74a.75.75 0 0 1 .37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z" fill="#292D32"></path></svg><span class="title">Quick Reference</span></a><div class="menu"><a href="https://github.com/danerlt/reference/blob/main/git.md" class="" target="__blank"><svg viewBox="0 0 36 36" fill="currentColor" height="1em" width="1em"><path d="m33 6.4-3.7-3.7a1.71 1.71 0 0 0-2.36 0L23.65 6H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V11.76l3-3a1.67 1.67 0 0 0 0-2.36ZM18.83 20.13l-4.19.93 1-4.15 9.55-9.57 3.23 3.23ZM29.5 9.43 26.27 6.2l1.85-1.85 3.23 3.23Z"></path><path fill="none" d="M0 0h36v36H0z"></path></svg><span>编辑</span></a><a href="https://github.com/jaywcjlove/reference" class="" target="__blank"><svg viewBox="0 0 16 16" fill="currentColor" height="1em" width="1em"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a></div></div></nav><div class="wrap"><div class="wrap-header h2wrap"><h2>
+  title: Git
+  date: 2020-11-25 18:28:43
+  icon: icon-git
+  background: bg-[#d7593e]
+  tags:
+  - github
+  - gitlab
+  - version
+  - VCS
+  categories:
+  - Linux Command
+  intro: This cheat sheet summarizes commonly used Git command line instructions for quick reference.
+</h2><div class="wrap-body">
+</div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Getting started {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Create a Repository</h3><div class="wrap-body">
+<p>Create a new local repository</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> init <span class="token punctuation">[</span>project name<span class="token punctuation">]</span>
+</span></code></pre>
+<p>Clone a repository</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> clone git_url
+</span></code></pre>
+<p>Clone a repository into a specified directory</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> clone git_url my_directory
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Make a change {.row-span-2}</h3><div class="wrap-body">
+<p>Show modified files in working directory, staged for your next commit</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> status
+</span></code></pre>
+<p>Stages the file, ready for commit</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> <span class="token function">add</span> <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+</span></code></pre>
+<p>Stage all changed files, ready for commit</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+</span></code></pre>
+<p>Commit all staged files to versioned history</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"commit message"</span>
+</span></code></pre>
+<p>Commit all your tracked files to versioned history</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> commit <span class="token parameter variable">-am</span> <span class="token string">"commit message"</span>
+</span></code></pre>
+<p>Unstages file, keeping the file changes</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> reset <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+</span></code></pre>
+<p>Revert everything to the last commit</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> reset <span class="token parameter variable">--hard</span>
+</span></code></pre>
+<p>Diff of what is changed but not staged</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> <span class="token function">diff</span>
+</span></code></pre>
+<p>Diff of what is staged but not yet commited</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> <span class="token function">diff</span> <span class="token parameter variable">--staged</span>
+</span></code></pre>
+<p>Apply any commits of current branch ahead of specified one</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> rebase <span class="token punctuation">[</span>branch<span class="token punctuation">]</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Configuration</h3><div class="wrap-body">
+<p>Set the name that will be attached to your commits and tags</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> config <span class="token parameter variable">--global</span> user.name <span class="token string">"name"</span>
+</span></code></pre>
+<p>Set an email address that will be attached to your commits and tags</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> config <span class="token parameter variable">--global</span> user.email <span class="token string">"email"</span>
+</span></code></pre>
+<p>Enable some colorization of Git output</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> config <span class="token parameter variable">--global</span> color.ui auto
+</span></code></pre>
+<p>Edit the global configuration file in a text editor</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> config <span class="token parameter variable">--global</span> <span class="token parameter variable">--edit</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Working with Branches</h3><div class="wrap-body">
+<p>List all local branches</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> branch
+</span></code></pre>
+<p>List all branches, local and remote</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> branch <span class="token parameter variable">-av</span>
+</span></code></pre>
+<p>Switch to my_branch, and update working directory</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> checkout my_branch
+</span></code></pre>
+<p>Create a new branch called new_branch</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> checkout <span class="token parameter variable">-b</span> new_branch
+</span></code></pre>
+<p>Delete the branch called my_branch</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> branch <span class="token parameter variable">-d</span> my_branch
+</span></code></pre>
+<p>Merge branchA into branchB</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> checkout branchB
+</span><span class="code-line line-number" line="2">$ <span class="token function">git</span> merge branchA
+</span></code></pre>
+<p>Tag the current commit</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> tag my_tag
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Observe your Repository</h3><div class="wrap-body">
+<p>Show the commit history for the currently active branch</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> log
+</span></code></pre>
+<p>Show the commits on branchA that are not on branchB</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> log branchB<span class="token punctuation">..</span>branchA
+</span></code></pre>
+<p>Show the commits that changed file, even across renames</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> log <span class="token parameter variable">--follow</span> <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+</span></code></pre>
+<p>Show the diff of what is in branchA that is not in branchB</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> <span class="token function">diff</span> branchB<span class="token punctuation">..</span>.branchA
+</span></code></pre>
+<p>Show any object in Git in human-readable format</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> show <span class="token punctuation">[</span>SHA<span class="token punctuation">]</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Synchronize</h3><div class="wrap-body">
+<p>Fetch down all the branches from that Git remote</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> fetch <span class="token punctuation">[</span>alias<span class="token punctuation">]</span>
+</span></code></pre>
+<p>Merge a remote branch into your current branch to bring it up to date</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> merge <span class="token punctuation">[</span>alias<span class="token punctuation">]</span>/<span class="token punctuation">[</span>branch<span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="2"><span class="token comment"># No fast-forward</span>
+</span><span class="code-line line-number" line="3">$ <span class="token function">git</span> merge --no-ff <span class="token punctuation">[</span>alias<span class="token punctuation">]</span>/<span class="token punctuation">[</span>branch<span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="4"><span class="token comment"># Only fast-forward</span>
+</span><span class="code-line line-number" line="5">$ <span class="token function">git</span> merge --ff-only <span class="token punctuation">[</span>alias<span class="token punctuation">]</span>/<span class="token punctuation">[</span>branch<span class="token punctuation">]</span>
+</span></code></pre>
+<p>Transmit local branch commits to the remote repository branch</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> push <span class="token punctuation">[</span>alias<span class="token punctuation">]</span> <span class="token punctuation">[</span>branch<span class="token punctuation">]</span>
+</span></code></pre>
+<p>Fetch and merge any commits from the tracking remote branch</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> pull
+</span></code></pre>
+<p>Merge just one specific commit from another branch to your current branch</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> cherry-pick <span class="token punctuation">[</span>commit_id<span class="token punctuation">]</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Remote</h3><div class="wrap-body">
+<p>Add a git URL as an alias</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> remote <span class="token function">add</span> <span class="token punctuation">[</span>alias<span class="token punctuation">]</span> <span class="token punctuation">[</span>url<span class="token punctuation">]</span>
+</span></code></pre>
+<p>Show the names of the remote repositories you've set up</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> remote
+</span></code></pre>
+<p>Show the names and URLs of the remote repositories</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> remote <span class="token parameter variable">-v</span>
+</span></code></pre>
+<p>Remove a remote repository</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> remote <span class="token function">rm</span> <span class="token punctuation">[</span>remote repo name<span class="token punctuation">]</span>
+</span></code></pre>
+<p>Change the URL of the git repo</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> remote set-url origin <span class="token punctuation">[</span>git_url<span class="token punctuation">]</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Temporary Commits</h3><div class="wrap-body">
+<p>Save modified and staged changes</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> stash
+</span></code></pre>
+<p>List stack-order of stashed file changes</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> stash list
+</span></code></pre>
+<p>Write working from top of stash stack</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> stash pop
+</span></code></pre>
+<p>Discard the changes from top of stash stack</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> stash drop
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Tracking path Changes</h3><div class="wrap-body">
+<p>Delete the file from project and stage the removal for commit</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> <span class="token function">rm</span> <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+</span></code></pre>
+<p>Change an existing file path and stage the move</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> <span class="token function">mv</span> <span class="token punctuation">[</span>existing-path<span class="token punctuation">]</span> <span class="token punctuation">[</span>new-path<span class="token punctuation">]</span>
+</span></code></pre>
+<p>Show all commit logs with indication of any paths that moved</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> log <span class="token parameter variable">--stat</span> <span class="token parameter variable">-M</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Ignoring Files</h3><div class="wrap-body">
+<pre><code class="code-highlight"><span class="code-line line-number" line="1">/logs/*
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"># "!" means don't ignore 
+</span><span class="code-line line-number" line="4">!logs/.gitkeep
+</span><span class="code-line line-number" line="5">
+</span><span class="code-line line-number" line="6">/# Ignore Mac system files
+</span><span class="code-line line-number" line="7">.DS_store
+</span><span class="code-line line-number" line="8">
+</span><span class="code-line line-number" line="9"># Ignore node_modules folder
+</span><span class="code-line line-number" line="10">node_modules
+</span><span class="code-line line-number" line="11">
+</span><span class="code-line line-number" line="12"># Ignore SASS config files
+</span><span class="code-line line-number" line="13">.sass-cache
+</span></code></pre>
+<p>A <code>.gitignore</code> file specifies intentionally untracked files that Git should ignore</p>
+</div></div></div></div></div><div class="wrap"><div class="wrap-header h2wrap"><h2>Git Tricks {.cols-3}</h2><div class="wrap-body">
+</div></div><div class="h2wrap-body"><div class="wrap"><div class="wrap-header h3wrap"><h3>Rename branch</h3><div class="wrap-body">
+<ul>
+  <li>
+    <h4><strong>Renamed</strong> to <code>new_name</code></h4>
+    <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> branch <span class="token parameter variable">-m</span> <span class="token operator">&#x3C;</span>new_name<span class="token operator">></span>
+</span></code></pre>
+  </li>
+  <li>
+    <h4><strong>Push</strong> and reset</h4>
+    <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> push origin <span class="token parameter variable">-u</span> <span class="token operator">&#x3C;</span>new_name<span class="token operator">></span>
+</span></code></pre>
+  </li>
+  <li>
+    <h4><strong>Delete</strong> remote branch</h4>
+    <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> push origin <span class="token parameter variable">--delete</span> <span class="token operator">&#x3C;</span>old<span class="token operator">></span>
+</span></code></pre>
+  </li>
+</ul>
+<p>{.style-timeline}</p>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Log</h3><div class="wrap-body">
+<p>Search change by content</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> log -S<span class="token string">'&#x3C;a term in the source>'</span>
+</span></code></pre>
+<p>Show changes over time for specific file</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> log <span class="token parameter variable">-p</span> <span class="token operator">&#x3C;</span>file_name<span class="token operator">></span>
+</span></code></pre>
+<p>Print out a cool visualization of your log</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> log <span class="token parameter variable">--pretty</span><span class="token operator">=</span>oneline <span class="token parameter variable">--graph</span> <span class="token parameter variable">--decorate</span> <span class="token parameter variable">--all</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Branch {.row-span-2}</h3><div class="wrap-body">
+<p>List all branches and their upstreams</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> branch <span class="token parameter variable">-vv</span> 
+</span></code></pre>
+<p>Quickly switch to the previous branch</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> checkout -
+</span></code></pre>
+<p>Get only remote branches</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> branch <span class="token parameter variable">-r</span>
+</span></code></pre>
+<p>Checkout a single file from another branch</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> checkout <span class="token operator">&#x3C;</span>branch<span class="token operator">></span> -- <span class="token operator">&#x3C;</span>file<span class="token operator">></span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Commit</h3><div class="wrap-body">
+<p>Rewrite last commit message</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">git</span> commit <span class="token parameter variable">-v</span> <span class="token parameter variable">--amend</span>
+</span></code></pre>
+</div></div></div><div class="wrap"><div class="wrap-header h3wrap"><h3>Git Aliases</h3><div class="wrap-body">
+<pre><code class="language-cmd code-highlight"><span class="code-line line-number" line="1">git config --global alias.co checkout
+</span><span class="code-line line-number" line="2">git config --global alias.br branch
+</span><span class="code-line line-number" line="3">git config --global alias.ci commit
+</span><span class="code-line line-number" line="4">git config --global alias.st status
+</span></code></pre>
+<p>See also: <a href="https://gist.github.com/johnpolacek/69604a1f6861129ef088">More Aliases</a></p>
+
+</div></div></div></div></div><footer class="footer-wrap"><footer class="max-container">© 2022 Kenny Wang, All rights reserved.</footer></footer></body>
+</html>
